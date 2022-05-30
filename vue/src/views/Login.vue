@@ -12,7 +12,8 @@
         role="alert"
         v-if="this.$route.query.registration"
       >Thank you for registering, please sign in.</div>
-      <label for="username" class="sr-only">Username</label>
+      <div id ="login-form">
+      <label id = "userlabel" for="username" class="sr-only">Username</label>
       <input
         type="text"
         id="username"
@@ -22,7 +23,7 @@
         required
         autofocus
       />
-      <label for="password" class="sr-only">Password</label>
+      <label id = "passlabel" for="password" class="sr-only">Password</label>
       <input
         type="password"
         id="password"
@@ -31,8 +32,9 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+      <router-link :to="{ name: 'register' }" id="go-get-new-account">Need an account?</router-link>
+      <button id="submit-login" type="submit">Sign in</button>
+      </div>
     </form>
   </div>
 </template>
@@ -74,3 +76,46 @@ export default {
   }
 };
 </script>
+<style>
+.form-signin{
+  display: flex;
+  flex-direction: column;
+  align-items: center ;
+}
+#login-form{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  text-align: right;
+  grid-template-areas:
+  "userprompt userfield"
+  "passprompt passfield"
+  "register submit";
+}
+#userlabel{
+  grid-area: userprompt;
+  margin-right: 5px;
+  margin-bottom: 1px;
+}
+#passlabel{
+  grid-area: passprompt;
+  margin-right: 5px;
+  margin-bottom: 1px;
+}
+#username{
+  grid-area: userfield;
+  margin-bottom: 1px;
+}
+#password{
+  grid-area: passfield;
+  margin-bottom: 1px;
+}
+#go-get-new-account{
+  grid-area: register;
+  margin-right: 5px;
+}
+#submit-login{
+  grid-area: submit;
+  width: 33%;
+  min-width: 60px;
+}
+</style>
