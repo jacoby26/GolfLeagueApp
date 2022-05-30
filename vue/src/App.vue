@@ -7,8 +7,6 @@
     <router-view />
   </div>
 </template>
-<<<<<<< Updated upstream
-=======
 <script>
 export default {
 methods:{
@@ -39,4 +37,3 @@ a{
   color: #6A0012; 
 }
 </style>
->>>>>>> Stashed changes
