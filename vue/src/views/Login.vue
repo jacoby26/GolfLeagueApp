@@ -1,7 +1,13 @@
 <template>
+<div class="login-body">
+  <div class="app-title">
+    <h1 id="title">GOLF APP</h1>
+  </div>
   <div id="login" class="text-center">
-    <form class="form-signin" v-on:submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+    <div class="login-header">
+      <h1 class="h3-mb-3-font-weight-normal">Please Sign In</h1>
+    </div>
+    <form class="form-signin" @submit.prevent="login">
       <div
         class="alert alert-danger"
         role="alert"
@@ -17,7 +23,7 @@
         type="text"
         id="username"
         class="form-control"
-        placeholder="Username"
+        placeholder=""
         v-model="user.username"
         required
         autofocus
@@ -27,18 +33,19 @@
         type="password"
         id="password"
         class="form-control"
-        placeholder="Password"
+        placeholder=""
         v-model="user.password"
         required
       />
+      <button id="sign-in" type="submit">Sign in</button>
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
     </form>
   </div>
+</div>
 </template>
 
 <script>
-import authService from "../services/AuthService.js";
+import authService from "../services/AuthService";
 
 export default {
   name: "login",
@@ -74,3 +81,82 @@ export default {
   }
 };
 </script>
+<style>
+/* potential color palette
+old gold #eeea03 
+brown #5D5038
+white
+*/
+
+body {
+  background: URL("../img/login.jpg") no-repeat center fixed;
+  background-size: cover;
+  font-family: sans-serif;
+  
+}
+div#nav {  
+  display: none;
+}
+.app-title {
+  color: white;
+  text-align: center;
+  position: relative;
+  font-size: 32px;
+  margin: 0;
+  padding: 150px 0px 100px 0px;
+  width: 100%; 
+  text-shadow: 0 0 10px black;
+}
+.login-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+div#login {
+    box-shadow: 2px 4px 10px;
+    border-radius: 7px 7px 5px 5px;
+    background: white;
+}
+.login-header {
+  color: white;
+  border-radius: 5px 5px 0 0;
+  text-transform: uppercase;
+  background: #5D5038; 
+  width: 100%;
+}
+h1.h3-mb-3-font-weight-normal {
+  margin: 0px;
+  padding: 20px auto;
+  text-shadow: 0 0 1px #5D5038;
+}
+.sr-only {
+  text-align: center;
+  padding: 25px 0 5px;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+a {
+  margin: 15px auto;
+  text-align: center;
+  max-width: auto;
+  color: #5D5038;
+}
+#sign-in {
+  border-radius: 5px 5px;
+  border: #5D5038;
+  cursor: pointer;
+  margin: 35px auto 20px;
+  padding: 10px;
+  max-width: 100px;
+  text-transform: uppercase;
+  background: #5D5038;
+  color: white;
+}
+input {
+  padding: 8px;
+}
+
+</style>

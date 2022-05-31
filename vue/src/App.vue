@@ -23,6 +23,7 @@ methods:{
 }
 </script>
 <style>
+/* temporarily disabled to merge
 html.dark{
   background-color: rgba(15, 0, 64, 64);
   color: #FFAF00;
@@ -30,5 +31,5 @@ html.dark{
 html{
   background-color: rgba(240, 255, 255, 64);
   color: #6A0012;
-}
+} */
 </style>
