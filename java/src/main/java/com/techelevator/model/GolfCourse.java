@@ -86,4 +86,9 @@ public class GolfCourse {
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
+
+    @Override
+    public String toString() {
+        return "Course Name: " + name + " Address: " + address + " " + city + ", " + state + " " + zip;
+    }
 }
