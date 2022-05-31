@@ -4,7 +4,7 @@ import com.techelevator.model.GolfCourse;
 
 import java.util.List;
 
-public interface CourseDao {
+public interface GolfCourseDao {
 
     List<GolfCourse> getAllCourses();
 

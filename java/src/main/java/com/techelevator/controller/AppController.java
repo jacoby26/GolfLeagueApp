@@ -1,12 +1,10 @@
 package com.techelevator.controller;
 
-import com.techelevator.dao.CourseDao;
+import com.techelevator.dao.GolfCourseDao;
 import com.techelevator.dao.RoundDao;
-import com.techelevator.dao.UserDao;
 import com.techelevator.model.GolfCourse;
 import com.techelevator.model.Round;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,14 +20,14 @@ import java.util.List;
 public class AppController {
 
     @Autowired
-    CourseDao courseDao;
+    GolfCourseDao golfCourseDao;
     @Autowired
     RoundDao roundDao;
 
 
     @RequestMapping(path="/courses", method = RequestMethod.GET)
     public List<GolfCourse> listAllCourses() {
-        return courseDao.getAllCourses();
+        return golfCourseDao.getAllCourses();
     }
 
     @RequestMapping(path="/rounds", method = RequestMethod.GET)
@@ -45,7 +43,7 @@ public class AppController {
 
     @RequestMapping(path="/courses/addcourse", method=RequestMethod.POST)
     public long addGolfCourse(@RequestParam String name, String address, String city, String state, int zip, double longitude, double latitude) {
-        return courseDao.addCourse(name, address, city, state, zip, longitude, latitude);
+        return golfCourseDao.addCourse(name, address, city, state, zip, longitude, latitude);
     }
 
 

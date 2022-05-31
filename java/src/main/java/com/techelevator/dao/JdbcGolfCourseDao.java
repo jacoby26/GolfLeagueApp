@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class JdbcCourseDao implements CourseDao{
+public class JdbcGolfCourseDao implements GolfCourseDao {
 
     private JdbcTemplate jdbcTemplate;
 
-    public JdbcCourseDao(DataSource ds) {
+    public JdbcGolfCourseDao(DataSource ds) {
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 
@@ -36,7 +36,8 @@ public class JdbcCourseDao implements CourseDao{
 
     @Override
     public long addCourse(String name, String address, String city, String state, int zip, double longitude, double latitude) {
-        String sql = "INSERT INTO courses (course_name, address, city, course_state, zip_code, latitude, longitude) VALUES (?,?,?,?,?,?,?) RETURNING course_id";
+        String sql = "INSERT INTO courses (course_name, address, city, course_state, zip_code, latitude, longitude) "
+                + "VALUES (?,?,?,?,?,?,?) RETURNING course_id";
         return jdbcTemplate.queryForObject(sql, long.class, name, address, city, state, zip, latitude, longitude);
 
     }
