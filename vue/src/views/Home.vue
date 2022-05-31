@@ -1,27 +1,50 @@
 <template>
   <div class="home">
-    <div id="details">
-    <h1>Current leaderboard</h1>
-    <p>(to do: replace with component) Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi ab ipsa consequatur vitae veritatis veniam, maxime molestias doloribus exercitationem aspernatur fuga tempora perspiciatis dolore. Placeat dolor praesentium modi similique totam!</p>
-    </div>
+    <Details id="details" v-bind:item="item"/>
     <div id="selector">
       <h3>When clicked, the items below will change this--></h3>
       <ul>
-        <li>Leaderboard</li>
-        <li>Next Match</li>
-        <li>Following Match</li>
+        <li v-on:click="show(Leaderboard)">Leaderboard</li>
+        <li v-for="game in matches" v-bind:key="game.id" v-on:click="show(game)"> {{game.date}} </li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
+import Details from "../views/Details.vue";
+import LeagueService from "../services/LeagueService.js";
+
 export default {
-  name: "home"
+  name: "home",
+  data(){
+    return{
+      Matches: [],
+      Leagueid:'',
+      item:{}
+    }
+  },
+  components: {
+    Details
+  },
+  created(){
+    LeagueService.viewRounds().then(
+      (Games) => {
+        this.Matches = Games.data
+      }
+    );
+    //this.Leagueid = this.$Store.state.user;
+  },
+  methods:{
+    show(item){
+      return this.item = item;
+    }
+  }
 };
 </script>
 <style>
 .home{
+  margin: 5px;
   background-image: url('../../Home.png');
   background-repeat: no-repeat;
   padding: 5px;

@@ -2,17 +2,16 @@
   <div id="app" v-bind:class="{'logged-in': logged}">
     <div id="nav" v-if="$store.state.token != ''">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'home' }">Create League</router-link>&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'add-league' }">Create League</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'home' }">Manage League</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
     <router-view />
-    <div id="messaging" v-if="$store.state.token != ''">
-      <h2>Integrate messaging in here.</h2>
-    </div>
+    <Messenger v-if="$store.state.token != ''"/>
   </div>
 </template>
 <script>
+import Messenger from "./components/Messenger.vue";
 export default {
   data() {
     return{
@@ -22,6 +21,9 @@ export default {
     logged(){
       return this.$store.state.token != '';
     }
+  },
+  components:{
+    Messenger
   },
 methods:{
 }  
@@ -38,9 +40,7 @@ methods:{
   grid-template-areas: "nav nav"
   "router messaging";
 }
-#messaging{
-  background-color: rgba(0,82,41,.9);
-  padding: 5px;
+Messenger{
   grid-area: messaging;
 }
 router-view{
