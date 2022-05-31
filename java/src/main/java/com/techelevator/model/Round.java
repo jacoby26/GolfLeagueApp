@@ -5,27 +5,27 @@ import java.time.LocalDate;
 
 public class Round {
 
-    private Long id;
+    private long id;
     private int score;
     private LocalDate date;
-    private String course;
-    private String player;
+    private long courseId;
+    private long userId;
 
     public Round() { }
 
-    public Round(Long id, int score, LocalDate date, String course, String player) {
+    public Round(long id, int score, LocalDate date, long courseId, long userId) {
         this.id = id;
         this.score = score;
         this.date = date;
-        this.course = course;
-        this.player = player;
+        this.courseId = courseId;
+        this.userId = userId;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -45,24 +45,19 @@ public class Round {
         this.date = date;
     }
 
-    public String getCourse() {
-        return course;
+    public long getCourseId() {
+        return courseId;
     }
 
-    public void setCourse(String course) {
-        this.course = course;
+    public void setCourseId(long courseId) {
+        this.courseId = courseId;
     }
 
-    public String getPlayer() {
-        return player;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setPlayer(String player) {
-        this.player = player;
-    }
-
-    @Override
-    public String toString() {
-        return date + " " + course + " " + score;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 }
