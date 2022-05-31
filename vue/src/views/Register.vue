@@ -104,16 +104,16 @@ body {
   font-family: sans-serif;
   
 }
-div#nav {  
+/* div#nav {  
   display: none;
-}
+} */
 .app-title {
   color: white;
   text-align: center;
   position: relative;
   font-size: 32px;
   margin: 0;
-  padding: 150px 0px 100px 0px;
+  padding: 100px 0px 75px 0px;
   width: 100%; 
   text-shadow: 0 0 10px black;
 }
@@ -146,7 +146,7 @@ div#register {
 }
 h1.h3-mb-3-font-weight-normal {
   margin: 0px;
-  padding: 20px 100px 20px 100px;
+  padding: 20px 100px;
   text-shadow: 0 0 1px #5D5038;
 }
 .sr-only {
