@@ -32,8 +32,9 @@ public class JdbcCourseDao implements CourseDao{
 
         return allCourses;
 
-
     }
+
+    
 
 
     private GolfCourse mapRowToGolfCourse(SqlRowSet rs) {

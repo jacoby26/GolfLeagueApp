@@ -23,12 +23,9 @@ public class AppController {
 
     @Autowired
     CourseDao courseDao;
-
     @Autowired
     RoundDao roundDao;
 
-    @Autowired
-    UserDao userDao;
 
     @RequestMapping(path="/courses", method = RequestMethod.GET)
     public List<GolfCourse> listAllCourses() {
