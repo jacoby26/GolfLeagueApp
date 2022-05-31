@@ -1,59 +1,71 @@
 <template>
-  <span id="app">
-    <span id ="style-toggle">
-      <a v-on:click.prevent ="toggleDark">{{DisplayModeColor}}</a>
-    </span>
-    <div id="nav">
+  <div id="app" v-bind:class="{'logged-in': logged}">
+    <div id="nav" v-if="$store.state.token != ''">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'home' }">Create League</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'home' }">Manage League</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
     <router-view />
-  </span>
+    <div id="messaging" v-if="$store.state.token != ''">
+      <h2>Integrate messaging in here.</h2>
+    </div>
+  </div>
 </template>
 <script>
 export default {
   data() {
     return{
-      DisplayModeColor : ' \u263D',
+    }
+  },
+  computed:{
+    logged(){
+      return this.$store.state.token != '';
     }
   },
 methods:{
-  toggleDark() {
-    if(document.querySelector('html').classList.contains('dark')){
-      document.querySelector('html').classList.remove('dark');
-      this.DisplayModeColor = "\u263D"
-    } else {
-      document.querySelector('html').classList.add('dark');
-      this.DisplayModeColor = '\u2600'
-    }
-  }
 }  
 }
 </script>
 <style>
-#style-toggle{
+#app.logged-in{
   position: absolute;
-  left:1%;
-  font-size: 24pt;
-  width: 1.5%;
-  text-align: right;
-  top: 1%;
+  top: 0px;
+  left: 0px;
+  display: grid;
+  grid-template-columns: 75vw 25vw;
+  grid-template-rows: 10vh 90vh;
+  grid-template-areas: "nav nav"
+  "router messaging";
 }
-html.dark{
-  background-color: #0C003F;
-  color: #FFAF00;
+#messaging{
+  background-color: rgba(0,82,41,.9);
+  padding: 5px;
+  grid-area: messaging;
+}
+router-view{
+  grid-area: router;
+}
+
+#nav{
+ grid-area: nav;
+ position:static;
+ background-image: url("../Banner.png");
+ font-size: 14pt;
+ text-align: center;
+ font-family: Arial, Helvetica, sans-serif;
+ width: 1fr;
+ padding-top: 20px;
+ padding-bottom: 20px;
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
 }
 html{
-  background-color: rgba(245, 255, 250, 100);
-  color: #6A0012;
-  text-align: center;
-}
-.dark a{
-  color: #FFAF00;
+  background-color: #BAC7CA;
+  color: #ffb81f;
 }
 a{
-  color: #6A0012; 
+  color: #ffb81f; 
 }
 </style>
