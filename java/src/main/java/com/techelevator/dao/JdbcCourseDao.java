@@ -22,7 +22,7 @@ public class JdbcCourseDao implements CourseDao{
     @Override
     public List<GolfCourse> getAllCourses() {
         List<GolfCourse> allCourses = new ArrayList<>();
-        String sql = "select * from courses";
+        String sql = "select * from courses ORDER BY course_name";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while(results.next()) {
