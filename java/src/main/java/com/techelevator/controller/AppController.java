@@ -43,6 +43,11 @@ public class AppController {
         return roundDao.createRound(score, roundDate, principal, golfCourse);
     }
 
+    @RequestMapping(path="/courses/addcourse", method=RequestMethod.POST)
+    public long addGolfCourse(@RequestParam String name, String address, String city, String state, int zip, double longitude, double latitude) {
+        return courseDao.addCourse(name, address, city, state, zip, longitude, latitude);
+    }
+
 
 
 

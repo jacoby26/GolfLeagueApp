@@ -48,9 +48,8 @@ public class JdbcRoundDao implements RoundDao{
                 + "VALUES (?,?,?,?) RETURNING round_id";
         long userID = jdbcUserDao.findIdByUsername(principal.getName());
         long courseID = golfCourse.getId();
-        long roundID = jdbcTemplate.queryForObject(sql, long.class, score, roundDate, courseID, userID);
+        return jdbcTemplate.queryForObject(sql, long.class, score, roundDate, courseID, userID);
 
-        return roundID;
     }
 
 

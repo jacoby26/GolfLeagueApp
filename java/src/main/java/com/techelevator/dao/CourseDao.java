@@ -7,4 +7,6 @@ import java.util.List;
 public interface CourseDao {
 
     List<GolfCourse> getAllCourses();
+
+    long addCourse(String name, String address, String city, String state, int zip, double longitude, double latitude);
 }

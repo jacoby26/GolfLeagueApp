@@ -34,7 +34,12 @@ public class JdbcCourseDao implements CourseDao{
 
     }
 
-    
+    @Override
+    public long addCourse(String name, String address, String city, String state, int zip, double longitude, double latitude) {
+        String sql = "INSERT INTO courses (course_name, address, city, course_state, zip_code, latitude, longitude) VALUES (?,?,?,?,?,?,?) RETURNING course_id";
+        return jdbcTemplate.queryForObject(sql, long.class, name, address, city, state, zip, latitude, longitude);
+
+    }
 
 
     private GolfCourse mapRowToGolfCourse(SqlRowSet rs) {
