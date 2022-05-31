@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +14,8 @@ public class JdbcCourseDao implements CourseDao{
 
     private JdbcTemplate jdbcTemplate;
 
-    public JdbcCourseDao(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public JdbcCourseDao(DataSource ds) {
+        this.jdbcTemplate = new JdbcTemplate(ds);
     }
 
 
