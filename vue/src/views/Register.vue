@@ -1,7 +1,8 @@
 <template>
   <div id="register-box">
     <div class="app-title">
-    <h1 id="title"><img id="app-logo" src="..\img\logoedit.png"/> BACK NINE</h1>
+      <img id="app-logo" src="..\img\logoedit.png"/>
+    <h1 id="title">BACK NINE</h1>
   </div>
     <div id="register" class="text-center">
       <div class="create-header">
