@@ -1,16 +1,11 @@
 <template>
   <div id="app" v-bind:class="{'logged-in': logged}">
     <div id="nav" v-if="logged">
-      <router-link v-bind:to="{ name: 'home' }"><img id="homebtn"
-        v-bind:src='homebtn.image' @mouseover="homehover()" @mouseout="homeout()" v-on:click="homeclick()"/></router-link>
-      <router-link v-bind:to="{ name: 'add-league' }"><img id="addleaguebtn"
-        v-bind:src='addleaguebtn.image' @mouseover="addhover()" @mouseout="addout()" v-on:click="addclick()"/></router-link>
-      <router-link v-bind:to="{ name: 'add-match' }"><img id="addmatchbtn"
-        v-bind:src='addmatchbtn.image' @mouseover="matchhover()" @mouseout="matchout()" v-on:click="matchclick()"/></router-link>
-      <router-link v-bind:to="{ name: 'manage-league' }"><img id="manageleaguebtn" 
-        v-bind:src='manageleaguebtn.image' @mouseover="managehover()" @mouseout="manageout()" v-on:click="manageclick()"/></router-link>
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"><img id="logoutbtn"
-        v-bind:src='logoutbtn.image' @mouseover="logouthover()" @mouseout="logoutout()" v-on:click="logoutclick()"/></router-link>
+      <img id="homebtn" v-bind:src='homebtn.image' @mouseover="homehover()" @mouseout="homeout()" v-on:click="homeclick()"/>
+      <img id="addleaguebtn" v-bind:src='addleaguebtn.image' @mouseover="addhover()" @mouseout="addout()" v-on:click="addclick()"/>
+      <img id="addmatchbtn" v-bind:src='addmatchbtn.image' @mouseover="matchhover()" @mouseout="matchout()" v-on:click="matchclick()"/>
+      <img id="manageleaguebtn"  v-bind:src='manageleaguebtn.image' @mouseover="managehover()" @mouseout="manageout()" v-on:click="manageclick()"/>
+      <img id="logoutbtn" v-bind:src='logoutbtn.image' @mouseover="logouthover()" @mouseout="logoutout()" v-on:click="logoutclick()" v-if="$store.state.token != ''"/>
     </div>
     <router-view id="router-view" />
     <Messenger id="messenger" v-if="$store.state.token != ''"/>
@@ -58,6 +53,7 @@ methods:{
   },
   homeclick(){
     this.homebtn.image = HomeClick
+    this.$router.push('/')
   },
   homeout(){
     this.homebtn.image = HomeRestore
@@ -67,6 +63,7 @@ methods:{
   },
   addclick(){
     this.addleaguebtn.image = AddClick
+    this.$router.push('/add')
   },
   addout(){
     this.addleaguebtn.image = AddRestore
@@ -76,6 +73,7 @@ methods:{
   },
   matchclick(){
     this.addmatchbtn.image = MatchClick
+    this.$router.push('/play')
   },
   matchout(){
     this.addmatchbtn.image = MatchRestore
@@ -85,6 +83,7 @@ methods:{
   },
   manageclick(){
     this.manageleaguebtn.image = ManageClick
+    this.$router.push('/manage-league')
   },
   manageout(){
     this.manageleaguebtn.image = ManageRestore
@@ -94,6 +93,7 @@ methods:{
   },
   logoutclick(){
     this.logoutbtn.image = LogoutClick
+    this.$router.push('/logout')
   },
   logoutout(){
     this.logoutbtn.image = LogoutRestore
@@ -140,15 +140,13 @@ body{
  display: flex;
  justify-content: space-around;
  align-items: center;
+ object-fit: fill
  /* 
  justify-content: stretch;
  align-items: center; */
 }
-#nav a{
-  object-fit: fill;
-}
 #nav img {
-  max-height: 10vh;
+  height: 10vh;
   object-fit: fill;
 }
 a{

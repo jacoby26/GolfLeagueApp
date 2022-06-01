@@ -5,7 +5,7 @@
       <h3>When clicked, the items below will change this--></h3>
       <ul>
         <li v-on:click="show(Leaderboard)">Leaderboard</li>
-        <li v-for="game in matches" v-bind:key="game.id" v-on:click="show(game)"> {{game.date}} </li>
+        <li v-for="game in Matches" v-bind:key="game.Id" v-on:click="show(game)"> {{game.Date}} </li>
       </ul>
     </div>
   </div>
