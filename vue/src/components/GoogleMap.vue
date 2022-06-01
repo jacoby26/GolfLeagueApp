@@ -4,10 +4,9 @@
       <div id="intro">
           <h1>Find a Course</h1>
       </div>
-
       <form id="searchForm" >
           <input type="text" placeholder="Enter your zip code" id="text">
-          <button type="submit" v-on:click.prevent="calculateCenter()">Search</button>   
+          <button type="submit" id="search" :disabled="isLoading" v-on:click.prevent="calculateCenter()">Search</button>   
       </form>
 
       <div id="map"></div>
@@ -25,11 +24,12 @@ export default {
   data() {
     return {
       map: null,
-      mapCenter: { lat: 43.0389, lng: -87.9065 },
-      locations: [],
-      
+      mapCenter: { lat: 43.0389, lng: -87.9065 }, 
+      isLoading: true,
+      zip: "53201"
     };
   },
+  created(){},
   methods: {
     initMap() {
       this.map = new window.google.maps.Map(document.getElementById("map"), {
@@ -50,16 +50,21 @@ export default {
         },
       ];
       this.map.setOptions({ styles: noPOIStyle });
+      
     },
     calculateCenter() {
-        this.getLatLngByZipcode(this.getUserInput()).then(results => {
-           console.log(results)
+        this.zip = this.getUserInput()
+        this.getLatLngByZipcode(this.zip).then(results => {
+        //    console.log(results)
            this.mapCenter = {
            lat: parseFloat(results[0]),
            lng: results[1]
+           
        }
        this.initMap()
+       this.dropPins(this.zip)
        })
+       
     },
     
     getLatLngByZipcode(zipcode) {
@@ -86,37 +91,81 @@ export default {
         console.log(zipcode)
         return "" + zipcode
     },
+    makeMarkerObj(lat, lng, name) {
+      const latLng = {
+        lat: lat,
+        lng: lng
+      }
+      const markerObj = { coord: latLng, name: name };
+      return markerObj;
+    },
 
-    getLocations() {
-        golfCourseService.getAllCourses().then(response => {
-            this.locations = response.data
-            
-            console.table(response.data)
-        })
+    dropPins(zip) {
+        let zips = [];
+        
+        for(let i = 0; i < 100; i++) {
+            zips[i] = "" + ((parseInt(zip) - 50) + (i))
+        }
 
-        console.log(this.locations)
+        let loc = []
+
+        for(let j = 0; j < 100; j++){
+            let results = this.$store.state.locations.filter((x) => x.zip == zips[j])
+
+            results.forEach((x) => {
+                loc.push(x)
+            })
+        }
+        loc.forEach((x) => {
+            this.dropPin(this.makeMarkerObj(x.latitude, x.longitude, x.name))
+        });  
+      // this.markerObj.description = new window.google.maps.InfoWindow({
+      // content:"HTML Content goes here"
+      // });
+      // window.google.maps.event.addListener(this.markerObj, 'click', function(){
+      // this.description.setPosition(this.getPosition());
+      // this.description.open(this.map); //map to display on
+      // }); 
+    },
+    dropPin(markerObj) {
+      const golfIcon = {
+        url: "kisspng-golf-club-sport-scalable-vector-graphics-icon-golf-5aa2658063b298.7544339315205922564084.png",
+        scaledSize: new window.google.maps.Size(50, 50),
+      }
+      const marker = new window.google.maps.Marker({
+        position: markerObj.coord,
+        map: this.map,
+        icon: golfIcon,
+        // label: {
+        //   text: " ",
+        //   color: "black",
+        // },
+      }); 
+      const infowindow = new window.google.maps.InfoWindow({
+    content: markerObj.name,
+  });
+      marker.addListener("click", () => {
+      infowindow.open({
+      anchor: marker,
+      shouldFocus: true,
+    });
+  });
+    },
+    getAllCourses() {
+        golfCourseService.getAllCourses()
+            .then((response) =>
+            {
+                const locations = response.data
+                console.table(response.data)
+                this.$store.commit('LOAD_COURSES', locations)
+                this.isLoading = false
+    
+            })
     }
-    // makeMarkerObj(latLng, name) {
-    //   const markerObj = { coord: latLng, name: name };
-    //   return markerObj;
-    // },
-    // dropPins() {
-    //   this.locations.forEach((x) => this.dropPin(x));
-    // },
-    // dropPin(markerObj) {
-    //   new window.google.maps.Marker({
-    //     position: markerObj.coord,
-    //     map: this.map,
-    //     label: {
-    //       text: markerObj.name,
-    //       color: "blue",
-    //     },
-    //   });
-    // },
   },
   mounted() {
     this.initMap();
-    this.getLocations()
+    this.getAllCourses();
   },
 };
 </script>

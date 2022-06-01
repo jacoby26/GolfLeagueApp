@@ -43,11 +43,4 @@ public class AppController {
     public long addGolfCourse(@RequestParam String name, String address, String city, String state, int zip, double longitude, double latitude) {
         return golfCourseDao.addCourse(name, address, city, state, zip, longitude, latitude);
     }
-
-
-
-
-
-
-
 }

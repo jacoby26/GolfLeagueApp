@@ -9,36 +9,15 @@
       </ul>
     </div>
   </div>
+  
 </template>
 
+
 <script>
-import Details from "../views/Details.vue";
-import LeagueService from "../services/LeagueService.js";
 
 export default {
   name: "home",
-  data(){
-    return{
-      Matches: [],
-      Leagueid:'',
-      item:{}
-    }
-  },
   components: {
-    Details
-  },
-  created(){
-    LeagueService.viewRounds().then(
-      (Games) => {
-        this.Matches = Games.data
-      }
-    );
-    //this.Leagueid = this.$Store.state.user;
-  },
-  methods:{
-    show(item){
-      return this.item = item;
-    }
   }
 };
 </script>
