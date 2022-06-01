@@ -132,15 +132,24 @@ export default {
         url: "kisspng-golf-club-sport-scalable-vector-graphics-icon-golf-5aa2658063b298.7544339315205922564084.png",
         scaledSize: new window.google.maps.Size(50, 50),
       }
-      new window.google.maps.Marker({
+      const marker = new window.google.maps.Marker({
         position: markerObj.coord,
         map: this.map,
         icon: golfIcon,
-        label: {
-          text: markerObj.name,
-          color: "black",
-        },
+        // label: {
+        //   text: " ",
+        //   color: "black",
+        // },
       }); 
+      const infowindow = new window.google.maps.InfoWindow({
+    content: markerObj.name,
+  });
+      marker.addListener("click", () => {
+      infowindow.open({
+      anchor: marker,
+      shouldFocus: true,
+    });
+  });
     },
     getAllCourses() {
         golfCourseService.getAllCourses()
