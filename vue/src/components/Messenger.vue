@@ -14,7 +14,9 @@ export default {
 #messenger{
   margin: 5px;
   margin-left: 0px;
-  background-color: rgba(0,82,41,1);
+  background-image: url('../img/Home.png');
+  background-repeat: no-repeat;
   padding: 5px;
+  color: #ffb81f;
 }
 </style>

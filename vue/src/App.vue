@@ -4,7 +4,7 @@
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'add-league' }">Create League</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'add-match' }">Request Match</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'home' }">Manage League</router-link>&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'manage-league' }">Manage League</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
     <router-view id="router-view" />
@@ -35,7 +35,7 @@ body{
   background-image: URL("./img/login.jpg");
   background-size: cover;
   font-family: sans-serif;
-  color: #ffb81f;
+  color: #005229;
 }
 #app.logged-in{
   position: absolute;

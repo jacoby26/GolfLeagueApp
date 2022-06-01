@@ -45,8 +45,7 @@ export default {
 <style>
 .home{
   margin: 5px;
-  background-image: url('../img/Home.png');
-  background-repeat: no-repeat;
+  background-color: rgba(186,199,202,.9);
   padding: 5px;
   display: grid;
   grid-template-columns: 1fr 3fr;
