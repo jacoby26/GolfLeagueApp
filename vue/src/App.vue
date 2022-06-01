@@ -1,6 +1,10 @@
 <template>
   <div id="app" v-bind:class="{'logged-in': logged}">
+<<<<<<< HEAD
     <div class="nav" v-if="$store.state.token != ''">
+=======
+    <div id="navigation" v-if="logged">
+>>>>>>> NL
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'add-league' }">Create League</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'home' }">Manage League</router-link>&nbsp;|&nbsp;
@@ -30,7 +34,17 @@ methods:{
 }
 </script>
 <style>
+<<<<<<< HEAD
 #app{
+=======
+body{
+  background-image: URL("./img/login.jpg");
+  background-size: cover;
+  font-family: sans-serif;
+  color: #ffb81f;
+}
+#app.logged-in{
+>>>>>>> NL
   position: absolute;
   top: 0px;
   left: 0px;
@@ -47,12 +61,20 @@ methods:{
   grid-area: router;
 }
 
+<<<<<<< HEAD
 .nav{
  grid-area: nav;
  position:static;
  background-color: #2D007A;
  background-image: url("/img/Banner.png");
  background-size: 100%;
+=======
+#navigation{
+ grid-area: nav;
+ position:static;
+ background-color: #2D007A;
+ background-image: image(URL("/img/Home.png"));
+>>>>>>> NL
  font-size: 14pt;
  text-align: center;
  font-family: Arial, Helvetica, sans-serif;
@@ -62,10 +84,6 @@ methods:{
  display: flex;
  justify-content: space-around;
  align-items: center;
-}
-html{
-  background-color: #BAC7CA;
-  color: #ffb81f;
 }
 a{
   color: #ffb81f; 
