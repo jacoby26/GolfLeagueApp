@@ -1,7 +1,7 @@
 <template>
 <div id="login-body">
   <div class="app-title">
-    <h1 id="title">GOLF APP</h1>
+    <h1 id="title"> <img id="app-logo" src="..\img\logoedit.png"/> BACK NINE </h1>
   </div>
   <div id="login" class="text-center">
     <div class="login-header">
@@ -87,13 +87,19 @@ old gold #eeea03
 brown #5D5038
 white
 */
+.app-title #app-logo {
+  position: relative;
+  height: 75px;
+}
 .app-title {
+  display: flex;
+  justify-content: center;
   color: white;
   text-align: center;
   position: relative;
   font-size: 32px;
   margin: 0;
-  padding: 150px 0px 100px 0px;
+  padding: 100px 0px 75px 0px;
   width: 100%; 
   text-shadow: 0 0 10px black;
 }
@@ -103,18 +109,17 @@ white
   height: 100%;
 }
 #login {
-  margin-left: 37vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 25vw;
   box-shadow: 2px 4px 10px;
   border-radius: 7px 7px 5px 5px;
   background: white;
   color: black;
   position: relative;
   margin: auto auto;
+  width: 25%;
 }
 .login-header {
   color: white;
@@ -125,8 +130,8 @@ white
 }
 #login h1.h3-mb-3-font-weight-normal {
   margin: 0px;
-  /*padding: 20px auto; */
-  padding: 20px 100px 20px 100px;
+  /* padding: 20px auto; */
+  padding: 20px 50px 20px 50px;
   text-shadow: 0 0 1px #5D5038;
 }
 .sr-only {
@@ -156,7 +161,7 @@ white
 #login input {
   padding: 8px;
 }
-.form-signin{
+.form-signin {
   display: flex;
   flex-direction: column;
   justify-content: center;

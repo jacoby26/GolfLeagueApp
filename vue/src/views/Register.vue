@@ -1,7 +1,7 @@
 <template>
   <div id="register-box">
     <div class="app-title">
-    <h1 id="title">GOLF APP</h1>
+    <h1 id="title"><img id="app-logo" src="..\img\logoedit.png"/> BACK NINE</h1>
   </div>
     <div id="register" class="text-center">
       <div class="create-header">
@@ -41,7 +41,7 @@
         <button id="create-acc" class="btn btn-lg btn-primary btn-block" type="submit">
           Create Account
         </button>
-        <router-link :to="{ name: 'login' }">Have an account?</router-link> 
+        <router-link :to="{ name: 'login' }" id="go-to-login">Have an account?</router-link> 
       </form>
     </div>
   </div>
@@ -98,16 +98,6 @@ export default {
 </script>
 
 <style>
-.app-title {
-  color: white;
-  text-align: center;
-  position: relative;
-  font-size: 32px;
-  margin: 0;
-  padding: 150px 0px 100px 0px;
-  width: 100%; 
-  text-shadow: 0 0 10px black;
-}
 #register-box {
   display: flex;
   flex-direction: column;
@@ -147,7 +137,7 @@ export default {
 }
 #create-header h1.h3-mb-3-font-weight-normal {
   margin: 0px;
-  padding: 20px 100px 20px 100px;
+  padding: 20px 100px;
   text-shadow: 0 0 1px #5D5038;
 }
 .sr-only {
@@ -157,12 +147,7 @@ export default {
   font-weight: 500;
   text-transform: uppercase;
 }
-#register-body a {
-  margin: 15px auto;
-  text-align: center;
-  max-width: auto;
-  color: #5D5038;
-}
+
 #create-acc {
   border-radius: 5px 5px;
   border: #5D5038;
@@ -174,16 +159,22 @@ export default {
   background: #5D5038;
   color: white;
 }
-#register-body input {
+#register input {
   padding: 8px;
 }
 #confirmPassword {
   margin: 10px 0 0 0;
 }
-.form-register{
+.form-register {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+#go-to-login {
+  margin: 15px auto;
+  text-align: center;
+  max-width: auto;
+  color: #5D5038;
 }
 </style>
