@@ -7,7 +7,7 @@ import Map from "../components/GoogleMap.vue"
 export default {
 components:{
 Map
-}
+},
 }
 </script>
 

@@ -65,7 +65,7 @@ const router = new Router({
     },
     {
       path: "/play",
-      name: "request-match",
+      name: "add-match",
       component: MatchRequest,
       meta: {
         requiresAuth: true
