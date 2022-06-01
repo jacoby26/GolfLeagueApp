@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import golfCourseService from '../services/CourseService.js'
+
 export default {
   name: "Map",
   data() {
@@ -83,6 +85,16 @@ export default {
         var zipcode = document.getElementById('text').value
         console.log(zipcode)
         return "" + zipcode
+    },
+
+    getLocations() {
+        golfCourseService.getAllCourses().then(response => {
+            this.locations = response.data
+            
+            console.table(response.data)
+        })
+
+        console.log(this.locations)
     }
     // makeMarkerObj(latLng, name) {
     //   const markerObj = { coord: latLng, name: name };
@@ -104,6 +116,7 @@ export default {
   },
   mounted() {
     this.initMap();
+    this.getLocations()
   },
 };
 </script>
