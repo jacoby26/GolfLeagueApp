@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="make-League">
       <form id="League-Create">
           <h1>Register League</h1>
       <div>
@@ -41,6 +41,7 @@ export default {
     margin: 5px;
     padding-left: 5px;
     color: #005229;
+    background-color: #BAC7CA;
     display: flex;
     flex-direction: column;
 }
