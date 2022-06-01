@@ -29,6 +29,13 @@ public class AppController {
         return golfCourseDao.getAllCourses();
     }
 
+    @RequestMapping(path="/courses/addcourse", method=RequestMethod.POST)
+    public long addGolfCourse(@RequestParam String name, String address, String city, String state, int zip, double longitude, double latitude) {
+        return golfCourseDao.addCourse(name, address, city, state, zip, longitude, latitude);
+    }
+
+// Round will probably be changed a lot over the next day or so, if not totally replaced.
+
     @RequestMapping(path="/rounds", method=RequestMethod.GET)
     public List<Round> listAllUserRounds(Principal principal) {
         return roundDao.getAllUserRounds(principal);
@@ -40,9 +47,7 @@ public class AppController {
         return roundDao.createRound(score, roundDate, teeTime, principal, golfCourse);
     }
 
-    @RequestMapping(path="/courses/addcourse", method=RequestMethod.POST)
-    public long addGolfCourse(@RequestParam String name, String address, String city, String state, int zip, double longitude, double latitude) {
-        return golfCourseDao.addCourse(name, address, city, state, zip, longitude, latitude);
-    }
+
+
 
 }
