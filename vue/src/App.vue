@@ -1,12 +1,11 @@
 <template>
   <div id="app" v-bind:class="{'logged-in': logged}">
     <div id="nav" v-if="logged">
-      <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'add-league' }">Create League</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'add-match' }">Request Game</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'home' }">Manage League</router-link>&nbsp;|&nbsp;
-      
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+      <img id="homebtn" v-bind:src='homebtn.image' @mouseover="homehover()" @mouseout="homeout()" v-on:click="homeclick()"/>
+      <img id="addleaguebtn" v-bind:src='addleaguebtn.image' @mouseover="addhover()" @mouseout="addout()" v-on:click="addclick()"/>
+      <img id="addmatchbtn" v-bind:src='addmatchbtn.image' @mouseover="matchhover()" @mouseout="matchout()" v-on:click="matchclick()"/>
+      <img id="manageleaguebtn"  v-bind:src='manageleaguebtn.image' @mouseover="managehover()" @mouseout="manageout()" v-on:click="manageclick()"/>
+      <img id="logoutbtn" v-bind:src='logoutbtn.image' @mouseover="logouthover()" @mouseout="logoutout()" v-on:click="logoutclick()" v-if="$store.state.token != ''"/>
     </div>
     <router-view id="router-view" />
     <Messenger id="messenger" v-if="$store.state.token != ''"/>
@@ -14,20 +13,91 @@
 </template>
 <script>
 import Messenger from "./components/Messenger.vue";
+import HomeRestore from "./img/HomeRestore.png";
+import HomeHover from "./img/HOH.png";
+import HomeClick from "./img/HOC.png";
+import AddRestore from "./img/CLR.png";
+import AddHover from "./img/CLH.png";
+import AddClick from "./img/CLC.png";
+import MatchRestore from "./img/RMR.png";
+import MatchHover from "./img/RMH.png";
+import MatchClick from "./img/RMC.png";
+import ManageRestore from "./img/MLR.png";
+import ManageHover from "./img/MLH.png";
+import ManageClick from "./img/MLC.png";
+import LogoutRestore from "./img/LOR.png";
+import LogoutHover from "./img/LOH.png";
+import LogoutClick from "./img/LOC.png";
+
 export default {
   data() {
     return{
+      homebtn:{image:HomeRestore},
+      addleaguebtn:{image:AddRestore},
+      addmatchbtn:{image:MatchRestore},
+      manageleaguebtn:{image:ManageRestore},
+      logoutbtn:{image:LogoutRestore},
     }
   },
   computed:{
     logged(){
       return this.$store.state.token != '';
-    }
+    },
   },
   components:{
-    Messenger
+    Messenger,
   },
 methods:{
+  homehover(){
+    this.homebtn.image = HomeHover
+  },
+  homeclick(){
+    this.homebtn.image = HomeClick
+    this.$router.push('/')
+  },
+  homeout(){
+    this.homebtn.image = HomeRestore
+  },
+  addhover(){
+    this.addleaguebtn.image = AddHover
+  },
+  addclick(){
+    this.addleaguebtn.image = AddClick
+    this.$router.push('/add')
+  },
+  addout(){
+    this.addleaguebtn.image = AddRestore
+  },
+  matchhover(){
+    this.addmatchbtn.image = MatchHover
+  },
+  matchclick(){
+    this.addmatchbtn.image = MatchClick
+    this.$router.push('/play')
+  },
+  matchout(){
+    this.addmatchbtn.image = MatchRestore
+  },
+  managehover(){
+    this.manageleaguebtn.image = ManageHover
+  },
+  manageclick(){
+    this.manageleaguebtn.image = ManageClick
+    this.$router.push('/manage-league')
+  },
+  manageout(){
+    this.manageleaguebtn.image = ManageRestore
+  },
+  logouthover(){
+    this.logoutbtn.image = LogoutHover
+  },
+  logoutclick(){
+    this.logoutbtn.image = LogoutClick
+    this.$router.push('/logout')
+  },
+  logoutout(){
+    this.logoutbtn.image = LogoutRestore
+  },
 }  
 }
 </script>
@@ -36,7 +106,7 @@ body{
   background-image: URL("./img/login.jpg");
   background-size: cover;
   font-family: sans-serif;
-  color: #ffb81f;
+  color: #005229;
 }
 #app.logged-in{
   position: absolute;
@@ -70,6 +140,14 @@ body{
  display: flex;
  justify-content: space-around;
  align-items: center;
+ object-fit: fill
+ /* 
+ justify-content: stretch;
+ align-items: center; */
+}
+#nav img {
+  height: 10vh;
+  object-fit: fill;
 }
 a{
   color: #ffb81f; 

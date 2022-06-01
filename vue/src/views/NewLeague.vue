@@ -44,8 +44,7 @@ export default {
 #League-Create{
     margin: 5px;
     padding-left: 5px;
-    color: #005229;
-    background-color: #BAC7CA;
+    background-color: rgba(186,199,202,.9);
     display: flex;
     flex-direction: column;
 }
