@@ -1,7 +1,7 @@
 <template>
 <div class="login-body">
   <div class="app-title">
-    <h1 id="title">GOLF APP</h1>
+    <h1 id="title"> <img id="app-logo" src="..\img\logoedit.png"/> BACK NINE </h1>
   </div>
   <div id="login" class="text-center">
     <div class="login-header">
@@ -87,7 +87,10 @@ old gold #eeea03
 brown #5D5038
 white
 */
-
+img#app-logo {
+  position: relative;
+  height: 75px;
+}
 body {
   background: URL("../img/login.jpg") no-repeat center fixed;
   background-size: cover;
@@ -98,6 +101,8 @@ body {
   display: none;
 } */
 .app-title {
+  display: flex;
+  justify-content: center;
   color: white;
   text-align: center;
   position: relative;

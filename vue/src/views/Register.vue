@@ -1,7 +1,7 @@
 <template>
   <div id="register-body">
     <div class="app-title">
-    <h1 id="title">GOLF APP</h1>
+    <h1 id="title"><img id="app-logo" src="..\img\logoedit.png"/> BACK NINE</h1>
   </div>
     <div id="register" class="text-center">
       <div class="create-header">
