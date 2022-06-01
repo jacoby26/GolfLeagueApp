@@ -14,10 +14,30 @@
 
 
 <script>
-
+import Details from "./Details.vue";
+import LeagueService from "../services/LeagueService.js";
 export default {
   name: "home",
+  data(){
+    return{
+      Matches: [],
+      Leagueids:[],
+      item:{}
+    }
+  },
   components: {
+    Details
+  },
+  created(){
+    LeagueService.viewRounds().then(
+      (games) => {
+      this.Matches = games.data;
+    })
+  },
+  methods:{
+    show(item){
+      return this.item = item;
+    }
   }
 };
 </script>
