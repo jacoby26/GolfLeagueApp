@@ -142,14 +142,14 @@ export default {
         // },
       }); 
       const infowindow = new window.google.maps.InfoWindow({
-    content: markerObj.name,
+      content: markerObj.name,
   });
       marker.addListener("click", () => {
       infowindow.open({
       anchor: marker,
       shouldFocus: true,
     });
-  });
+   });
     },
     getAllCourses() {
         golfCourseService.getAllCourses()
@@ -159,6 +159,7 @@ export default {
                 console.table(response.data)
                 this.$store.commit('LOAD_COURSES', locations)
                 this.isLoading = false
+                this.dropPins(this.zip)
     
             })
     }
