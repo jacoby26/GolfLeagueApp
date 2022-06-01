@@ -30,6 +30,7 @@ methods:{
 }
 </script>
 <style>
+
 #app{
   position: absolute;
   top: 0px;

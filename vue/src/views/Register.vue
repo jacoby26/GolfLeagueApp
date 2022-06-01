@@ -51,6 +51,9 @@
 import authService from '../services/AuthService';
 
 export default {
+  beforeCreate: function() {
+    document.body.className = 'Register'
+  },
   name: 'register',
   data() {
     return {
