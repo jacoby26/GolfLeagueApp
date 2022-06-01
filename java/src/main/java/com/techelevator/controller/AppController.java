@@ -44,10 +44,4 @@ public class AppController {
         return golfCourseDao.addCourse(name, address, city, state, zip, longitude, latitude);
     }
 
-
-
-
-
-
-
 }
