@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="make-League">
       <form id="League-Create">
           <h1>Register League</h1>
       <div>
@@ -13,7 +13,7 @@
       />
       </div>
       <label for="course">Course</label>
-      <!-- Integrated course selector goes here -->
+      <Map/>
       <button type="submit">Register League</button>
       </form>
 
@@ -21,9 +21,11 @@
 </template>
 
 <script>
-
-
+import Map from "../components/GoogleMap.vue";
 export default {
+    components:{
+        Map
+    },
     data(){
         return{
             League:{
@@ -43,6 +45,7 @@ export default {
     margin: 5px;
     padding-left: 5px;
     color: #005229;
+    background-color: #BAC7CA;
     display: flex;
     flex-direction: column;
 }

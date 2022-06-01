@@ -1,5 +1,5 @@
 <template>
-<div class="login-body">
+<div id="login-body">
   <div class="app-title">
     <h1 id="title">GOLF APP</h1>
   </div>
@@ -38,7 +38,7 @@
         required
       />
       <button id="sign-in" type="submit">Sign in</button>
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
+      <router-link :to="{ name: 'register' }" id="go-get-account">Need an account?</router-link>
     </form>
   </div>
 </div>
@@ -87,16 +87,6 @@ old gold #eeea03
 brown #5D5038
 white
 */
-
-body {
-  background: URL("../img/login.jpg") no-repeat center fixed;
-  background-size: cover;
-  font-family: sans-serif;
-  
-}
-div#nav {  
-  display: none;
-}
 .app-title {
   color: white;
   text-align: center;
@@ -107,17 +97,24 @@ div#nav {
   width: 100%; 
   text-shadow: 0 0 10px black;
 }
-.login-body {
+#login-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+#login {
+  margin-left: 37vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
-}
-div#login {
-    box-shadow: 2px 4px 10px;
-    border-radius: 7px 7px 5px 5px;
-    background: white;
+  width: 25vw;
+  box-shadow: 2px 4px 10px;
+  border-radius: 7px 7px 5px 5px;
+  background: white;
+  color: black;
+  position: relative;
+  margin: auto auto;
 }
 .login-header {
   color: white;
@@ -126,9 +123,10 @@ div#login {
   background: #5D5038; 
   width: 100%;
 }
-h1.h3-mb-3-font-weight-normal {
+#login h1.h3-mb-3-font-weight-normal {
   margin: 0px;
-  padding: 20px auto;
+  /*padding: 20px auto; */
+  padding: 20px 100px 20px 100px;
   text-shadow: 0 0 1px #5D5038;
 }
 .sr-only {
@@ -138,7 +136,7 @@ h1.h3-mb-3-font-weight-normal {
   font-weight: 500;
   text-transform: uppercase;
 }
-a {
+#go-get-account {
   margin: 15px auto;
   text-align: center;
   max-width: auto;
@@ -155,8 +153,14 @@ a {
   background: #5D5038;
   color: white;
 }
-input {
+#login input {
   padding: 8px;
+}
+.form-signin{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-<div id="messenger-container">
+<div id="messenger">
   <h2>Integrate messaging in here.</h2>
 </div>
 </template>
@@ -11,10 +11,10 @@ export default {
 </script>
 
 <style>
-#messenger-container{
+#messenger{
   margin: 5px;
   margin-left: 0px;
-  background-color: rgba(0,82,41,.9);
+  background-color: rgba(0,82,41,1);
   padding: 5px;
 }
 </style>
