@@ -4,10 +4,9 @@
       <div id="intro">
           <h1>Find a Course</h1>
       </div>
-
       <form id="searchForm" >
           <input type="text" placeholder="Enter your zip code" id="text">
-          <button type="submit" v-on:click.prevent="calculateCenter()">Search</button>   
+          <button type="submit" id="search" :disabled="isLoading" v-on:click.prevent="calculateCenter()">Search</button>   
       </form>
 
       <div id="map"></div>
@@ -26,18 +25,11 @@ export default {
     return {
       map: null,
       mapCenter: { lat: 43.0389, lng: -87.9065 }, 
+      isLoading: true,
+      zip: "53201"
     };
   },
-  created()
-    {
-        golfCourseService.getAllCourses()
-            .then((response) =>
-            {
-                const locations = response.data
-                console.table(response.data)
-                this.$store.commit('LOAD_COURSES', locations)
-            })
-    },
+  created(){},
   methods: {
     initMap() {
       this.map = new window.google.maps.Map(document.getElementById("map"), {
@@ -58,16 +50,21 @@ export default {
         },
       ];
       this.map.setOptions({ styles: noPOIStyle });
+      
     },
     calculateCenter() {
-        this.getLatLngByZipcode(this.getUserInput()).then(results => {
-           console.log(results)
+        this.zip = this.getUserInput()
+        this.getLatLngByZipcode(this.zip).then(results => {
+        //    console.log(results)
            this.mapCenter = {
            lat: parseFloat(results[0]),
            lng: results[1]
+           
        }
        this.initMap()
+       this.dropPins(this.zip)
        })
+       
     },
     
     getLatLngByZipcode(zipcode) {
@@ -94,16 +91,6 @@ export default {
         console.log(zipcode)
         return "" + zipcode
     },
-
-    getLocations() {
-        golfCourseService.getAllCourses().then(response => {
-            this.locations = response.data
-            
-            console.table(response.data)
-        })
-
-        console.log(this.locations)
-    },
     makeMarkerObj(lat, lng, name) {
       const latLng = {
         lat: lat,
@@ -113,34 +100,53 @@ export default {
       return markerObj;
     },
 
-    dropPins() {
-      
-      this.$store.state.locations.forEach((x) => {
-       let makeMarker =  this.makeMarkerObj(x.latitude, x.longitude, x.name)
-       console.log(makeMarker);
-        this.dropPin(makeMarker)});
+    dropPins(zip) {
+        let zips = [];
+        
+        for(let i = 0; i < 100; i++) {
+            zips[i] = "" + ((parseInt(zip) - 50) + (i))
+        }
+
+        let loc = []
+
+        for(let j = 0; j < 100; j++){
+            let results = this.$store.state.locations.filter((x) => x.zip == zips[j])
+
+            results.forEach((x) => {
+                loc.push(x)
+            })
+        }
+        loc.forEach((x) => {
+            this.dropPin(this.makeMarkerObj(x.latitude, x.longitude, x.name))
+        });
 
       
     },
-
-
-
-
     dropPin(markerObj) {
       new window.google.maps.Marker({
         position: markerObj.coord,
         map: this.map,
         label: {
           text: markerObj.name,
-          color: "blue",
+          color: "black",
         },
       });
     },
+    getAllCourses() {
+        golfCourseService.getAllCourses()
+            .then((response) =>
+            {
+                const locations = response.data
+                console.table(response.data)
+                this.$store.commit('LOAD_COURSES', locations)
+                this.isLoading = false
+    
+            })
+    }
   },
   mounted() {
     this.initMap();
-    this.dropPins();
-    // this.getLocations()
+    this.getAllCourses();
   },
 };
 </script>
