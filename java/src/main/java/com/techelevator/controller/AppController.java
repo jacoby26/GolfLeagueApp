@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@PreAuthorize("isAuthorized")
+//@PreAuthorize("isAuthorized")
 public class AppController {
 
     @Autowired
