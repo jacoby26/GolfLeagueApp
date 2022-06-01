@@ -25,11 +25,19 @@ export default {
   data() {
     return {
       map: null,
-      mapCenter: { lat: 43.0389, lng: -87.9065 },
-      locations: [],
-      
+      mapCenter: { lat: 43.0389, lng: -87.9065 }, 
     };
   },
+  created()
+    {
+        golfCourseService.getAllCourses()
+            .then((response) =>
+            {
+                const locations = response.data
+                console.table(response.data)
+                this.$store.commit('LOAD_COURSES', locations)
+            })
+    },
   methods: {
     initMap() {
       this.map = new window.google.maps.Map(document.getElementById("map"), {
@@ -95,28 +103,44 @@ export default {
         })
 
         console.log(this.locations)
-    }
-    // makeMarkerObj(latLng, name) {
-    //   const markerObj = { coord: latLng, name: name };
-    //   return markerObj;
-    // },
-    // dropPins() {
-    //   this.locations.forEach((x) => this.dropPin(x));
-    // },
-    // dropPin(markerObj) {
-    //   new window.google.maps.Marker({
-    //     position: markerObj.coord,
-    //     map: this.map,
-    //     label: {
-    //       text: markerObj.name,
-    //       color: "blue",
-    //     },
-    //   });
-    // },
+    },
+    makeMarkerObj(lat, lng, name) {
+      const latLng = {
+        lat: lat,
+        lng: lng
+      }
+      const markerObj = { coord: latLng, name: name };
+      return markerObj;
+    },
+
+    dropPins() {
+      
+      this.$store.state.locations.forEach((x) => {
+       let makeMarker =  this.makeMarkerObj(x.latitude, x.longitude, x.name)
+       console.log(makeMarker);
+        this.dropPin(makeMarker)});
+
+      
+    },
+
+
+
+
+    dropPin(markerObj) {
+      new window.google.maps.Marker({
+        position: markerObj.coord,
+        map: this.map,
+        label: {
+          text: markerObj.name,
+          color: "blue",
+        },
+      });
+    },
   },
   mounted() {
     this.initMap();
-    this.getLocations()
+    this.dropPins();
+    // this.getLocations()
   },
 };
 </script>
