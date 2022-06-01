@@ -13,7 +13,7 @@
       />
       </div>
       <label for="course">Course</label>
-      <!-- Integrated course selector goes here -->
+      <Map/>
       <button type="submit">Register League</button>
       </form>
 
@@ -21,7 +21,11 @@
 </template>
 
 <script>
+import Map from "../components/GoogleMap.vue";
 export default {
+    components:{
+        Map
+    },
     data(){
         return{
             League:{

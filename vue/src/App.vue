@@ -1,13 +1,11 @@
 <template>
   <div id="app" v-bind:class="{'logged-in': logged}">
-<<<<<<< HEAD
-    <div class="nav" v-if="$store.state.token != ''">
-=======
-    <div id="navigation" v-if="logged">
->>>>>>> NL
+    <div id="nav" v-if="logged">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'add-league' }">Create League</router-link>&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'add-match' }">Request Game</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'home' }">Manage League</router-link>&nbsp;|&nbsp;
+
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
     <router-view id="router-view" />
@@ -34,9 +32,6 @@ methods:{
 }
 </script>
 <style>
-<<<<<<< HEAD
-#app{
-=======
 body{
   background-image: URL("./img/login.jpg");
   background-size: cover;
@@ -44,7 +39,6 @@ body{
   color: #ffb81f;
 }
 #app.logged-in{
->>>>>>> NL
   position: absolute;
   top: 0px;
   left: 0px;
@@ -61,20 +55,12 @@ body{
   grid-area: router;
 }
 
-<<<<<<< HEAD
-.nav{
+#nav{
  grid-area: nav;
  position:static;
  background-color: #2D007A;
  background-image: url("/img/Banner.png");
  background-size: 100%;
-=======
-#navigation{
- grid-area: nav;
- position:static;
- background-color: #2D007A;
- background-image: image(URL("/img/Home.png"));
->>>>>>> NL
  font-size: 14pt;
  text-align: center;
  font-family: Arial, Helvetica, sans-serif;
