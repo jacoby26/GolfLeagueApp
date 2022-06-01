@@ -118,19 +118,29 @@ export default {
         }
         loc.forEach((x) => {
             this.dropPin(this.makeMarkerObj(x.latitude, x.longitude, x.name))
-        });
-
-      
+        });  
+      // this.markerObj.description = new window.google.maps.InfoWindow({
+      // content:"HTML Content goes here"
+      // });
+      // window.google.maps.event.addListener(this.markerObj, 'click', function(){
+      // this.description.setPosition(this.getPosition());
+      // this.description.open(this.map); //map to display on
+      // }); 
     },
     dropPin(markerObj) {
+      const golfIcon = {
+        url: "kisspng-golf-club-sport-scalable-vector-graphics-icon-golf-5aa2658063b298.7544339315205922564084.png",
+        scaledSize: new window.google.maps.Size(50, 50),
+      }
       new window.google.maps.Marker({
         position: markerObj.coord,
         map: this.map,
+        icon: golfIcon,
         label: {
           text: markerObj.name,
           color: "black",
         },
-      });
+      }); 
     },
     getAllCourses() {
         golfCourseService.getAllCourses()
