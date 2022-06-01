@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @CrossOrigin
@@ -23,20 +24,20 @@ public class AppController {
     RoundDao roundDao;
 
 
-    @RequestMapping(path="/courses", method = RequestMethod.GET)
+    @RequestMapping(path="/courses", method=RequestMethod.GET)
     public List<GolfCourse> listAllCourses() {
         return golfCourseDao.getAllCourses();
     }
 
-    @RequestMapping(path="/rounds", method = RequestMethod.GET)
+    @RequestMapping(path="/rounds", method=RequestMethod.GET)
     public List<Round> listAllUserRounds(Principal principal) {
         return roundDao.getAllUserRounds(principal);
     }
 
     @RequestMapping(path="/rounds/addround", method=RequestMethod.POST)
-    public long addUserRound(@RequestParam int score, LocalDate roundDate, Principal principal, GolfCourse golfCourse) {
+    public long addUserRound(@RequestParam int score, LocalDate roundDate, LocalTime teeTime, Principal principal, GolfCourse golfCourse) {
 
-        return roundDao.createRound(score, roundDate, principal, golfCourse);
+        return roundDao.createRound(score, roundDate, teeTime, principal, golfCourse);
     }
 
     @RequestMapping(path="/courses/addcourse", method=RequestMethod.POST)
