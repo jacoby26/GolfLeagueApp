@@ -1,13 +1,13 @@
 <template>
   <div id="app" v-bind:class="{'logged-in': logged}">
-    <div id="nav" v-if="$store.state.token != ''">
+    <div class="nav" v-if="$store.state.token != ''">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'add-league' }">Create League</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'home' }">Manage League</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
-    <router-view />
-    <Messenger v-if="$store.state.token != ''"/>
+    <router-view id="router-view" />
+    <Messenger id="messenger" v-if="$store.state.token != ''"/>
   </div>
 </template>
 <script>
@@ -30,7 +30,7 @@ methods:{
 }
 </script>
 <style>
-#app.logged-in{
+#app{
   position: absolute;
   top: 0px;
   left: 0px;
@@ -40,17 +40,19 @@ methods:{
   grid-template-areas: "nav nav"
   "router messaging";
 }
-Messenger{
+#messenger{
   grid-area: messaging;
 }
-router-view{
+#router-view{
   grid-area: router;
 }
 
-#nav{
+.nav{
  grid-area: nav;
  position:static;
- background-image: url("../Banner.png");
+ background-color: #2D007A;
+ background-image: url("/img/Banner.png");
+ background-size: 100%;
  font-size: 14pt;
  text-align: center;
  font-family: Arial, Helvetica, sans-serif;

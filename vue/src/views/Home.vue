@@ -45,7 +45,7 @@ export default {
 <style>
 .home{
   margin: 5px;
-  background-image: url('../../Home.png');
+  background-image: url('../img/Home.png');
   background-repeat: no-repeat;
   padding: 5px;
   display: grid;
