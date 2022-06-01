@@ -3,6 +3,7 @@
     <div id="navigation" v-if="logged">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'add-league' }">Create League</router-link>&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'request-match' }">Request Match</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'home' }">Manage League</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
