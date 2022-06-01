@@ -6,15 +6,13 @@ import com.techelevator.model.GolfCourse;
 import com.techelevator.model.Round;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 //@PreAuthorize("isAuthorized")
 public class AppController {

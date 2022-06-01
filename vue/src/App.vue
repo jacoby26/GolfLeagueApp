@@ -1,9 +1,11 @@
 <template>
   <div id="app" v-bind:class="{'logged-in': logged}">
-    <div class="nav" v-if="$store.state.token != ''">
+    <div id="nav" v-if="logged">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'add-league' }">Create League</router-link>&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'add-match' }">Request Game</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'home' }">Manage League</router-link>&nbsp;|&nbsp;
+
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
     <router-view id="router-view" />
@@ -30,8 +32,13 @@ methods:{
 }
 </script>
 <style>
-
-#app{
+body{
+  background-image: URL("./img/login.jpg");
+  background-size: cover;
+  font-family: sans-serif;
+  color: #ffb81f;
+}
+#app.logged-in{
   position: absolute;
   top: 0px;
   left: 0px;
@@ -48,7 +55,7 @@ methods:{
   grid-area: router;
 }
 
-.nav{
+#nav{
  grid-area: nav;
  position:static;
  background-color: #2D007A;
@@ -63,10 +70,6 @@ methods:{
  display: flex;
  justify-content: space-around;
  align-items: center;
-}
-html{
-  background-color: #BAC7CA;
-  color: #ffb81f;
 }
 a{
   color: #ffb81f; 

@@ -1,5 +1,5 @@
 <template>
-  <div id="register-body">
+  <div id="register-box">
     <div class="app-title">
     <h1 id="title"><img id="app-logo" src="..\img\logoedit.png"/> BACK NINE</h1>
   </div>
@@ -41,7 +41,7 @@
         <button id="create-acc" class="btn btn-lg btn-primary btn-block" type="submit">
           Create Account
         </button>
-        <router-link :to="{ name: 'login' }">Have an account?</router-link> 
+        <router-link :to="{ name: 'login' }" id="go-to-login">Have an account?</router-link> 
       </form>
     </div>
   </div>
@@ -51,9 +51,6 @@
 import authService from '../services/AuthService';
 
 export default {
-  beforeCreate: function() {
-    document.body.className = 'Register'
-  },
   name: 'register',
   data() {
     return {
@@ -101,42 +98,32 @@ export default {
 </script>
 
 <style>
-body {
-  background: URL("../img/login.jpg") no-repeat center fixed;
-  background-size: cover;
-  font-family: sans-serif;
-  
-}
-/* div#nav {  
-  display: none;
-} */
-.app-title {
-  color: white;
-  text-align: center;
-  position: relative;
-  font-size: 32px;
-  margin: 0;
-  padding: 100px 0px 75px 0px;
-  width: 100%; 
-  text-shadow: 0 0 10px black;
-}
-#register-body {
+#register-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
-form {
+#register-box form {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   margin: 0px 50px 25px;
   
 }
-div#register {
+#register {
+    margin-left: 37vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25vw;
     box-shadow: 2px 4px 10px;
     border-radius: 7px 7px 5px 5px;
     background: white;
+    color: black;
     position: relative;
     margin: auto auto;
 }
@@ -146,8 +133,9 @@ div#register {
   text-transform: uppercase;
   background: #5D5038; 
   width: 100%;
+  text-align: center;
 }
-h1.h3-mb-3-font-weight-normal {
+#create-header h1.h3-mb-3-font-weight-normal {
   margin: 0px;
   padding: 20px 100px;
   text-shadow: 0 0 1px #5D5038;
@@ -159,12 +147,7 @@ h1.h3-mb-3-font-weight-normal {
   font-weight: 500;
   text-transform: uppercase;
 }
-a {
-  margin: 15px auto;
-  text-align: center;
-  max-width: auto;
-  color: #5D5038;
-}
+
 #create-acc {
   border-radius: 5px 5px;
   border: #5D5038;
@@ -176,10 +159,22 @@ a {
   background: #5D5038;
   color: white;
 }
-input {
+#register input {
   padding: 8px;
 }
 #confirmPassword {
   margin: 10px 0 0 0;
+}
+.form-register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#go-to-login {
+  margin: 15px auto;
+  text-align: center;
+  max-width: auto;
+  color: #5D5038;
 }
 </style>
