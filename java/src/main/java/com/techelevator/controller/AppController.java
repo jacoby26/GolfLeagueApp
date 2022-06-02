@@ -52,7 +52,7 @@ public class AppController {
     }
 
     @RequestMapping(path="/leagues/", method=RequestMethod.GET)
-        public League[] getAllLeagues(Principal principal){
+    public List<League> getAllLeagues(Principal principal){
         return leagueDao.getAllLeagues(principal);
     }
     @RequestMapping(path="/leagues/{leagueID}/scores", method=RequestMethod.GET)

@@ -13,10 +13,10 @@ public class JdbcLeaderboardDao implements LeaderboardDao{
 
     public JdbcLeaderboardDao(DataSource ds){jdbctemplate = new JdbcTemplate(ds);}
 
-    public Map<Integer, Integer> getRankings(long LeagueID){
-        String sql = "Select user_id, score" +
-                "from leaderboards" +
-                "where league_id= ?" +
+    public List<> getRankings(long LeagueID){
+        String sql = "Select user_id, score " +
+                "from rounds " +
+                "where league_id= ? " +
                 ";";
         return jdbctemplate.queryForObject(sql, HashMap.class, LeagueID);
     }

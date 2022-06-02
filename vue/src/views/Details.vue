@@ -16,7 +16,7 @@ components:{
 props:["item"],
 computed:{
   isround(){
-    if (this.item != null){
+    if (this.item.leagueID === null){
     return true;
     }
     return false;
