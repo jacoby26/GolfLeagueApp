@@ -7,6 +7,6 @@ import java.util.Map;
 
 public interface LeaderboardDao {
 
-    public Map<Integer, Integer> getRankings(int LeagueID);
+    public Map<Integer, Integer> getRankings(long LeagueID);
 
 }

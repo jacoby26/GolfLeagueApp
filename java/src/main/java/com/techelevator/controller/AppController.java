@@ -1,18 +1,17 @@
 package com.techelevator.controller;
 
-import com.techelevator.dao.GolfCourseDao;
-import com.techelevator.dao.LeagueDao;
-import com.techelevator.dao.RoundDao;
+import com.techelevator.dao.*;
 import com.techelevator.model.GolfCourse;
 import com.techelevator.model.Round;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
+import com.techelevator.model.League;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -25,6 +24,8 @@ public class AppController {
     RoundDao roundDao;
     @Autowired
     LeagueDao leagueDao;
+    @Autowired
+    LeaderboardDao leaderboardDao;
 
 
     @RequestMapping(path="/courses", method=RequestMethod.GET)
@@ -46,6 +47,15 @@ public class AppController {
     @RequestMapping(path="/leagues/addleague", method=RequestMethod.POST)
     public long addLeague(@RequestParam String name, GolfCourse course, Principal principal) {
         return leagueDao.createLeague(name,course,principal);
+    }
+
+    @RequestMapping(path="/leagues/", method=RequestMethod.GET)
+        public League[] getAllLeagues(Principal principal){
+        return leagueDao.getAllLeagues(principal);
+    }
+    @RequestMapping(path="/leagues/{leagueID}/scores", method=RequestMethod.GET)
+        public Map<Integer,Integer> getLeagueScores(@PathVariable long leagueID){
+        return leaderboardDao.getRankings(leagueID);
     }
 
 // Round will probably be changed a lot over the next day or so.

@@ -1,11 +1,10 @@
 <template>
   <div class="home">
     <Details id="details" v-bind:item="item"/>
-    <AddCourseForm />
     <div id="selector">
       <h3>When clicked, the items below will change this--></h3>
       <ul>
-        <li v-on:click="show(Leaderboard)">Leaderboard</li>
+        <li v-for="league in Leagues" v-bind:key="league.leagueID" v-on:click="show(league)">{{league.name}}</li>
         <li v-for="game in Matches" v-bind:key="game.Id" v-on:click="show(game)"> {{game.Date}} </li>
       </ul>
     </div>
@@ -15,7 +14,6 @@
 
 
 <script>
-import AddCourseForm from "../components/AddCourseForm.vue"
 import Details from "./Details.vue";
 import LeagueService from "../services/LeagueService.js";
 export default {
@@ -23,15 +21,19 @@ export default {
   data(){
     return{
       Matches: [],
-      Leagueids:[],
+      Leagues:[],
       item:{}
     }
   },
   components: {
     Details,
-    AddCourseForm
   },
   created(){
+    LeagueService.viewLeagues().then(
+      (leagues) => {
+        this.Leagues = leagues.data;
+      }
+    )
     LeagueService.viewRounds().then(
       (games) => {
       this.Matches = games.data;

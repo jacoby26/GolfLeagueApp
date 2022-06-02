@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h1>Current Leaderboard</h1>
+  <h1>{{item.name}} Leaderboard</h1>
     <table>
       <tr>
         <td>Name</td>
@@ -15,8 +15,21 @@
 </template>
 
 <script>
+import LeagueService from "../services/LeagueService.js";
 export default {
-
+data(){
+  return{
+    league:[]
+  }
+},
+props:["item"],
+created(){
+    LeagueService.viewStandings(this.item.leagueID).then(
+      (rankings) => {
+        this.Leagues = rankings.data;
+      }
+    )
+  },
 }
 </script>
 

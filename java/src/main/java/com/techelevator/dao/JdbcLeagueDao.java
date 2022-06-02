@@ -4,7 +4,7 @@ import com.techelevator.model.GolfCourse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-
+import com.techelevator.model.League;
 import javax.sql.DataSource;
 import javax.xml.crypto.Data;
 import java.security.Principal;
@@ -36,5 +36,13 @@ public class JdbcLeagueDao implements LeagueDao {
         jdbcTemplate.queryForObject(sql2, long.class, userID, leagueID);
 
         return leagueID;
+    }
+
+    public League[] getAllLeagues(Principal principal){
+        String sql = "SELECT *" +
+                "from leagues" +
+                "join users_leagues on users_leagues.league_id = leagues.league_id" +
+                "where user_id = ? ;";
+        return jdbcTemplate.queryForObject(sql, League[].class, userDao.findIdByUsername(principal.getName()));
     }
 }

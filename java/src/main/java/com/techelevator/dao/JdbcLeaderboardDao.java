@@ -4,6 +4,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -12,11 +13,11 @@ public class JdbcLeaderboardDao implements LeaderboardDao{
 
     public JdbcLeaderboardDao(DataSource ds){jdbctemplate = new JdbcTemplate(ds);}
 
-    public Map<Integer, Integer> getRankings(int LeagueID){
+    public Map<Integer, Integer> getRankings(long LeagueID){
         String sql = "Select user_id, score" +
                 "from leaderboards" +
                 "where league_id= ?" +
                 ";";
-        jdbctemplate.queryForObject(sql, Map.class, LeagueID);
+        return jdbctemplate.queryForObject(sql, HashMap.class, LeagueID);
     }
 }
