@@ -56,7 +56,7 @@ export default {
         this.zip = this.getUserInput()
         this.getLatLngByZipcode(this.zip).then(results => {
            this.mapCenter = {
-           lat: parseFloat(results[0]),
+           lat: results[0],
            lng: results[1]
            
        }
@@ -67,23 +67,23 @@ export default {
     },
     
     getLatLngByZipcode(zipcode) {
-    var geocoder = new window.google.maps.Geocoder();   
-    var address = zipcode;
-    var latitude = 0
-    var longitude = 0
-    console.log(address)
-    return new Promise(function(resolve, reject) {
-    geocoder.geocode({ 'address': address }, function (results, status) {
-        if (status == window.google.maps.GeocoderStatus.OK) {
-            latitude = results[0].geometry.location.lat();
-            longitude = results[0].geometry.location.lng();
-            resolve ([parseFloat(latitude), parseFloat(longitude)]);
-        } else {
-            reject(new Error('Couldnt\'t find the location ' + zipcode));
-        }
-    })
-    
-    })
+        var geocoder = new window.google.maps.Geocoder();   
+        var address = zipcode;
+        var latitude = 0
+        var longitude = 0
+        console.log(address)
+        return new Promise(function(resolve, reject) {
+        geocoder.geocode({ 'address': address }, function (results, status) {
+            if (status == window.google.maps.GeocoderStatus.OK) {
+                latitude = results[0].geometry.location.lat();
+                longitude = results[0].geometry.location.lng();
+                resolve ([parseFloat(latitude), parseFloat(longitude)]);
+            } else {
+                reject(new Error('Couldnt\'t find the location ' + zipcode));
+            }
+        })
+        
+        })
     },
     getUserInput() {
         var zipcode = document.getElementById('text').value
