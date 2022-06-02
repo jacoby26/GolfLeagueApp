@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.GolfCourseDao;
+import com.techelevator.dao.LeagueDao;
 import com.techelevator.dao.RoundDao;
 import com.techelevator.model.GolfCourse;
 import com.techelevator.model.Round;
@@ -22,6 +23,8 @@ public class AppController {
     GolfCourseDao golfCourseDao;
     @Autowired
     RoundDao roundDao;
+    @Autowired
+    LeagueDao leagueDao;
 
 
     @RequestMapping(path="/courses", method=RequestMethod.GET)
@@ -34,7 +37,12 @@ public class AppController {
         return golfCourseDao.addCourse(name, address, city, state, zip, longitude, latitude);
     }
 
-// Round will probably be changed a lot over the next day or so, if not totally replaced.
+    @RequestMapping(path="/leagues/addleague", method=RequestMethod.POST)
+    public long addLeague(@RequestParam String name, GolfCourse course, Principal principal) {
+        return leagueDao.createLeague(name,course,principal);
+    }
+
+// Round will probably be changed a lot over the next day or so.
 
     @RequestMapping(path="/rounds", method=RequestMethod.GET)
     public List<Round> listAllUserRounds(Principal principal) {
