@@ -52,7 +52,7 @@ export default {
             address: "",
             city: "",
             state: "",
-            zip: "",
+            zip: 0,
             latitude: 0,
             longitude: 0
             },

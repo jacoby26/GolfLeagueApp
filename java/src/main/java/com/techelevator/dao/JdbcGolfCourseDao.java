@@ -42,9 +42,9 @@ public class JdbcGolfCourseDao implements GolfCourseDao {
     public boolean addCourse(String course_name, String address, String city, String course_state, Integer zip_code, Double latitude, Double longitude) {
         String sql = "INSERT INTO courses (course_name, address, city, course_state, zip_code, latitude, longitude) "
                 + "VALUES (?,?,?,?,?,?,?) RETURNING course_id";
-        try {
+       // try {
             jdbcTemplate.queryForObject(sql
-                    , double.class
+                    , Long.class
                     , course_name
                     , address
                     , city
@@ -52,9 +52,9 @@ public class JdbcGolfCourseDao implements GolfCourseDao {
                     , zip_code
                     , latitude
                     , longitude);
-        } catch (DataAccessException e) {
-            return false;
-        }
+        //} catch (DataAccessException e) {
+           // return false;
+        //}
         return true;
     }
     // String name, String address, String city, String state, int zip, double longitude, double latitude

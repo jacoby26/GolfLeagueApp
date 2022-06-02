@@ -33,8 +33,14 @@ public class AppController {
     }
 
     @RequestMapping(path="/add-course", method=RequestMethod.POST)
-    public boolean addGolfCourse(@RequestBody String course_name, String address, String city, String course_state, Integer zip_code, Double latitude, Double longitude) {
-        return golfCourseDao.addCourse(course_name, address, city, course_state, zip_code, latitude, longitude);
+    public boolean addGolfCourse(@RequestBody GolfCourse golfCourse) {
+        return golfCourseDao.addCourse(golfCourse.getName()
+                    , golfCourse.getAddress()
+                    , golfCourse.getCity()
+                    , golfCourse.getState()
+                    ,golfCourse.getZip()
+                    , golfCourse.getLatitude()
+                    , golfCourse.getLongitude());
     }
 
     @RequestMapping(path="/leagues/addleague", method=RequestMethod.POST)
