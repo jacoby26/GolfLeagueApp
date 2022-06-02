@@ -26,7 +26,16 @@ export default {
     }
   },
   components: {
+<<<<<<< HEAD
+    Details
+=======
     Details,
+<<<<<<< HEAD
+=======
+    AddCourseForm,
+    LogScores
+>>>>>>> main
+>>>>>>> 9c2c2d85e69c2e0c0d2ecc1cc11b37a6b76734b7
   },
   created(){
     LeagueService.viewLeagues().then(

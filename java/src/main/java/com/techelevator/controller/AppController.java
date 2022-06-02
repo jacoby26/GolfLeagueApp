@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.*;
 import com.techelevator.model.GolfCourse;
+import com.techelevator.model.League;
 import com.techelevator.model.Round;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -39,14 +40,15 @@ public class AppController {
                     , golfCourse.getAddress()
                     , golfCourse.getCity()
                     , golfCourse.getState()
-                    ,golfCourse.getZip()
+                    , golfCourse.getZip()
                     , golfCourse.getLatitude()
                     , golfCourse.getLongitude());
     }
 
     @RequestMapping(path="/leagues/addleague", method=RequestMethod.POST)
-    public long addLeague(@RequestParam String name, GolfCourse course, Principal principal) {
-        return leagueDao.createLeague(name,course,principal);
+    public long addLeague(@RequestBody League league, Principal principal) {
+
+        return leagueDao.createLeague(league.getName(), league.getGolfCourse(), principal);
     }
 
     @RequestMapping(path="/leagues/", method=RequestMethod.GET)
