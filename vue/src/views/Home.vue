@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <Details id="details" v-bind:item="item"/>
-    <LogScores/>
     <div id="selector">
       <h3>When clicked, the items below will change this--></h3>
       <ul>
@@ -17,7 +16,6 @@
 <script>
 import Details from "./Details.vue";
 import LeagueService from "../services/LeagueService.js";
-import LogScores from "../components/LogScores.vue"
 export default {
   name: "home",
   data(){
@@ -29,7 +27,6 @@ export default {
   },
   components: {
     Details,
-    LogScores
   },
   created(){
     LeagueService.viewRounds().then(
