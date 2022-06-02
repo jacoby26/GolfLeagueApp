@@ -1,8 +1,11 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class GolfCourse {
 
     private Long id;
+    @JsonProperty("courseName")
     private String name;
     private String address;
     private String city;
@@ -89,6 +92,6 @@ public class GolfCourse {
 
     @Override
     public String toString() {
-        return "Course Name: " + name + " Address: " + address + " " + city + ", " + state + " " + zip;
+        return "Course Name: " + name + " Address: " + address + " " + city + ", " + state + " " + zip + latitude + longitude;
     }
 }
