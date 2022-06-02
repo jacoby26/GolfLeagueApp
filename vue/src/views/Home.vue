@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <Details id="details" v-bind:item="item"/>
+    <AddCourseForm />
     <div id="selector">
       <h3>When clicked, the items below will change this--></h3>
       <ul>
@@ -14,6 +15,7 @@
 
 
 <script>
+import AddCourseForm from "../components/AddCourseForm.vue"
 import Details from "./Details.vue";
 import LeagueService from "../services/LeagueService.js";
 export default {
@@ -26,7 +28,8 @@ export default {
     }
   },
   components: {
-    Details
+    Details,
+    AddCourseForm
   },
   created(){
     LeagueService.viewRounds().then(

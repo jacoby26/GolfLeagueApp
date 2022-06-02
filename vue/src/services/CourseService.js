@@ -9,6 +9,10 @@ class GolfCourseService
     getAllCourses() {
         return http.get('/courses')
     }
+
+    addCourse(course){
+        return http.post('/courses/addcourse', course)
+    }
 }
 
 export default new GolfCourseService()

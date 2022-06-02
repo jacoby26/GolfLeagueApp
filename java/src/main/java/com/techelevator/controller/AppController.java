@@ -40,7 +40,9 @@ public class AppController {
     }
 
     @RequestMapping(path="/courses/addcourse", method=RequestMethod.POST)
-    public long addGolfCourse(@RequestParam String name, String address, String city, String state, int zip, double longitude, double latitude) {
-        return golfCourseDao.addCourse(name, address, city, state, zip, longitude, latitude);
+    public long addGolfCourse(@RequestParam GolfCourse golfCourse) {
+        return golfCourseDao.addCourse(golfCourse);
     }
+
+    // String name, String address, String city, String state, int zip, double longitude, double latitude
 }

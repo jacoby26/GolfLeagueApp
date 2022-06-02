@@ -36,12 +36,21 @@ public class JdbcGolfCourseDao implements GolfCourseDao {
     }
 
     @Override
-    public long addCourse(String name, String address, String city, String state, int zip, double longitude, double latitude) {
+    public long addCourse(GolfCourse golfCourse) {
         String sql = "INSERT INTO courses (course_name, address, city, course_state, zip_code, latitude, longitude) "
                 + "VALUES (?,?,?,?,?,?,?) RETURNING course_id";
-        return jdbcTemplate.queryForObject(sql, long.class, name, address, city, state, zip, latitude, longitude);
+        return jdbcTemplate.queryForObject(sql
+                                            , long.class
+                                            , golfCourse.getName()
+                                            , golfCourse.getAddress()
+                                            , golfCourse.getCity()
+                                            , golfCourse.getState()
+                                            , golfCourse.getZip()
+                                            , golfCourse.getLatitude()
+                                            , golfCourse.getLongitude());
 
     }
+    // String name, String address, String city, String state, int zip, double longitude, double latitude
 
 
     private GolfCourse mapRowToGolfCourse(SqlRowSet rs) {
