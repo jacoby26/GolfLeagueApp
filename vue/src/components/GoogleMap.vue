@@ -90,12 +90,12 @@ export default {
         console.log(zipcode)
         return "" + zipcode
     },
-    makeMarkerObj(lat, lng, name) {
+    makeMarkerObj(lat, lng, name, address) {
       const latLng = {
         lat: lat,
         lng: lng
       }
-      const markerObj = { coord: latLng, name: name };
+      const markerObj = { coord: latLng, name: name, address: address };
       return markerObj;
     },
 
@@ -116,7 +116,7 @@ export default {
             })
         }
         loc.forEach((x) => {
-            this.dropPin(this.makeMarkerObj(x.latitude, x.longitude, x.courseName))
+            this.dropPin(this.makeMarkerObj(x.latitude, x.longitude, x.courseName, x.address))
         });  
       // this.markerObj.description = new window.google.maps.InfoWindow({
       // content:"HTML Content goes here"
@@ -141,7 +141,7 @@ export default {
         // },
       }); 
       const infowindow = new window.google.maps.InfoWindow({
-      content: markerObj.name,
+      content: markerObj.name + ", " + markerObj.address,
   });
       marker.addListener("click", () => {
       infowindow.open({
