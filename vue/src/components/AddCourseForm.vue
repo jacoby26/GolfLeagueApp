@@ -1,8 +1,5 @@
 <template>
     <div>
-        <div id="intro">
-          <h1>Add a Course</h1>
-        </div>
         <form v-on:submit.prevent="submitForm()">
             <div>
                 <label for="course_name">Course Name: </label>
