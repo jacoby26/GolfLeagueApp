@@ -79,7 +79,15 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    }
+    }, 
+    /* {
+        path: "/add-course",
+        name: "add-course",
+        component: AddCourseForm,
+        meta: {
+          requiresAuth: true
+        }
+    } */
   ]
 })
 
