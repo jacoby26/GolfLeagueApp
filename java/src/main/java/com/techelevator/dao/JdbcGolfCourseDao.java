@@ -52,6 +52,16 @@ public class JdbcGolfCourseDao implements GolfCourseDao {
     }
     // String name, String address, String city, String state, int zip, double longitude, double latitude
 
+    @Override
+    public GolfCourse getCourseByCourseId(Long courseId) {
+        String sql = "SELECT * from courses WHERE course_id = ?";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, courseId);
+        GolfCourse golfCourse = mapRowToGolfCourse(results);
+
+        return golfCourse;
+
+    }
 
     private GolfCourse mapRowToGolfCourse(SqlRowSet rs) {
         GolfCourse golfCourse = new GolfCourse();

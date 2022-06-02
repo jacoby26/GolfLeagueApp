@@ -10,8 +10,8 @@ export default {
     addRound(user, round){
         return axios.post('/rounds/addround', round.score, round.roundDate, user, round.golfCourse)
     },
-    addLeague(user, name, golfCourse){
-        return axios.post('/futurepath2', name, golfCourse, user)
+    addLeague(league){
+        return axios.post('/leagues/addleague', league)
     },
     manageLeague(user, roster, leagueId){
         return axios.put(`/futurepath2/${leagueId})`, user, roster)

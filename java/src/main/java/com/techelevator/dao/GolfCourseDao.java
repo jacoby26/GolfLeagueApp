@@ -9,4 +9,6 @@ public interface GolfCourseDao {
     List<GolfCourse> getAllCourses();
 
     long addCourse(GolfCourse golfCourse);
+
+    GolfCourse getCourseByCourseId(Long courseId);
 }
