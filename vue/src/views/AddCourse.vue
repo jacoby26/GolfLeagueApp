@@ -1,24 +1,32 @@
 <template>
   <div id="add-course">
-      <h1>Add New Course</h1>
-      <p>add course form wil go here</p>
-      <!-- <add-new-course /> -->
+      <h1 id="add-course-title">Add New Course</h1>
+      <div id="add-course-form">
+      <AddCourseForm />
+      </div>
   </div>
+  
 </template>
 
 <script>
-/*import AddCourseForm from "@/components/AddCourseForm";*/
+import AddCourseForm from "../components/AddCourseForm.vue";
 
 export default {
-     /* components: {
+    name: "add-course",
+    components: {
         AddCourseForm
-    } */
+    }
 
 }
 </script>
 
 <style>
-#add-course{
+#add-course-title {
+    display:flex;
+    justify-content: center;
+    background: rgba(186,199,202,.9);
+}
+#add-course-form{
     margin: 5px;
     padding-left: 5px;
     background-color: rgba(186,199,202,.9);

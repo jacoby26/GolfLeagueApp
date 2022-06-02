@@ -60,7 +60,7 @@ export default {
     },
     methods: {
         submitForm() {
-            const newCourse = {
+            let newCourse = {
                 courseName: this.course.courseName,
                 address: this.course.address,
                 city: this.course.city,
@@ -73,7 +73,7 @@ export default {
             golfCourseService
             .addCourse(newCourse)
             .then(response => {
-                if (response.status === 201) {
+                if (response.status === 200) {
                     window.alert("Course added successfully!");
                 } else {
                     window.alert("Problem adding course")

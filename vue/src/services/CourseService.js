@@ -11,7 +11,7 @@ class GolfCourseService
     }
 
     addCourse(course){
-        return http.post('/courses/addcourse', course)
+        return http.post('/add-course', course)
     }
 }
 

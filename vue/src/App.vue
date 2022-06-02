@@ -6,7 +6,7 @@
       <img id="addmatchbtn" v-bind:src='addmatchbtn.image' @mouseover="matchhover()" @mouseout="matchout()" v-on:click="matchclick()"/>
       <img id="manageleaguebtn"  v-bind:src='manageleaguebtn.image' @mouseover="managehover()" @mouseout="manageout()" v-on:click="manageclick()"/>
       <img id="addcoursebtn"  @mouseover="managehover()" @mouseout="manageout()" v-on:click="manageclick()"/>
-      <router-link to="/add-new-course" v-if="">Add New Course</router-link>
+      <router-link :to="{ name: 'add-course' }" >Add New Course</router-link>
       <img id="logoutbtn" v-bind:src='logoutbtn.image' @mouseover="logouthover()" @mouseout="logoutout()" v-on:click="logoutclick()" v-if="$store.state.token != ''"/>
     </div>
     <router-view id="router-view" />

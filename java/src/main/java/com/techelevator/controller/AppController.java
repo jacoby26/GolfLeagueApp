@@ -32,9 +32,9 @@ public class AppController {
         return golfCourseDao.getAllCourses();
     }
 
-    @RequestMapping(path="/courses/addcourse", method=RequestMethod.POST)
-    public long addGolfCourse(@RequestParam GolfCourse golfCourse) {
-        return golfCourseDao.addCourse(golfCourse);
+    @RequestMapping(path="/add-course", method=RequestMethod.POST)
+    public boolean addGolfCourse(@RequestBody String course_name, String address, String city, String course_state, Integer zip_code, Double latitude, Double longitude) {
+        return golfCourseDao.addCourse(course_name, address, city, course_state, zip_code, latitude, longitude);
     }
 
     @RequestMapping(path="/leagues/addleague", method=RequestMethod.POST)
