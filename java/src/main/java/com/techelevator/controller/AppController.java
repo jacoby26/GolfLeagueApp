@@ -33,9 +33,15 @@ public class AppController {
         return golfCourseDao.getAllCourses();
     }
 
-    @RequestMapping(path="/courses/addcourse", method=RequestMethod.POST)
-    public long addGolfCourse(@RequestParam GolfCourse golfCourse) {
-        return golfCourseDao.addCourse(golfCourse);
+    @RequestMapping(path="/add-course", method=RequestMethod.POST)
+    public boolean addGolfCourse(@RequestBody GolfCourse golfCourse) {
+        return golfCourseDao.addCourse(golfCourse.getName()
+                    , golfCourse.getAddress()
+                    , golfCourse.getCity()
+                    , golfCourse.getState()
+                    ,golfCourse.getZip()
+                    , golfCourse.getLatitude()
+                    , golfCourse.getLongitude());
     }
 
     @RequestMapping(path="/leagues/addleague", method=RequestMethod.POST)
