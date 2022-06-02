@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.security.Principal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,12 +44,12 @@ public class JdbcRoundDao implements RoundDao{
     }
 
     @Override
-    public long createRound(int score, LocalDate roundDate, Principal principal, GolfCourse golfCourse) {
-        String sql = "INSERT INTO rounds (score, date, course_id, user_id "
-                + "VALUES (?,?,?,?) RETURNING round_id";
+    public long createRound(int score, LocalDate roundDate, LocalTime teeTime, Principal principal, GolfCourse golfCourse) {
+        String sql = "INSERT INTO rounds (score, date, tee_time, course_id, user_id) "
+                + "VALUES (?,?,?,?,?) RETURNING round_id";
         long userID = jdbcUserDao.findIdByUsername(principal.getName());
         long courseID = golfCourse.getId();
-        return jdbcTemplate.queryForObject(sql, long.class, score, roundDate, courseID, userID);
+        return jdbcTemplate.queryForObject(sql, long.class, score, roundDate, teeTime, courseID, userID);
 
     }
 

@@ -8,5 +8,5 @@ public interface GolfCourseDao {
 
     List<GolfCourse> getAllCourses();
 
-    long addCourse(String name, String address, String city, String state, int zip, double longitude, double latitude);
+    long addCourse(GolfCourse golfCourse);
 }

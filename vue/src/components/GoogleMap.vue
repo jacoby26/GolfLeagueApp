@@ -55,7 +55,6 @@ export default {
     calculateCenter() {
         this.zip = this.getUserInput()
         this.getLatLngByZipcode(this.zip).then(results => {
-        //    console.log(results)
            this.mapCenter = {
            lat: parseFloat(results[0]),
            lng: results[1]
