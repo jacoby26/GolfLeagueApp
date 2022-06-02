@@ -4,7 +4,7 @@
     <div id="selector">
       <h3>When clicked, the items below will change this--></h3>
       <ul>
-        <li v-on:click="show(Leaderboard)">Leaderboard</li>
+        <li v-for="league in Leagues" v-bind:key="league.leagueID" v-on:click="show(league)">{{league.name}}</li>
         <li v-for="game in Matches" v-bind:key="game.Id" v-on:click="show(game)"> {{game.Date}} </li>
       </ul>
     </div>
@@ -21,7 +21,7 @@ export default {
   data(){
     return{
       Matches: [],
-      Leagueids:[],
+      Leagues:[],
       item:{}
     }
   },
@@ -29,10 +29,15 @@ export default {
     Details
   },
   created(){
-    LeagueService.viewRounds().then(
-      (games) => {
-      this.Matches = games.data;
-    })
+    LeagueService.viewLeagues(this.$store.state.user).then(
+      (leagues) => {
+        this.Leagues = leagues.data;
+      }
+    )
+//    LeagueService.viewRounds().then(
+//      (games) => {
+//      this.Matches = games.data;
+//    })
   },
   methods:{
     show(item){

@@ -116,7 +116,7 @@ export default {
             })
         }
         loc.forEach((x) => {
-            this.dropPin(this.makeMarkerObj(x.latitude, x.longitude, x.name))
+            this.dropPin(this.makeMarkerObj(x.latitude, x.longitude, x.courseName))
         });  
       // this.markerObj.description = new window.google.maps.InfoWindow({
       // content:"HTML Content goes here"
@@ -155,7 +155,7 @@ export default {
             .then((response) =>
             {
                 const locations = response.data
-                console.table(response.data)
+                // console.table(response.data)
                 this.$store.commit('LOAD_COURSES', locations)
                 this.isLoading = false
                 this.dropPins(this.zip)

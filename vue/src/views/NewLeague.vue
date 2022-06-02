@@ -1,41 +1,22 @@
 <template>
-  <div id="make-League">
-      <form id="League-Create">
-          <h1>Register League</h1>
-      <div>
-      <label for="league-name">League name: </label>
-      <input
-        type="text"
-        id="league-name"
-        placeholder="The Extraordinary"
-        v-model="League.Name"
-        required
-      />
-      </div>
-      <label for="course">Course</label>
-      <Map/>
-      <button type="submit">Register League</button>
-      </form>
-
+  <div>
+      <div id="League-Create">
+          <CreateLeagueForm />
+          <Map/>
+      </div>    
   </div>
 </template>
 
 <script>
 import Map from "../components/GoogleMap.vue";
+import CreateLeagueForm from "../components/CreateLeagueForm.vue"
 export default {
+    name: "new-league",
     components:{
-        Map
+        Map,
+        CreateLeagueForm
     },
-    data(){
-        return{
-            League:{
-                Nmae: '',
-                Organizer: this.$store.state.user,
-                Course: '',
-                Players:[this.$store.state.user]
-            }
-        }
-    }
+    
 
 }
 </script>
