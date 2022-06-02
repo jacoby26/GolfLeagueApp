@@ -4,7 +4,9 @@ import com.techelevator.dao.GolfCourseDao;
 import com.techelevator.dao.LeagueDao;
 import com.techelevator.dao.RoundDao;
 import com.techelevator.model.GolfCourse;
+import com.techelevator.model.League;
 import com.techelevator.model.Round;
+import com.techelevator.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +42,11 @@ public class AppController {
     @RequestMapping(path="/leagues/addleague", method=RequestMethod.POST)
     public long addLeague(@RequestParam String name, GolfCourse course, Principal principal) {
         return leagueDao.createLeague(name,course,principal);
+    }
+
+    @RequestMapping (path="/leagues/join", method=RequestMethod.POST)
+    public long joinLeague(@RequestBody User user, League league) {
+        return leagueDao.joinLeague(user,league);
     }
 
 // Round will probably be changed a lot over the next day or so.
