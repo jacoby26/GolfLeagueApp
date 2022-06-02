@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.GolfCourse;
 import com.techelevator.model.Round;
+import com.techelevator.model.TeeTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -31,9 +32,10 @@ public class JdbcRoundDao implements RoundDao{
     public List<Round> getAllUserRounds(Principal principal) {
         List<Round> userRounds = new ArrayList<>();
         String sql = "SELECT * FROM rounds "
-                + "JOIN users ON rounds.user_id = users.user_id"
-                + "JOIN courses ON rounds.course_id = courses.course.id "
-                + "WHERE username = ? ORDER BY date";
+                + "JOIN tee_times ON rounds.tee_time_id = tee_times.tee_time_id "
+                + "JOIN users ON tee_times.user_id = users.users_id "
+                + "JOIN courses ON tee_times.course_id = courses.course.id "
+                + "WHERE username = ?";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, principal.getName());
         while(results.next()) {
@@ -44,12 +46,10 @@ public class JdbcRoundDao implements RoundDao{
     }
 
     @Override
-    public long createRound(int score, LocalDate roundDate, LocalTime teeTime, Principal principal, GolfCourse golfCourse) {
-        String sql = "INSERT INTO rounds (score, date, tee_time, course_id, user_id) "
+    public long createRound(int score, TeeTime teeTime) {
+        String sql = "INSERT INTO rounds (tee_time_id, score) "
                 + "VALUES (?,?,?,?,?) RETURNING round_id";
-        long userID = jdbcUserDao.findIdByUsername(principal.getName());
-        long courseID = golfCourse.getId();
-        return jdbcTemplate.queryForObject(sql, long.class, score, roundDate, teeTime, courseID, userID);
+        return jdbcTemplate.queryForObject(sql, long.class, score, teeTime.getId());
 
     }
 
@@ -59,10 +59,9 @@ public class JdbcRoundDao implements RoundDao{
         Round round = new Round();
 
         round.setId(rs.getLong("course_id"));
+        round.setTeeTimeID(rs.getLong("tee_time_id"));
         round.setScore(rs.getInt("score"));
-        round.setDate(rs.getDate("date").toLocalDate());
-        round.setCourseId(rs.getLong("course_id"));
-        round.setUserId(rs.getLong("user_id"));
+
 
 
         return round;

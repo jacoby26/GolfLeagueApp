@@ -7,21 +7,17 @@ import java.time.LocalTime;
 public class Round {
 
     private long id;
+    private long teeTimeID;
     private int score;
-    private LocalDate date;
-    private LocalTime teeTime;
-    private long courseId;
-    private long userId;
 
-    public Round() { }
 
-    public Round(long id, int score, LocalDate date, LocalTime teeTime, long courseId, long userId) {
+    public Round() {
+    }
+
+    public Round(long id, long teeTimeID, int score) {
         this.id = id;
+        this.teeTimeID = teeTimeID;
         this.score = score;
-        this.date = date;
-        this.teeTime = teeTime;
-        this.courseId = courseId;
-        this.userId = userId;
     }
 
     public long getId() {
@@ -32,6 +28,14 @@ public class Round {
         this.id = id;
     }
 
+    public long getTeeTimeID() {
+        return teeTimeID;
+    }
+
+    public void setTeeTimeID(long teeTimeID) {
+        this.teeTimeID = teeTimeID;
+    }
+
     public int getScore() {
         return score;
     }
@@ -39,36 +43,7 @@ public class Round {
     public void setScore(int score) {
         this.score = score;
     }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public LocalTime getTeeTime() {
-        return teeTime;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public void setTeeTime(LocalTime teeTime) {
-        this.teeTime = teeTime;
-    }
-
-    public long getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(long courseId) {
-        this.courseId = courseId;
-    }
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
 }
+
+
+
