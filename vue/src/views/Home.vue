@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <Details id="details" v-bind:item="item"/>
-    <AddCourseForm />
     <LogScores/>
     <div id="selector">
       <h3>When clicked, the items below will change this--></h3>
@@ -29,13 +28,8 @@ export default {
     }
   },
   components: {
-<<<<<<< HEAD
-    Details
-=======
     Details,
-    AddCourseForm,
     LogScores
->>>>>>> main
   },
   created(){
     LeagueService.viewRounds().then(
