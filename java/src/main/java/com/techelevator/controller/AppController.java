@@ -55,7 +55,4 @@ public class AppController {
         return roundDao.createRound(score, roundDate, teeTime, principal, golfCourse);
     }
 
-
-
-
 }

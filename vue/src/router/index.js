@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import NewLeague from '../views/NewLeague.vue'
 import MatchRequest from '../views/MatchRequest.vue'
+import LeagueManagement from '../views/LeagueManagement.vue'
 
 Vue.use(Router)
 
@@ -67,6 +68,14 @@ const router = new Router({
       path: "/play",
       name: "add-match",
       component: MatchRequest,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/manage-league",
+      name: "manage-league",
+      component: LeagueManagement,
       meta: {
         requiresAuth: true
       }
