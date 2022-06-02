@@ -155,7 +155,7 @@ export default {
             .then((response) =>
             {
                 const locations = response.data
-                console.table(response.data)
+                // console.table(response.data)
                 this.$store.commit('LOAD_COURSES', locations)
                 this.isLoading = false
                 this.dropPins(this.zip)
