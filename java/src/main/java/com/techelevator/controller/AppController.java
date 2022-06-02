@@ -39,7 +39,7 @@ public class AppController {
                     , golfCourse.getAddress()
                     , golfCourse.getCity()
                     , golfCourse.getState()
-                    ,golfCourse.getZip()
+                    , golfCourse.getZip()
                     , golfCourse.getLatitude()
                     , golfCourse.getLongitude());
     }
@@ -47,9 +47,7 @@ public class AppController {
     @RequestMapping(path="/leagues/addleague", method=RequestMethod.POST)
     public long addLeague(@RequestBody League league, Principal principal) {
 
-        GolfCourse golfCourse = golfCourseDao.getCourseByCourseId(league.getCourseID());
-
-        return leagueDao.createLeague(league.getName(), golfCourse, principal);
+        return leagueDao.createLeague(league.getName(), league.getGolfCourse(), principal);
     }
 
 // Round will probably be changed a lot over the next day or so.

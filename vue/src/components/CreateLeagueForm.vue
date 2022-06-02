@@ -1,5 +1,5 @@
 <template>
-    <form  v-on:submit.prevent="submitForm()" >
+    <form  v-on:submit.prevent="getAllCourses" >
           <h1>Register League</h1>
         <div>
             <label for="league-name">League name: </label>
@@ -21,6 +21,7 @@
 
 <script>
 import leagueService from "../services/LeagueService.js"
+import golfCourseService from "../services/CourseService.js"
 
 
 export default {
@@ -30,7 +31,7 @@ export default {
                 name: '',
                 organizer: this.$store.state.user,
                 courseName: '',
-                courseID: '',
+                course: {},
                 players:[this.$store.state.user]
             }
         }
@@ -41,26 +42,39 @@ export default {
                 name: this.league.name,
                 organizer: this.league.user,
                 courseName: this.league.courseName,
+                course: this.league.course,
                 players: this.league.players
             };
-            this.setCourseId()
+            
             leagueService
             .addLeague(newLeague)
             .then(response => {
-                if (response.status === 201) {
-                    window.alert("League added successfully!");
+                if (response.status === 200) {
+                    window.alert("League created successfully!");
                 } else {
-                    window.alert("Problem adding League")
+                    window.alert("Problem creating League")
                 }
             })
         },
-        setCourseId() {
-            let locs = this.$store.state.location.filter((x) => x.courseName == this.league.courseName)
-
-            this.league.courseID = locs[0].courseID
+        setCourse(locations) {
+            let locs = locations.filter((x) => x.courseName == this.league.courseName)
+            console.log(locations)
+            console.log(locs)
+            console.log(locs[0])
+            this.league.course = locs[0]
 
             // let results = this.$store.state.locations.filter((x) => x.zip == zips[j])
-        }
+        },
+        getAllCourses() {
+        golfCourseService.getAllCourses()
+            .then((response) =>
+            {
+                const locations = response.data
+                this.setCourse(locations)
+                this.submitForm()
+    
+            })
+    }
         
     }
 }

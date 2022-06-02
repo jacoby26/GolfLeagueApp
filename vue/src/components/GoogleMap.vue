@@ -116,7 +116,7 @@ export default {
             })
         }
         loc.forEach((x) => {
-            this.dropPin(this.makeMarkerObj(x.latitude, x.longitude, x.name))
+            this.dropPin(this.makeMarkerObj(x.latitude, x.longitude, x.courseName))
         });  
       // this.markerObj.description = new window.google.maps.InfoWindow({
       // content:"HTML Content goes here"

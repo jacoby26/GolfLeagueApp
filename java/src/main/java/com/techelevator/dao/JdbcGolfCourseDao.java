@@ -61,6 +61,7 @@ public class JdbcGolfCourseDao implements GolfCourseDao {
 
     @Override
     public GolfCourse getCourseByCourseId(Long courseId) {
+        System.out.println(courseId);
         String sql = "SELECT * from courses WHERE course_id = ?";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, courseId);
