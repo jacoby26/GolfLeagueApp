@@ -8,6 +8,8 @@ import store from '../store/index'
 import NewLeague from '../views/NewLeague.vue'
 import MatchRequest from '../views/MatchRequest.vue'
 import LeagueManagement from '../views/LeagueManagement.vue'
+import AddCourse from "../views/AddCourse.vue";
+
 
 Vue.use(Router)
 
@@ -79,6 +81,14 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    }, 
+    {
+        path: "/add-course",
+        name: "add-course",
+        component: AddCourse,
+        meta: {
+          requiresAuth: true
+    }
     }
   ]
 })

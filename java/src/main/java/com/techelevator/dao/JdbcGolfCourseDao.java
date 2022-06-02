@@ -1,15 +1,18 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.GolfCourse;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin
 @Service
 public class JdbcGolfCourseDao implements GolfCourseDao {
 
@@ -36,19 +39,23 @@ public class JdbcGolfCourseDao implements GolfCourseDao {
     }
 
     @Override
-    public long addCourse(GolfCourse golfCourse) {
+    public boolean addCourse(String course_name, String address, String city, String course_state, Integer zip_code, Double latitude, Double longitude) {
         String sql = "INSERT INTO courses (course_name, address, city, course_state, zip_code, latitude, longitude) "
                 + "VALUES (?,?,?,?,?,?,?) RETURNING course_id";
-        return jdbcTemplate.queryForObject(sql
-                                            , long.class
-                                            , golfCourse.getName()
-                                            , golfCourse.getAddress()
-                                            , golfCourse.getCity()
-                                            , golfCourse.getState()
-                                            , golfCourse.getZip()
-                                            , golfCourse.getLatitude()
-                                            , golfCourse.getLongitude());
-
+       // try {
+            jdbcTemplate.queryForObject(sql
+                    , Long.class
+                    , course_name
+                    , address
+                    , city
+                    , course_state
+                    , zip_code
+                    , latitude
+                    , longitude);
+        //} catch (DataAccessException e) {
+           // return false;
+        //}
+        return true;
     }
     // String name, String address, String city, String state, int zip, double longitude, double latitude
 
