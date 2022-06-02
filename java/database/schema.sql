@@ -37,7 +37,7 @@ CREATE TABLE Public."courses" (course_id serial,
 	CONSTRAINT PK_courses PRIMARY KEY (course_id)
 	);
 
-COPY Public."courses" FROM 'C:\Users\Student\AppData\Local\Temp\withLocation.csv' DELIMITER ',' CSV;
+COPY Public."courses" FROM 'C:\Users\Student\AppData\Local\Temp\withLocationNoId.csv' DELIMITER ',' CSV;
 
 CREATE TABLE leagues (
 	league_id serial NOT NULL,

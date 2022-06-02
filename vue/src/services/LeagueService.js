@@ -1,8 +1,11 @@
 import axios from 'axios';
 
 export default {
-    viewStandings(user){
-        return axios.get('/futurepath1', user);
+    viewLeagues(user){
+        return axios.get('/leagues', user);
+    },
+    viewStandings(user, leagueID){
+        return axios.get(`/leagues/${leagueID}/scores`, user);
     },
     viewRounds(user){
         return axios.get('/rounds', user);
@@ -11,10 +14,10 @@ export default {
         return axios.post('/rounds/addround', round.score, round.roundDate, user, round.golfCourse)
     },
     addLeague(user, name, golfCourse){
-        return axios.post('/futurepath2', name, golfCourse, user)
+        return axios.post('/leagues/addleague', name, golfCourse, user)
     },
     manageLeague(user, roster, leagueId){
-        return axios.put(`/futurepath2/${leagueId})`, user, roster)
+        return axios.put(`/leagues/${leagueId})`, user, roster)
     },
     reportRound(user, round, score){
         return axios.put(`/rounds/${round}`, score, user)
