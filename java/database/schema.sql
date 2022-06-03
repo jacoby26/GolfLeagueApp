@@ -62,33 +62,25 @@ CREATE TABLE users_leagues (
     CONSTRAINT FK_users_leagues_league FOREIGN KEY (league_id) REFERENCES leagues (league_id)
 );
 
-CREATE TABLE tee_times (
-    tee_time_id serial NOT NULL,
-    tee_time_date date NOT NULL,
-    tee_time time NOT NULL,
-    course_id int NOT NULL,
-    user_id int NOT NULL,
-    CONSTRAINT PK_tee_time PRIMARY KEY (tee_time_id),
-    CONSTRAINT FK_tee_time_course FOREIGN KEY (course_id) REFERENCES courses (course_id)
-);
-
-CREATE TABLE tee_times_users (
-    tee_time_id int,
-    user_id int,
-    CONSTRAINT PK_tee_times_users PRIMARY KEY (tee_time_id, user_id),
-    CONSTRAINT FK_tee_times_users_tee_time FOREIGN KEY (tee_time_id) REFERENCES tee_times (tee_time_id),
-    CONSTRAINT FK_tee_times_users_users FOREIGN KEY (user_id) REFERENCES users (user_id)
-);
-
 CREATE TABLE rounds (
     round_id serial NOT NULL,
-    score int NOT NULL,
-    tee_time_id int NOT NULL,
-    user_id int NOT NULL,
+    tee_time time NOT NULL,
+    round_date date NOT NULL,
+    league_id int NOT NULL,
     CONSTRAINT PK_round PRIMARY KEY (round_id),
-    CONSTRAINT FK_round_tee_time FOREIGN KEY (tee_time_id) REFERENCES tee_times (tee_time_id),
-    CONSTRAINT FK_round_user FOREIGN KEY (user_id) REFERENCES users (user_id),
+    CONSTRAINT FK_league_id FOREIGN KEY (league_id) REFERENCES leagues (league_id)
+);
+
+CREATE TABLE scores (
+    score_id serial NOT NULL,
+    score int NOT NULL,
+    user_id int NOT NULL,
+    round_id int NOT NULL,
+      CONSTRAINT PK_score PRIMARY KEY (score_id),
+    CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users (user_id),
+    CONSTRAINT FK_round FOREIGN KEY (round_id) REFERENCES rounds (round_id),
     CONSTRAINT CHK_score CHECK (score > 0 AND score < 150)
 );
+
 COMMIT TRANSACTION;
 -- ROLLBACK;
