@@ -20,7 +20,7 @@ export default {
 
 <style>
 .add-course {
-    margin: 5px 5px 0 5px;
+    margin: 5px 5px 5px 5px;
     padding-left: 5px;
     background-color: rgba(186,199,202,.9);
     text-shadow: 1px 1px 1px #e7e7e7;

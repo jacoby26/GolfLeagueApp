@@ -111,7 +111,9 @@ export default {
 }
 </script>
 <style>
-.add-course-form {
+.add-course-form, 
+.add-course-form:not(.btn-btn-submit), 
+.add-course-form:not(.btn-btn-cancel) {
     display: flex;
     flex-direction: column;
     justify-content: center;

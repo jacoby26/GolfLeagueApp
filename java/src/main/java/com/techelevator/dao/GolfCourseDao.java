@@ -8,6 +8,7 @@ public interface GolfCourseDao {
 
     List<GolfCourse> getAllCourses();
 
+    String getCourseNameByID(long courseID);
 
     GolfCourse getCourseByCourseId(Long courseId);
 

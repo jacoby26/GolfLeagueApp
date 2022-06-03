@@ -20,7 +20,7 @@
                 <label for="course_name">Score: </label>
                 <input id="course_name" type="text" v-model="course.address" autocomplete="off" />
             </div>
-
+            
             <button class="btn btn-submit">Submit</button>
             <button class="btn btn-cancel" v-on:click.prevent="cancelForm" type="cancel">Cancel</button>
         </form>
