@@ -5,11 +5,14 @@ import com.techelevator.model.League;
 import com.techelevator.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
-
+import com.techelevator.model.League;
 import javax.sql.DataSource;
 import javax.xml.crypto.Data;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class JdbcLeagueDao implements LeagueDao {
@@ -40,6 +43,7 @@ public class JdbcLeagueDao implements LeagueDao {
         return leagueID;
     }
 
+<<<<<<< HEAD
     @Override
     public long joinLeague(User user, League league) {
         String sql = "INSERT INTO users_leagues (user_id, league_id) "
@@ -49,4 +53,27 @@ public class JdbcLeagueDao implements LeagueDao {
     }
 
 
+=======
+    public List<League> getAllLeagues(Principal principal){
+        List<League> output = new ArrayList();
+        String sql = "SELECT * " +
+                "from leagues " +
+                "join users_leagues on users_leagues.league_id = leagues.league_id " +
+                "where users_leagues.user_id = ? " +
+                ";";
+//        SqlRowSet query = jdbcTemplate.queryForRowSet(sql);
+        SqlRowSet query = jdbcTemplate.queryForRowSet(sql, userDao.findIdByUsername(principal.getName()));
+        while (query.next()){
+            output.add(mapRowToLeague(query));
+        }
+        return output;
+    }
+    private League mapRowToLeague(SqlRowSet set){
+        League currentLeague = new League();
+        currentLeague.setCourseID(set.getLong("course_id"));
+        currentLeague.setLeagueID(set.getLong("league_id"));
+        currentLeague.setName(set.getString("league_name"));
+        return currentLeague;
+    }
+>>>>>>> main
 }
