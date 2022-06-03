@@ -29,9 +29,10 @@
                 <label for="course_name">Longitude: </label>
                 <input id="course_name" type="text" v-model="course.longitude" autocomplete="off" />
             </div> -->
-            <button class="btn-btn-submit">Submit</button>
-            <button class="btn-btn-cancel" v-on:click.prevent="cancelForm" type="cancel">Cancel</button>
-
+            <!-- <div> -->
+                <button class="btn-btn-submit">Submit</button>
+                <button class="btn-btn-cancel" v-on:click.prevent="cancelForm" type="cancel">Cancel</button>
+            <!-- </div> -->
         </form>
         
     <!-- course_name, address, city, course_state, zip_code, latitude, longitude -->
