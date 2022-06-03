@@ -6,17 +6,20 @@
         <form v-on:submit.prevent="submitForm()">
             <label for="course_name">Round: </label>
             <select>
+                <!-- choose tee time id-->
                 <!-- Will make v-for loop once league service is updated -->
                 <option value="">Round 0</option>
                 <option value="Active">Round 1</option>
                 <option value="Disabled">Round 2</option>
             </select>
             <div>
+                <!-- choose player id -->
                 <label for="course_name">Player: </label>
                 <input id="course_name" type="text" v-model="course.courseName" autocomplete="off" />
             </div>
             
             <div>
+                <!-- post to round id where  -->
                 <label for="course_name">Score: </label>
                 <input id="course_name" type="text" v-model="course.address" autocomplete="off" />
             </div>
