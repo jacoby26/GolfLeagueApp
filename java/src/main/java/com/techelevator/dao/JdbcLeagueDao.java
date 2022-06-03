@@ -43,7 +43,6 @@ public class JdbcLeagueDao implements LeagueDao {
         return leagueID;
     }
 
-<<<<<<< HEAD
     @Override
     public long joinLeague(User user, League league) {
         String sql = "INSERT INTO users_leagues (user_id, league_id) "
@@ -53,7 +52,6 @@ public class JdbcLeagueDao implements LeagueDao {
     }
 
 
-=======
     public List<League> getAllLeagues(Principal principal){
         List<League> output = new ArrayList();
         String sql = "SELECT * " +
@@ -75,5 +73,4 @@ public class JdbcLeagueDao implements LeagueDao {
         currentLeague.setName(set.getString("league_name"));
         return currentLeague;
     }
->>>>>>> main
 }

@@ -12,10 +12,9 @@ import java.util.List;
 public interface LeagueDao {
 
     long createLeague(String name, GolfCourse course, Principal principal);
-<<<<<<< HEAD
+
     long joinLeague(User user, League league);
-=======
 
     List<League> getAllLeagues(Principal principal);
->>>>>>> main
+
 }
