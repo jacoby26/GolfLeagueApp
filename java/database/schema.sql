@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS courses CASCADE;
 DROP TABLE IF EXISTS leagues CASCADE;
 DROP TABLE IF EXISTS users_leagues CASCADE;
 DROP TABLE IF EXISTS tee_times CASCADE;
+DROP TABLE IF EXISTS tee_times_users CASCADE;
 DROP TABLE IF EXISTS rounds CASCADE;
 DROP SEQUENCE IF EXISTS seq_user_id CASCADE;
 DROP SEQUENCE IF EXISTS seq_course_id CASCADE;
@@ -47,8 +48,10 @@ CREATE TABLE leagues (
     league_id serial NOT NULL,
     league_name varchar (50) NOT NULL,
     course_id int NOT NULL,
+    league_organizer int NOT NULL,
     CONSTRAINT PK_leagues PRIMARY KEY (league_id),
     CONSTRAINT FK_leagues_course FOREIGN KEY (course_id) REFERENCES courses (course_id),
+    CONSTRAINT FK_league_organizer FOREIGN KEY (league_organizer) REFERENCES users (user_id),
     CONSTRAINT UQ_league_name UNIQUE (league_name)
 );
 CREATE TABLE users_leagues (
@@ -58,6 +61,7 @@ CREATE TABLE users_leagues (
     CONSTRAINT FK_users_leagues_user FOREIGN KEY (user_id) REFERENCES users (user_id),
     CONSTRAINT FK_users_leagues_league FOREIGN KEY (league_id) REFERENCES leagues (league_id)
 );
+
 CREATE TABLE tee_times (
     tee_time_id serial NOT NULL,
     tee_time_date date NOT NULL,
@@ -65,15 +69,25 @@ CREATE TABLE tee_times (
     course_id int NOT NULL,
     user_id int NOT NULL,
     CONSTRAINT PK_tee_time PRIMARY KEY (tee_time_id),
-    CONSTRAINT FK_tee_time_course FOREIGN KEY (course_id) REFERENCES courses (course_id),
-    CONSTRAINT FK_tee_time_user FOREIGN KEY (user_id) REFERENCES users (user_id)
+    CONSTRAINT FK_tee_time_course FOREIGN KEY (course_id) REFERENCES courses (course_id)
 );
+
+CREATE TABLE tee_times_users (
+    tee_time_id int,
+    user_id int,
+    CONSTRAINT PK_tee_times_users PRIMARY KEY (tee_time_id, user_id),
+    CONSTRAINT FK_tee_times_users_tee_time FOREIGN KEY (tee_time_id) REFERENCES tee_times (tee_time_id),
+    CONSTRAINT FK_tee_times_users_users FOREIGN KEY (user_id) REFERENCES users (user_id)
+);
+
 CREATE TABLE rounds (
     round_id serial NOT NULL,
     score int NOT NULL,
     tee_time_id int NOT NULL,
+    user_id int NOT NULL,
     CONSTRAINT PK_round PRIMARY KEY (round_id),
     CONSTRAINT FK_round_tee_time FOREIGN KEY (tee_time_id) REFERENCES tee_times (tee_time_id),
+    CONSTRAINT FK_round_user FOREIGN KEY (user_id) REFERENCES users (user_id),
     CONSTRAINT CHK_score CHECK (score > 0 AND score < 150)
 );
 COMMIT TRANSACTION;
