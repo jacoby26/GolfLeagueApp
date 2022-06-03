@@ -11,18 +11,7 @@
                 required
             />
         </div>
-        
-                <!-- Option 1 -- drop-down menu -->
-        <!-- <div>
-            <label for="course">Course Name: </label>
-            <select>
-                <option value="" v-for="location in locations" 
-            :key="location.courseName"
-            v-bind:location="location">{{location.courseName}}</option>
-            </select>
-        </div> -->
         <div>
-            <!-- option 2 -- autocomplete search box -->
             <label for="course">Course Name: </label>
             <input v-model="league.courseName" @input="onChange" type="text"/>
                 <ul v-show="isOpen" class="autocomplete-results">
@@ -30,13 +19,6 @@
             :key="location.courseID" @click="setResult(location)"> {{ location.courseName }} </li>
                 </ul>
             <button type="submit">Register League</button>
-        </div>
-
-        <!-- original input box -->
-        <div>
-            <!-- <label for="course">Course Name: </label>
-            <input type="text" id="league-course" placeholder="Enter course name here" required v-model="league.courseName" /> -->
-            
         </div>
       </form>
 </template>

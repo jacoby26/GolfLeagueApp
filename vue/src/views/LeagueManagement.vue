@@ -1,7 +1,8 @@
 <template>
   <div class="LeagueToolbox">
       <div id="leaguetoolselector">
-      <h3>When clicked, the items below will change this--></h3>
+        <LeagueSelector />
+      <h3>{{ this.$store.state.currentLeague.name }}</h3>
       <ul>
         <li v-on:click="show('Scores')">Report Scores</li>
         <li v-on:click="show('Arrange')">Arrange Games</li>
@@ -17,24 +18,29 @@
 </template>
 
 <script>
+    import LeagueSelector from "../components/LeagueSelector.vue";
     import LogScores from "../components/LogScores.vue";
     import ManagePlayers from "../components/ManagePlayers.vue";
     import ArrangeGames from "../components/ArrangeMatches.vue";
 export default {
 data(){
     return{
-        currentDisplay: 'Members'
+        currentDisplay: 'Members',
+        leagueDisplay: this.$store.state.currentLeague.name
     }
 },
 methods:{
     show(toShow){
         this.currentDisplay = toShow;
+        console.log(this.$store.state.currentLeague.name)
+        console.log(this.leagueDisplay)
     }
 },
 components:{
     LogScores,
     ManagePlayers,
-    ArrangeGames
+    ArrangeGames,
+    LeagueSelector
 }
 }
 </script>
