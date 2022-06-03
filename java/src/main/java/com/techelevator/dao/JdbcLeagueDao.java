@@ -74,11 +74,12 @@ public class JdbcLeagueDao implements LeagueDao {
     }
     public List<LeaderboardRow> getRankings(long LeagueID){
         List<LeaderboardRow> output = new ArrayList<>();
-        String sql = "select avg(rounds.score)as user_league_score, username " +
-                "from rounds " +
-                "join tee_times on rounds.tee_time_id = tee_times.tee_time_id " +
-                "join users on users.user_id = tee_times.user_id " +
-                "where league_id = ? " +
+        String sql = "select avg(scores.score)as user_league_score, username " +
+                "from scores " +
+                "join users on users.user_id = scores.user_id " +
+                "join rounds on rounds.round_id = scores.round_id " +
+                "join leagues on leagues.league_id = rounds.league_id " +
+                "where leagues.league_id = ? " +
                 "group by username " +
                 "order by user_league_score ;";
         SqlRowSet Rankings = jdbcTemplate.queryForRowSet(sql, LeagueID);
