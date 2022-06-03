@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
 import java.security.Principal;
@@ -16,7 +17,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service
 public class JdbcRoundDao implements RoundDao{
 
     @Autowired
@@ -61,8 +62,6 @@ public class JdbcRoundDao implements RoundDao{
         round.setId(rs.getLong("course_id"));
         round.setTeeTimeID(rs.getLong("tee_time_id"));
         round.setScore(rs.getInt("score"));
-
-
 
         return round;
     }
