@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Details id="details" v-bind:item="item" v-bind:element="element"/>
+    <Details id="details" v-bind:item="item" />
     <div id="selector">
       <h3>When clicked, the items below will change this--></h3>
       <ul>
@@ -20,7 +20,6 @@ export default {
   name: "home",
   data(){
     return{
-      element: 0,
       item:''
     }
   },
@@ -28,39 +27,26 @@ export default {
     Details
   },
   created(){
-    if(this.$store.state.leagues.length === 0){
       LeagueService.viewLeagues(this.$store.state.user).then(
         (leagues) => {
-          leagues.data.forEach(league => {
-            this.$store.commit('LOAD_LEAGUE', league);
- //           LeagueService.viewStandings(league.leagueID).then(
- //             (table) => {
- //               this.$store.commit('POPULATE_LEAGUE', league.leagueID, table);
- //     }
- //   )
-        });
-      }
-    )
+            this.$store.commit('EMPTY_LEAGUES');
+            leagues.data.forEach(league => {
+              this.$store.commit('LOAD_LEAGUE', league);
+              });
+        }
+      )
 //    LeagueService.viewRounds().then(
 //      (games) => {
 //      this.Matches = games.data;
 //    })
-}
   },
   methods:{
     show(input, type){
       this.item = type;
       if(this.item === 'league'){
-        let league = this.$store.state.leagues.filter((leagues) =>{
-          return leagues.leagueId === input;
-        });
-        this.element = league.leagueID;
-//        LeagueService.viewStandings(this.item.leagueID).then(
-//      (rankings) => {
-//        this.item.rankings = rankings.data;
-//      }
-//    )
-      } else if(type === 'game'){
+        this.$store.commit('FETCH_LEADERBOARD', input);
+        }
+      else if(type === 'game'){
         this.item = 'round';
 
       }

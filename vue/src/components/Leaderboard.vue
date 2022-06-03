@@ -20,10 +20,9 @@
 export default {
 computed:{
     league(){
-      return this.$store.commit('FETCH_LEADERBOARD', this.element);
+      return this.$store.state.currentLeague;
     }
   },
-props:["element"],
 }
 </script>
 
