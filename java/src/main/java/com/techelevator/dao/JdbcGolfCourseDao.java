@@ -77,6 +77,7 @@ public class JdbcGolfCourseDao implements GolfCourseDao {
 
     }
 
+
     private GolfCourse mapRowToGolfCourse(SqlRowSet rs) {
         GolfCourse golfCourse = new GolfCourse();
 
