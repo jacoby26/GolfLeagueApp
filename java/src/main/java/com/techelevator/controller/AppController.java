@@ -32,9 +32,6 @@ public class AppController {
     RoundDao roundDao;
     @Autowired
     LeagueDao leagueDao;
-    @Autowired
-    LeaderboardDao leaderboardDao;
-
 
     @RequestMapping(path="/courses", method=RequestMethod.GET)
     public List<GolfCourse> listAllCourses() {
@@ -61,10 +58,6 @@ public class AppController {
     @RequestMapping(path="/leagues/", method=RequestMethod.GET)
     public List<League> getAllLeagues(Principal principal){
         return leagueDao.getAllLeagues(principal);
-    }
-    @RequestMapping(path="/leagues/{leagueID}/scores", method=RequestMethod.GET)
-        public Map<Integer,Integer> getLeagueScores(@PathVariable long leagueID){
-        return leaderboardDao.getRankings(leagueID);
     }
 
     @RequestMapping (path="/leagues/join", method=RequestMethod.POST)

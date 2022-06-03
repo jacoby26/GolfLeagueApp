@@ -1,8 +1,6 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.GolfCourse;
-import com.techelevator.model.League;
-import com.techelevator.model.User;
+import com.techelevator.model.*;
 
 import com.techelevator.model.League;
 
@@ -16,5 +14,7 @@ public interface LeagueDao {
     long joinLeague(User user, League league);
 
     List<League> getAllLeagues(Principal principal);
+
+    List<LeaderboardRow> getRankings(long LeagueID);
 
 }

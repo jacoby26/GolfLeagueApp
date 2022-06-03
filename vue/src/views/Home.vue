@@ -1,11 +1,11 @@
 <template>
   <div class="home">
-    <Details id="details" v-bind:item="item"/>
+    <Details id="details" v-bind:item="item" v-bind:element="element"/>
     <div id="selector">
       <h3>When clicked, the items below will change this--></h3>
       <ul>
-        <li v-for="league in Leagues" v-bind:key="league.leagueID" v-on:click="show(league)">{{league.name}}</li>
-        <li v-for="game in Matches" v-bind:key="game.Id" v-on:click="show(game)"> {{game.Date}} </li>
+        <li v-for="league in $store.state.leagues" v-bind:key="league.leagueID" v-on:click="show(league.leagueID, 'league')">{{league.name}}</li>
+       <!-- <li v-for="game in Matches" v-bind:key="game.Id" v-on:click="show(game, 'game')"> {{game.Date}} </li> -->
       </ul>
     </div>
   </div>
@@ -20,28 +20,50 @@ export default {
   name: "home",
   data(){
     return{
-      Matches: [],
-      Leagues:[],
-      item:{}
+      element: 0,
+      item:''
     }
   },
   components: {
     Details
   },
   created(){
-    LeagueService.viewLeagues(this.$store.state.user).then(
-      (leagues) => {
-        this.Leagues = leagues.data;
+    if(this.$store.state.leagues.length === 0){
+      LeagueService.viewLeagues(this.$store.state.user).then(
+        (leagues) => {
+          leagues.data.forEach(league => {
+            this.$store.commit('LOAD_LEAGUE', league);
+ //           LeagueService.viewStandings(league.leagueID).then(
+ //             (table) => {
+ //               this.$store.commit('POPULATE_LEAGUE', league.leagueID, table);
+ //     }
+ //   )
+        });
       }
     )
 //    LeagueService.viewRounds().then(
 //      (games) => {
 //      this.Matches = games.data;
 //    })
+}
   },
   methods:{
-    show(item){
-      return this.item = item;
+    show(input, type){
+      this.item = type;
+      if(this.item === 'league'){
+        let league = this.$store.state.leagues.filter((leagues) =>{
+          return leagues.leagueId === input;
+        });
+        this.element = league.leagueID;
+//        LeagueService.viewStandings(this.item.leagueID).then(
+//      (rankings) => {
+//        this.item.rankings = rankings.data;
+//      }
+//    )
+      } else if(type === 'game'){
+        this.item = 'round';
+
+      }
     }
   }
 };

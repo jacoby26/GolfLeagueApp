@@ -1,7 +1,7 @@
 <template>
 <div>
-<Leaderboard v-bind:item="item" v-if="!isround"/>
-<Round v-bind:item="item" v-if="isround"/>
+<Leaderboard v-bind:element="element" v-if="item.isleague"/>
+<Round v-bind:element="element" v-if="item.isround"/>
 </div>
 </template>
 
@@ -13,15 +13,7 @@ components:{
   Leaderboard,
   Round
 },
-props:["item"],
-computed:{
-  isround(){
-    if (this.item.leagueID === null){
-    return true;
-    }
-    return false;
-  }
-}
+props:["item", "element"],
 }
 </script>
 

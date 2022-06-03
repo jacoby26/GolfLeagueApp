@@ -1,8 +1,6 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.GolfCourse;
-import com.techelevator.model.League;
-import com.techelevator.model.User;
+import com.techelevator.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -71,6 +69,28 @@ public class JdbcLeagueDao implements LeagueDao {
         currentLeague.setCourseID(set.getLong("course_id"));
         currentLeague.setLeagueID(set.getLong("league_id"));
         currentLeague.setName(set.getString("league_name"));
+        currentLeague.setLeaderboardTable(getRankings(set.getLong("league_id")));
         return currentLeague;
+    }
+    public List<LeaderboardRow> getRankings(long LeagueID){
+        List<LeaderboardRow> output = new ArrayList<>();
+        String sql = "select avg(rounds.score)as user_league_score, username " +
+                "from rounds " +
+                "join tee_times on rounds.tee_time_id = tee_times.tee_time_id " +
+                "join users on users.user_id = tee_times.user_id " +
+                "where league_id = ? " +
+                "group by username " +
+                "order by user_league_score ;";
+        SqlRowSet Rankings = jdbcTemplate.queryForRowSet(sql, LeagueID);
+        long i =1;
+        while(Rankings.next()){
+            LeaderboardRow currentRow = new LeaderboardRow();
+            currentRow.setName(Rankings.getString("username"));
+            currentRow.setScore(Rankings.getString("user_league_score"));
+            currentRow.setRank(i);
+            i++;
+            output.add(currentRow);
+        }
+        return output;
     }
 }

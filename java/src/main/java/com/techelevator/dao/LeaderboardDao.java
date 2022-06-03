@@ -1,12 +1,11 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.GolfCourse;
+import com.techelevator.model.LeaderboardRow;
 
-import java.security.Principal;
-import java.util.Map;
+import java.util.List;
 
 public interface LeaderboardDao {
 
-    public Map<Integer, Integer> getRankings(long LeagueID);
+    public List<LeaderboardRow> getRankings(long LeagueID);
 
 }

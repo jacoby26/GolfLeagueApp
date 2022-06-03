@@ -1,23 +1,19 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.LeaderboardRow;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
-public class JdbcLeaderboardDao implements LeaderboardDao{
+public class JdbcLeaderboardDao {
     private JdbcTemplate jdbctemplate;
 
     public JdbcLeaderboardDao(DataSource ds){jdbctemplate = new JdbcTemplate(ds);}
 
-    public Map<Integer, Integer> getRankings(long LeagueID){
-        String sql = "Select user_id, score " +
-                "from rounds " +
-                "where league_id= ? " +
-                ";";
-        return jdbctemplate.queryForObject(sql, HashMap.class, LeagueID);
-    }
+
 }
