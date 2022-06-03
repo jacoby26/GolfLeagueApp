@@ -1,9 +1,16 @@
 package com.techelevator.controller;
 
+
+import com.techelevator.dao.GolfCourseDao;
+import com.techelevator.dao.LeagueDao;
+import com.techelevator.dao.RoundDao;
+import com.techelevator.model.*;
+
 import com.techelevator.dao.*;
 import com.techelevator.model.GolfCourse;
 import com.techelevator.model.League;
 import com.techelevator.model.Round;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -60,6 +67,11 @@ public class AppController {
         return leaderboardDao.getRankings(leagueID);
     }
 
+    @RequestMapping (path="/leagues/join", method=RequestMethod.POST)
+    public long joinLeague(@RequestBody User user, League league) {
+        return leagueDao.joinLeague(user,league);
+    }
+
 // Round will probably be changed a lot over the next day or so.
 
     @RequestMapping(path="/rounds", method=RequestMethod.GET)
@@ -68,8 +80,8 @@ public class AppController {
     }
 
     @RequestMapping(path="/rounds/addround", method=RequestMethod.POST)
-    public long addUserRound(@RequestParam int score, LocalDate roundDate, LocalTime teeTime, Principal principal, GolfCourse golfCourse) {
+    public long addUserRound(@RequestParam int score, TeeTime teeTime) {
 
-        return roundDao.createRound(score, roundDate, teeTime, principal, golfCourse);
+        return roundDao.createRound(score, teeTime);
     }
 }

@@ -1,6 +1,8 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.GolfCourse;
+import com.techelevator.model.League;
+import com.techelevator.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -40,6 +42,15 @@ public class JdbcLeagueDao implements LeagueDao {
 
         return leagueID;
     }
+
+    @Override
+    public long joinLeague(User user, League league) {
+        String sql = "INSERT INTO users_leagues (user_id, league_id) "
+                + "VALUES (?,?) RETURNING league_id";
+        long userID = userDao.findIdByUsername(user.getUsername());
+        return jdbcTemplate.queryForObject(sql, long.class, userID, league.getLeagueID());
+    }
+
 
     public List<League> getAllLeagues(Principal principal){
         List<League> output = new ArrayList();
