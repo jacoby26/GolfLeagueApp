@@ -1,5 +1,12 @@
 import axios from 'axios';
 
+// let config = {
+//     headers: {
+//       "Content-Type": "application/json",
+//       'Access-Control-Allow-Origin': '*',
+//       }
+//     }
+
 export default {
     viewLeagues(user){
         return axios.get('/leagues/', user);
@@ -10,8 +17,8 @@ export default {
     viewRounds(user, leagueId){
         return axios.get(`/leagues/${leagueId}/rounds`, user, this.$store.league);
     },
-    addRound(round, leagueId){
-        return axios.post(`/leagues/${leagueId}/addround`, round, this.$store.league)
+    addRound(round){
+        return axios.post(`/leagues/addround`, round)
     },
     addLeague(league, user){
         return axios.post('/leagues/addleague', league, user)

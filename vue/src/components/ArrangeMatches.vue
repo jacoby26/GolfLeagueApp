@@ -28,7 +28,8 @@ export default
       return {
         round: {
             teeTime: "",
-            date: ""
+            date: "",
+            league: this.$store.state.currentLeague
             }
       }
     },
@@ -39,19 +40,20 @@ export default
           let newRound = 
           {
             teeTime: this.round.teeTime,
-            date: this.round.date
+            date: this.round.date,
+            league: this.$store.state.currentLeague
           }
                
           LeagueService
-          .addRound(newRound, this.$store.state.currentLeague)
+          .addRound(newRound)
           .then(response => 
           {
             if (response.status === 200) 
             {
-              window.alert("Course added successfully!");
+              window.alert("Round added successfully!");
             } else 
             {
-              window.alert("Problem adding course")
+              window.alert("Problem adding new round")
             }
           })
         }

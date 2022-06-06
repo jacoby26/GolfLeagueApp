@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.GolfCourse;
+import com.techelevator.model.League;
 import com.techelevator.model.Round;
 import com.techelevator.model.TeeTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,14 @@ public class JdbcRoundDao implements RoundDao{
         return jdbcTemplate.queryForObject(sql, long.class, score, teeTime.getId());
 
     }
+    @Override
+    public long newRound(LocalTime teeTime, LocalDate date, League league)
+    {
+        String sql = "INSERT INTO rounds (tee_time, date, league_id) "
+                + "VALUES (?,?,?,?,?) RETURNING round_id";
+        return jdbcTemplate.queryForObject(sql, long.class, teeTime, date, league.getLeagueID());
+    }
+
 
 
     private Round mapRowToRound(SqlRowSet rs) {
