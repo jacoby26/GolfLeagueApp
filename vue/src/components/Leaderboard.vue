@@ -1,38 +1,41 @@
 <template>
-<div>
-  <h1>{{item.name}} Leaderboard</h1>
+<div id="Leaderboard">
+  <h1>{{league.name}} Leaderboard</h1>
     <table>
       <tr>
+        <td>Ranking</td>
         <td>Name</td>
         <td>Score</td>
       </tr>
-      <tr v-for="golfer in league" v-bind:key="golfer.id">
+      <tr v-for="golfer in league.leaderboardTable" v-bind:key="golfer.id">
+        <td>{{golfer.rank}}</td>
         <td>{{golfer.name}}</td>
-        <td>{{golfer.Score}}</td>
+        <td>{{golfer.score}}</td>
       </tr>
     </table>
     </div>
 </template>
 
 <script>
-import LeagueService from "../services/LeagueService.js";
 export default {
-data(){
-  return{
-    league:[]
-  }
-},
-props:["item"],
-created(){
-    LeagueService.viewStandings(this.item.leagueID).then(
-      (rankings) => {
-        this.Leagues = rankings.data;
-      }
-    )
+computed:{
+    league(){
+      return this.$store.state.currentLeague;
+    }
   },
 }
 </script>
 
 <style>
-
+#Leaderboard h1{
+  text-align: center;
+}
+#Leaderboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#Leaderboard tr{
+  font-size: 18pt;
+}
 </style>

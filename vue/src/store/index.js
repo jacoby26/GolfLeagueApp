@@ -21,6 +21,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     locations: [],
+    leagues:[],
     currentLeague: {}
     
   },
@@ -43,6 +44,19 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    LOAD_LEAGUE(state, league){
+      state.leagues.push(league);
+    },
+    FETCH_LEADERBOARD(state, leagueId){
+      state.currentLeague = state.leagues.find((entry)=>{
+        return entry.leagueID === leagueId
+      })
+      
+    },
+    EMPTY_LEAGUES(state){
+      state.leagues = [];
+      state.currentLeague = {};
     }
   }
 })

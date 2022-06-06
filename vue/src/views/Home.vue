@@ -1,11 +1,11 @@
 <template>
   <div class="home">
-    <Details id="details" v-bind:item="item"/>
+    <Details id="details" v-bind:item="item" />
     <div id="selector">
       <h3>When clicked, the items below will change this--></h3>
       <ul>
-        <li v-for="league in Leagues" v-bind:key="league.leagueID" v-on:click="show(league)">{{league.name}}</li>
-        <li v-for="game in Matches" v-bind:key="game.Id" v-on:click="show(game)"> {{game.Date}} </li>
+        <li v-for="league in $store.state.leagues" v-bind:key="league.leagueID" v-on:click="show(league.leagueID, 'league')">{{league.name}}</li>
+       <!-- <li v-for="game in Matches" v-bind:key="game.Id" v-on:click="show(game, 'game')"> {{game.Date}} </li> -->
       </ul>
     </div>
   </div>
@@ -20,28 +20,36 @@ export default {
   name: "home",
   data(){
     return{
-      Matches: [],
-      Leagues:[],
-      item:{}
+      item:''
     }
   },
   components: {
     Details
   },
   created(){
-    LeagueService.viewLeagues(this.$store.state.user).then(
-      (leagues) => {
-        this.Leagues = leagues.data;
-      }
-    )
+      LeagueService.viewLeagues(this.$store.state.user).then(
+        (leagues) => {
+            this.$store.commit('EMPTY_LEAGUES');
+            leagues.data.forEach(league => {
+              this.$store.commit('LOAD_LEAGUE', league);
+              });
+        }
+      )
 //    LeagueService.viewRounds().then(
 //      (games) => {
 //      this.Matches = games.data;
 //    })
   },
   methods:{
-    show(item){
-      return this.item = item;
+    show(input, type){
+      this.item = type;
+      if(this.item === 'league'){
+        this.$store.commit('FETCH_LEADERBOARD', input);
+        }
+      else if(type === 'game'){
+        this.item = 'round';
+
+      }
     }
   }
 };

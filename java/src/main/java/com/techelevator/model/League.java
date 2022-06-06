@@ -2,6 +2,9 @@ package com.techelevator.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class League {
 
     private long leagueID;
@@ -9,6 +12,16 @@ public class League {
     private long courseID;
     @JsonProperty("course")
     private GolfCourse golfCourse;
+
+    public List<LeaderboardRow> getLeaderboardTable() {
+        return leaderboardTable;
+    }
+
+    public void setLeaderboardTable(List<LeaderboardRow> leaderboardTable) {
+        this.leaderboardTable = leaderboardTable;
+    }
+
+    private List<LeaderboardRow> leaderboardTable = new ArrayList<>();
 
     public League() { }
 
