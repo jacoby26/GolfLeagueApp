@@ -32,6 +32,8 @@ public class AppController {
     RoundDao roundDao;
     @Autowired
     LeagueDao leagueDao;
+    @Autowired
+    InviteDao inviteDao;
 
     @RequestMapping(path="/courses", method=RequestMethod.GET)
     public List<GolfCourse> listAllCourses() {
@@ -60,11 +62,6 @@ public class AppController {
         return leagueDao.getAllLeagues(principal);
     }
 
-    @RequestMapping (path="/leagues/join", method=RequestMethod.POST)
-    public long joinLeague(@RequestBody User user, League league) {
-        return leagueDao.joinLeague(user,league);
-    }
-
 // Round will probably be changed a lot over the next day or so.
 
     @RequestMapping(path="/rounds", method=RequestMethod.GET)
@@ -76,5 +73,19 @@ public class AppController {
     public long addUserRound(@RequestParam int score, TeeTime teeTime) {
 
         return roundDao.createRound(score, teeTime);
+    }
+    @RequestMapping(path = "/invites", method = RequestMethod.GET)
+    public List<Invite> listAllUserInvites(Principal principal) { return inviteDao.getInvites(principal);}
+
+    @RequestMapping(path = "/invites", method = RequestMethod.POST)
+    public void addInvite(@RequestBody Invite invite){
+        inviteDao.makeInvite(invite);
+    }
+    @RequestMapping(path = "/invites", method = RequestMethod.PUT)
+    public void actOnInvite(@RequestBody Invite invite){
+        inviteDao.actOnInvite(invite);
+        if (invite.isAccepted()){
+            leagueDao.joinLeague(invite.getUserId(), invite.getLeagueId());
+        }
     }
 }

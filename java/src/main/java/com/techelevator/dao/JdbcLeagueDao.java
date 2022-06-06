@@ -42,11 +42,10 @@ public class JdbcLeagueDao implements LeagueDao {
     }
 
     @Override
-    public long joinLeague(User user, League league) {
+    public long joinLeague(Long userID, Long leagueId) {
         String sql = "INSERT INTO users_leagues (user_id, league_id) "
                 + "VALUES (?,?) RETURNING league_id";
-        long userID = userDao.findIdByUsername(user.getUsername());
-        return jdbcTemplate.queryForObject(sql, long.class, userID, league.getLeagueID());
+        return jdbcTemplate.queryForObject(sql, long.class, userID, leagueId);
     }
 
 

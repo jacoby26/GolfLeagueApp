@@ -11,7 +11,7 @@ public interface LeagueDao {
 
     long createLeague(String name, GolfCourse course, Principal principal);
 
-    long joinLeague(User user, League league);
+    long joinLeague(Long userID, Long leagueId);
 
     List<League> getAllLeagues(Principal principal);
 
