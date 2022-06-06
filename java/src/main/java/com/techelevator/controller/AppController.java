@@ -4,12 +4,14 @@ package com.techelevator.controller;
 import com.techelevator.dao.GolfCourseDao;
 import com.techelevator.dao.LeagueDao;
 import com.techelevator.dao.RoundDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.model.*;
 
 import com.techelevator.dao.*;
 import com.techelevator.model.GolfCourse;
 import com.techelevator.model.League;
 import com.techelevator.model.Round;
+import com.techelevator.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,6 +34,8 @@ public class AppController {
     RoundDao roundDao;
     @Autowired
     LeagueDao leagueDao;
+    @Autowired
+    UserDao UserDao;
 
     @RequestMapping(path="/courses", method=RequestMethod.GET)
     public List<GolfCourse> listAllCourses() {
@@ -76,5 +80,10 @@ public class AppController {
     public long addUserRound(@RequestParam int score, TeeTime teeTime) {
 
         return roundDao.createRound(score, teeTime);
+
+    }
+    @RequestMapping(path="/users", method=RequestMethod.GET)
+    public List<User> findAll(){
+        return UserDao.findAll();
     }
 }
