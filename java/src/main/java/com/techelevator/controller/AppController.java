@@ -73,8 +73,8 @@ public class AppController {
     }
 
     @RequestMapping(path="/rounds/addround", method=RequestMethod.POST)
-    public long addUserRound(@RequestParam int score, TeeTime teeTime) {
+    public long addUserRound(@RequestParam Round round) {
 
-        return roundDao.createRound(score, teeTime);
+        return roundDao.createRound(round);
     }
 }

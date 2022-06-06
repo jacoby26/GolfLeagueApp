@@ -2,7 +2,6 @@ package com.techelevator.dao;
 
 import com.techelevator.model.GolfCourse;
 import com.techelevator.model.Round;
-import com.techelevator.model.TeeTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -47,10 +46,10 @@ public class JdbcRoundDao implements RoundDao{
     }
 
     @Override
-    public long createRound(int score, TeeTime teeTime) {
-        String sql = "INSERT INTO rounds (tee_time_id, score) "
+    public long createRound(Round round) {
+        String sql = "INSERT INTO rounds (tee_time, round_date, league_id) "
                 + "VALUES (?,?,?,?,?) RETURNING round_id";
-        return jdbcTemplate.queryForObject(sql, long.class, score, teeTime.getId());
+        return jdbcTemplate.queryForObject(sql, long.class, round.getTeeTime(), round.getDate(), round.getLeagueID());
 
     }
 
@@ -60,9 +59,9 @@ public class JdbcRoundDao implements RoundDao{
         Round round = new Round();
 
         round.setId(rs.getLong("course_id"));
-        round.setTeeTimeID(rs.getLong("tee_time_id"));
-        round.setScore(rs.getInt("score"));
-
+        round.setTeeTime(rs.getTime("tee_time").toLocalTime());
+        round.setDate(rs.getDate("round_date").toLocalDate());
+        round.setLeagueID(rs.getLong("league_id"));
         return round;
     }
 
