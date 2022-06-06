@@ -58,6 +58,7 @@ public class JdbcLeagueDao implements LeagueDao {
                 "where users_leagues.user_id = ? " +
                 ";";
 //        SqlRowSet query = jdbcTemplate.queryForRowSet(sql);
+        System.out.println(principal.getName());
         SqlRowSet query = jdbcTemplate.queryForRowSet(sql, userDao.findIdByUsername(principal.getName()));
         while (query.next()){
             output.add(mapRowToLeague(query));

@@ -18,6 +18,7 @@ export default {
         return axios.get(`/leagues/${leagueId}/rounds`, user, this.$store.league);
     },
     addRound(round){
+        console.log(round)
         return axios.post(`/leagues/addround`, round)
     },
     addLeague(league, user){
