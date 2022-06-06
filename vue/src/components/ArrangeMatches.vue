@@ -43,7 +43,7 @@ export default
           }
                
           LeagueService
-          .addRound(newRound, this.$store.league)
+          .addRound(newRound, this.$store.state.currentLeague)
           .then(response => 
           {
             if (response.status === 200) 

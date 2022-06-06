@@ -29,13 +29,13 @@ public class JdbcLeagueDao implements LeagueDao {
 
     @Override
     public long createLeague(String name, GolfCourse course, Principal principal) {
-        String sql = "INSERT INTO leagues (league_name, course_id) "
-                + "VALUES (?,?) RETURNING league_id";
-        long leagueID = jdbcTemplate.queryForObject(sql, long.class, name, course.getId());
+        long userID = userDao.findIdByUsername(principal.getName());
+        String sql = "INSERT INTO leagues (league_name, course_id, league_organizer) "
+                + "VALUES (?,?,?) RETURNING league_id";
+        long leagueID = jdbcTemplate.queryForObject(sql, long.class, name, userID);
 
         String sql2 = "INSERT INTO users_leagues (user_id, league_id) "
                 + "VALUES (?,?) RETURNING league_id";
-        long userID = userDao.findIdByUsername(principal.getName());
         jdbcTemplate.queryForObject(sql2, long.class, userID, leagueID);
 
         return leagueID;

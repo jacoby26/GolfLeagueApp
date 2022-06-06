@@ -13,8 +13,8 @@ export default {
     addRound(round, leagueId){
         return axios.post(`/leagues/${leagueId}/addround`, round, this.$store.league)
     },
-    addLeague(league){
-        return axios.post('/leagues/addleague', league)
+    addLeague(league, user){
+        return axios.post('/leagues/addleague', league, user)
     },
     manageLeague(user, roster, leagueId){
         return axios.put(`/leagues/${leagueId}`, user, roster)
