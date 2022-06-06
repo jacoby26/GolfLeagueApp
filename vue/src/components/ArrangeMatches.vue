@@ -30,7 +30,7 @@ export default
             teeTime: "",
             date: "",
             league: this.$store.state.currentLeague
-            }
+            },
       }
     },
     methods: 
@@ -46,6 +46,7 @@ export default
                
           LeagueService
           .addRound(newRound)
+          // console.log(this.$store.league)
           .then(response => 
           {
             if (response.status === 200) 

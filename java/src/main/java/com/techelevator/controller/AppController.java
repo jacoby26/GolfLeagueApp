@@ -80,8 +80,8 @@ public class AppController {
         return roundDao.createRound(score, teeTime);
     }
     @RequestMapping(path="/leagues/addround", method=RequestMethod.POST)
-    public long createNewRound(@RequestParam LocalTime teeTime, LocalDate date, League league) {
+    public long createNewRound(@RequestBody Round round, League league) {
 
-        return roundDao.newRound(teeTime, date, league);
+        return roundDao.newRound(round.getTeeTime(), round.getDate(), league);
     }
 }

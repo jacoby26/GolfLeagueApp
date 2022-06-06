@@ -15,5 +15,5 @@ public interface RoundDao {
 
     List<Round> getAllUserRounds(Principal principal);
     long createRound(int score, TeeTime teeTime);
-    long newRound(LocalTime teeTime, LocalDate date, League league);
+    long newRound(String teeTime, String date, League league);
 }
