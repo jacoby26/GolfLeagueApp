@@ -32,7 +32,7 @@ public class JdbcLeagueDao implements LeagueDao {
         long userID = userDao.findIdByUsername(principal.getName());
         String sql = "INSERT INTO leagues (league_name, course_id, league_organizer) "
                 + "VALUES (?,?,?) RETURNING league_id";
-        long leagueID = jdbcTemplate.queryForObject(sql, long.class, name, userID);
+        long leagueID = jdbcTemplate.queryForObject(sql, long.class, name, course.getId(), userID);
 
         String sql2 = "INSERT INTO users_leagues (user_id, league_id) "
                 + "VALUES (?,?) RETURNING league_id";
