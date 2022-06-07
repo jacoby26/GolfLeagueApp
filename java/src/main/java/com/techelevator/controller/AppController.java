@@ -4,6 +4,7 @@ import com.techelevator.dao.GolfCourseDao;
 import com.techelevator.dao.LeagueDao;
 import com.techelevator.dao.RoundDao;
 import com.techelevator.dao.UserDao;
+import com.techelevator.dao.ScoreDao;
 import com.techelevator.model.*;
 
 import com.techelevator.dao.*;
@@ -11,6 +12,7 @@ import com.techelevator.model.GolfCourse;
 import com.techelevator.model.League;
 import com.techelevator.model.Round;
 import com.techelevator.model.User;
+import com.techelevator.model.Score;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -35,7 +37,10 @@ public class AppController {
     LeagueDao leagueDao;
     @Autowired
     InviteDao inviteDao;
+    @Autowired
     UserDao userDao;
+    @Autowired
+    ScoreDao scoreDao;
 
     @RequestMapping(path="/courses", method=RequestMethod.GET)
     public List<GolfCourse> listAllCourses() {
@@ -76,19 +81,16 @@ public class AppController {
         return roundDao.getAllUserRounds(principal);
     }
 
-//    @RequestMapping(path="/rounds/addround/user", method=RequestMethod.POST)
-//    public long addUserRound(@RequestParam int score, TeeTime teeTime) {
-//
-//        return roundDao.createRound(round);
-
-//    }
+    @RequestMapping(path="/rounds/addround/user", method=RequestMethod.POST)
+    public long addUserRound(@RequestParam Score score) {
+        return scoreDao.enterScore(score);
+    }
 //    @RequestMapping(path="/users", method=RequestMethod.GET)
 //    public List<User> findAll(){
 //        return UserDao.findAll();
 //    }
     @RequestMapping(path="/leagues/addround", method=RequestMethod.POST)
     public long createNewRound(@RequestBody Round round) {
-
         return roundDao.createRound(round);
     }
     @RequestMapping(path = "/invites", method = RequestMethod.GET)
