@@ -4,12 +4,14 @@ package com.techelevator.controller;
 import com.techelevator.dao.GolfCourseDao;
 import com.techelevator.dao.LeagueDao;
 import com.techelevator.dao.RoundDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.model.*;
 
 import com.techelevator.dao.*;
 import com.techelevator.model.GolfCourse;
 import com.techelevator.model.League;
 import com.techelevator.model.Round;
+import com.techelevator.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -67,8 +69,6 @@ public class AppController {
         return leagueDao.joinLeague(user,league);
     }
 
-// Round will probably be changed a lot over the next day or so.
-
     @RequestMapping(path="/rounds", method=RequestMethod.GET)
     public List<Round> listAllUserRounds(Principal principal) {
         return roundDao.getAllUserRounds(principal);
@@ -78,6 +78,11 @@ public class AppController {
     public long addUserRound(@RequestParam int score, TeeTime teeTime) {
 
         return roundDao.createRound(score, teeTime);
+
+    }
+    @RequestMapping(path="/users", method=RequestMethod.GET)
+    public List<User> findAll(){
+        return UserDao.findAll();
     }
     @RequestMapping(path="/leagues/addround", method=RequestMethod.POST)
     public long createNewRound(@RequestBody Round round, League league) {
