@@ -29,7 +29,7 @@ export default
         round: {
             teeTime: "",
             date: "",
-            // league: this.$store.state.currentLeague
+             league: this.$store.state.currentLeague
             },
       }
     },
@@ -41,7 +41,7 @@ export default
           {
             teeTime: this.round.teeTime,
             date: this.round.date,
-            leagueId: this.$store.state.currentLeague.ID
+            leagueID: this.$store.state.currentLeague.ID
             // league: this.$store.state.currentLeague
           }
              console.log(newRound)
