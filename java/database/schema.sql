@@ -65,8 +65,8 @@ CREATE TABLE users_leagues (
 
 CREATE TABLE rounds (
     round_id serial NOT NULL,
-    tee_time time NOT NULL,
-    round_date date NOT NULL,
+    tee_time varchar (50) NOT NULL,
+    round_date varchar (50) NOT NULL,
     league_id int NOT NULL,
     CONSTRAINT PK_round PRIMARY KEY (round_id),
     CONSTRAINT FK_league_id FOREIGN KEY (league_id) REFERENCES leagues (league_id)

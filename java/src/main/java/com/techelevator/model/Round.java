@@ -41,11 +41,11 @@ public class Round {
         this.teeTime = teeTime;
     }
 
-    public long getleagueID() {
+    public long getLeagueID() {
         return this.leagueID;
     }
 
-    public void setleagueID(long id) {
+    public void setLeagueID(long id) {
         this.leagueID = id;
     }
 
@@ -81,6 +81,13 @@ public class Round {
         this.teeTime = teeTime;
     }
 
+//    public int getLeagueId() {
+//        return leagueId;
+//    }
+//
+//    public void setLeagueId(int leagueId) {
+//        this.leagueId = leagueId;
+//    }
 }
 
 
