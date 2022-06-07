@@ -22,6 +22,7 @@ public class JdbcInviteDao implements InviteDao{
 
     @Override
     public void makeInvite(Invite invitation) {
+        invitation.setUserId(userDao.findIdByUsername(invitation.getLeagueAdmin()));
         String sql = "Insert into invites " +
             "(league_id, user_id) " +
             "Values (?,?) ;";
@@ -37,7 +38,8 @@ public class JdbcInviteDao implements InviteDao{
 //                "join users on invites.user_id = users.user_id " +
 //                "join courses on leagues.course_id = users.course_id " +
                 "where user_id = ? AND is_Accepted is null ;";
-        SqlRowSet query = jdbcTemplate.queryForRowSet(sql, userDao.findIdByUsername(principal.getName()));
+        long userId = userDao.findIdByUsername(principal.getName());
+        SqlRowSet query = jdbcTemplate.queryForRowSet(sql, userId);
         while (query.next()){
             output.add(mapInvite(query));
         }
@@ -66,7 +68,8 @@ public class JdbcInviteDao implements InviteDao{
                         "join leagues on users.user_id = leagues.league_organizer " +
                         "where league_id = ?;", String.class, currentInvitation.getLeagueId()));
         Long courseId = jdbcTemplate.queryForObject("select course_id " +
-                "from Leagues ;", Long.class, currentInvitation.getLeagueId());
+                "from Leagues " +
+                "where league_id = ?;", Long.class, currentInvitation.getLeagueId());
         currentInvitation.setCourseName(
                 jdbcTemplate.queryForObject("select course_name " +
                         "from courses " +
@@ -74,19 +77,19 @@ public class JdbcInviteDao implements InviteDao{
         String courseAddress = "";
         courseAddress += jdbcTemplate.queryForObject("select address " +
                 "from courses " +
-                "where league_id = ?;", String.class, courseId);
+                "where course_id = ?;", String.class, courseId);
         courseAddress += " ";
         courseAddress += jdbcTemplate.queryForObject("select city " +
                 "from courses " +
-                "where league_id = ?;", String.class, courseId);
+                "where course_id = ?;", String.class, courseId);
         courseAddress += ", ";
         courseAddress += jdbcTemplate.queryForObject("select course_state " +
                 "from courses " +
-                "where league_id = ?;", String.class, courseId);
+                "where course_id = ?;", String.class, courseId);
         courseAddress += " ";
         courseAddress += jdbcTemplate.queryForObject("select zip_code " +
                 "from courses " +
-                "where league_id = ?;", String.class, courseId);
+                "where course_id = ?;", String.class, courseId);
         currentInvitation.setCourseAddress(courseAddress);
         return currentInvitation;
     }

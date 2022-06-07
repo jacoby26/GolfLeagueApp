@@ -22,6 +22,21 @@ export default {
     reportRound(user, round, score){
         return axios.put(`/rounds/${round}`, score, user)
     },
+    viewInvites(user){
+        return axios.get('/invites/', user);
+    },
+    AddInvites(invite){
+        return axios.post('/invites/', invite);
+    },
+    ActionInvites(invite){
+        return axios.put('/invites/', invite);
+    },
+    getMembers(leagueID){
+        return axios.get(`/leagues/${leagueID}/members`);
+    },
+    getNonMembers(leagueID){
+        return axios.get(`/leagues/${leagueID}/Nonmembers`);
+    }
 
 
 }

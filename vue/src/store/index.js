@@ -22,8 +22,11 @@ export default new Vuex.Store({
     user: currentUser || {},
     locations: [],
     leagues:[],
-    currentLeague: {}
-    
+    currentLeague: {},
+    invites:[],
+    currentInvite: {},
+    non_member_golfers: [],
+    member_golfers: []
   },
   mutations: {
     LOAD_COURSES(state, locations){
@@ -57,6 +60,19 @@ export default new Vuex.Store({
     EMPTY_LEAGUES(state){
       state.leagues = [];
       state.currentLeague = {};
+    },
+    LOAD_INVITES(state, invite){
+      state.invites.push(invite);
+    },
+    REMOVE_INVITE(state){
+      state.invites = state.invites.filter(invite => {
+        return invite != state.currentInvite;
+      });
+      state.currentInvite = {};
+    },
+    VIEW_GOLFERS(state, members, non_members){
+      state.member_golfers = members;
+      state.non_member_golfers = non_members;
     }
   }
 })

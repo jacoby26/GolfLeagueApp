@@ -62,6 +62,14 @@ export default {
             };
             
             this.$store.state.currentLeague = newLeague
+            leagueService.getMembers(this.league.leagueID).then(results =>
+            {
+                this.$store.state.member_golfers = results.data;
+            });
+            leagueService.getNonMembers(this.$store.state.currentLeague.ID).then(results =>
+            {
+                this.$store.state.non_member_golfers = results.data;
+            });
         },
     },
     mounted() {

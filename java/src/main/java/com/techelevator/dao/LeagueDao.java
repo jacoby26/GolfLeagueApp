@@ -17,4 +17,8 @@ public interface LeagueDao {
 
     List<LeaderboardRow> getRankings(long LeagueID);
 
+    public List<String> getmembers(long LeagueID);
+
+    public List<String> getNonmembers(long LeagueID);
+
 }

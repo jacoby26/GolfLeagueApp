@@ -88,4 +88,13 @@ public class AppController {
             leagueDao.joinLeague(invite.getUserId(), invite.getLeagueId());
         }
     }
+    @RequestMapping(path="/leagues/{id}/members", method = RequestMethod.GET)
+    public List<String> getmembers(@PathVariable long id){
+        return leagueDao.getmembers(id);
+    }
+
+    @RequestMapping(path="/leagues/{id}/Nonmembers", method = RequestMethod.GET)
+    public List<String> getNonmembers(@PathVariable long id){
+        return leagueDao.getNonmembers(id);
+    }
 }

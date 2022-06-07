@@ -7,6 +7,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 import com.techelevator.model.League;
 import javax.sql.DataSource;
+import javax.sql.RowSet;
 import javax.xml.crypto.Data;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -90,6 +91,33 @@ public class JdbcLeagueDao implements LeagueDao {
             currentRow.setRank(i);
             i++;
             output.add(currentRow);
+        }
+        return output;
+    }
+    public List<String> getmembers(long LeagueID){
+        List<String> output = new ArrayList<>();
+        String sql = "select username " +
+                "from users " +
+                "join users_leagues " +
+                "on users.user_id = users_leagues.user_id " +
+                "where league_id = ? ;";
+        SqlRowSet query = jdbcTemplate.queryForRowSet(sql, LeagueID);
+        while (query.next()){
+            output.add(query.getString("username"));
+        }
+        return output;
+    }
+    public List<String> getNonmembers(long LeagueID){
+        List<String> output = new ArrayList<>();
+        String sql = "select username " +
+                "from users " +
+                "WHERE user_id NOT IN " +
+                "(SELECT user_id " +
+                "FROM users_leagues " +
+                "where league_id = ? );";
+        SqlRowSet query = jdbcTemplate.queryForRowSet(sql, LeagueID);
+        while (query.next()){
+            output.add(query.getString("username"));
         }
         return output;
     }
