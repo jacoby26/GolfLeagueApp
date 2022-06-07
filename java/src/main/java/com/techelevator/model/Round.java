@@ -10,7 +10,15 @@ public class Round {
     private LocalTime teeTime;
     private LocalDate date;
     private long leagueID;
+    private String leagueName;
 
+    public String getLeagueName() {
+        return leagueName;
+    }
+
+    public void setLeagueName(String leagueName) {
+        this.leagueName = leagueName;
+    }
 
     public Round() {
     }

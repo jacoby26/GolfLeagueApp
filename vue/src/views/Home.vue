@@ -5,7 +5,7 @@
       <h3>When clicked, the items below will change this--></h3>
       <ul>
         <li v-for="league in $store.state.leagues" v-bind:key="league.leagueID" v-on:click="show(league.leagueID, 'league')">{{league.name}}</li>
-       <!-- <li v-for="game in Matches" v-bind:key="game.Id" v-on:click="show(game, 'game')"> {{game.Date}} </li> -->
+        <li v-for="round in $store.state.rounds" v-bind:key="round.roundID" v-on:click="show(round, 'game')"> {{round.date}} </li>
       </ul>
     </div>
   </div>
@@ -35,10 +35,13 @@ export default {
               });
         }
       )
-//    LeagueService.viewRounds().then(
-//      (games) => {
-//      this.Matches = games.data;
-//    })
+      LeagueService.viewRounds(this.$store.state.user).then(
+      (games) => {
+        this.$store.commit('EMPTY_ROUNDS');
+        games.data.forEach(round =>{
+          this.$store.commit('LOAD_ROUNDS', round);
+        })
+    })
   },
   methods:{
     show(input, type){

@@ -21,4 +21,6 @@ public interface LeagueDao {
 
     public List<String> getNonmembers(long LeagueID);
 
+    List<League> getManagedLeagues(Principal principal);
+
 }

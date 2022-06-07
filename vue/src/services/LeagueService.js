@@ -36,6 +36,10 @@ export default {
     },
     getNonMembers(leagueID){
         return axios.get(`/leagues/${leagueID}/Nonmembers`);
+    },
+    viewManagedLeagues(user){
+        return axios.get('/leagues/Managed', user);
+
     }
 
 

@@ -102,4 +102,9 @@ public class AppController {
     public List<String> getNonmembers(@PathVariable long id){
         return leagueDao.getNonmembers(id);
     }
+
+    @RequestMapping(path="/leagues/Managed", method=RequestMethod.GET)
+    public List<League> getManagedLeagues(Principal principal){
+        return leagueDao.getManagedLeagues(principal);
+    }
 }

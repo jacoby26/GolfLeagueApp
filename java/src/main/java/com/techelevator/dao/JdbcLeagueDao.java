@@ -121,4 +121,18 @@ public class JdbcLeagueDao implements LeagueDao {
         }
         return output;
     }
+
+
+    public List<League> getManagedLeagues(Principal principal){
+        List<League> output = new ArrayList();
+        String sql = "SELECT * " +
+                "from leagues " +
+                "where league_organizer = ? " +
+                ";";
+        SqlRowSet query = jdbcTemplate.queryForRowSet(sql, userDao.findIdByUsername(principal.getName()));
+        while (query.next()){
+            output.add(mapRowToLeague(query));
+        }
+        return output;
+    }
 }

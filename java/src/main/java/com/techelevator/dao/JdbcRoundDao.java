@@ -32,11 +32,13 @@ public class JdbcRoundDao implements RoundDao{
     public List<Round> getAllUserRounds(Principal principal) {
         List<Round> userRounds = new ArrayList<>();
         String sql = "SELECT * FROM rounds "
-                + "JOIN scores ON rounds.round_id = scores_round_id "
-                + "JOIN courses ON tee_times.course_id = courses.course.id "
-                + "WHERE username = ?";
+    //            + "JOIN scores ON rounds.round_id = scores.round_id "
+                + "JOIN leagues ON leagues.league_id = rounds.league_id "
+    //            + "JOIN users_leagues ON rounds.league_id = leagues.league_id "
+                + "JOIN courses ON leagues.course_id = courses.course_id "
+                + "WHERE rounds.league_id IN (SELECT league_id FROM users_leagues where user_id = ? ) ;";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, principal.getName());
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, jdbcUserDao.findIdByUsername(principal.getName()));
         while(results.next()) {
             Round round = mapRowToRound(results);
             userRounds.add(round);
@@ -61,6 +63,7 @@ public class JdbcRoundDao implements RoundDao{
         round.setTeeTime(rs.getTime("tee_time").toLocalTime());
         round.setDate(rs.getDate("round_date").toLocalDate());
         round.setLeagueID(rs.getLong("league_id"));
+        round.setLeagueName(rs.getString("league_name"));
         return round;
     }
 

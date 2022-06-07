@@ -49,7 +49,7 @@ export default {
             this.isOpen = true;
         },
         getAllLeaguesForMenu() {
-            leagueService.viewLeagues(this.$store.state.user).then((response) => {
+            leagueService.viewManagedLeagues(this.$store.state.user).then((response) => {
                 this.leagues = response.data
             })
         },
