@@ -1,31 +1,4 @@
 <template>
-<<<<<<< HEAD
-    <div>
-        <!-- <div id="intro">
-          <h1>Add a Course</h1>
-        </div> -->
-        <form id="add-course" v-on:submit.prevent="submitForm()">
-            <div>
-                <label id="course-label" for="course_name">Course Name: </label><br>
-                <input id="course_name" type="text" v-model="course.courseName" autocomplete="off" />
-            </div>
-            <div>
-                <label id="course-label" for="course_name">Street Address: </label><br>
-                <input id="course_name" type="text" v-model="course.address" autocomplete="off" />
-            </div>
-            <div>
-                <label id="course-label" for="course_name">City: </label><br>
-                <input id="course_name" type="text" v-model="course.city" autocomplete="off" />
-            </div>
-            <div>
-                <label id="course-label" for="course_name">State: </label><br>
-                <input id="course_name" type="text" v-model="course.state" autocomplete="off" />
-            </div>
-            <div>
-                <label id="course-label" for="course_name">Zip Code: </label><br>
-                <input id="course_name" type="text" v-model="course.zip" autocomplete="off" />
-            </div>
-=======
     <div id="add-course-body">
         <form v-on:submit.prevent="submitForm()" class="add-course-form">
             <!-- <div class="add-course-div"> -->
@@ -48,7 +21,6 @@
                 <label class="zip_code_label" for="course_name" >Zip Code</label>
                 <input class="zip_code_input" id="course_name" type="text" v-model="course.zip" placeholder="Zip Code" autocomplete="off" />
             <!-- </div> -->
->>>>>>> main
             <!-- <div>
                 <label for="course_name">Latitude: </label>
                 <input id="course_name" type="text" v-model="course.latitude" autocomplete="off" />
@@ -57,15 +29,10 @@
                 <label for="course_name">Longitude: </label>
                 <input id="course_name" type="text" v-model="course.longitude" autocomplete="off" />
             </div> -->
-<<<<<<< HEAD
-            <button class="btn course-submit"><span>Submit</span></button><br>
-            <button class="btn course-cancel" v-on:click.prevent="cancelForm" type="cancel"><span>Cancel</span></button>
-=======
             <!-- <div> -->
                 <button class="btn-btn-submit">Submit</button>
                 <button class="btn-btn-cancel" v-on:click.prevent="cancelForm" type="cancel">Cancel</button>
             <!-- </div> -->
->>>>>>> main
         </form>
         
     <!-- course_name, address, city, course_state, zip_code, latitude, longitude -->
@@ -146,86 +113,6 @@ export default {
 </script>
 
 <style>
-<<<<<<< HEAD
-.course-cancel {
-  display: inline-block;
-  border-radius: 5px;
-  border: none;
-  color: #005229;
-  text-align: center;
-  font-size: 15px;
-  padding: 10px;
-  width: 95.7%;
-  margin-top: 5px;
-  margin-left: 15px;
-  margin-bottom: 5px;
-  transition-duration: 0.4s;
-}
-
-.course-cancel:hover {
-    background-color: #ffb81f;
-    cursor: pointer;
-    color: white;
-}
-
-.course-submit {
-  display: inline-block;
-  border-radius: 5px;
-  background-color: #005229;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 15px;
-  padding: 10px;
-  width: 95.7%;
-
-  margin-left: 15px;
-  margin-bottom: 5px;
-  transition: all 0.5s;
-}
-
-.course-submit span {
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.course-submit span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.course-submit:hover span {
-  padding-right: 25px;
-  cursor: pointer;
-}
-
-.course-submit:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-#course_name {
-    margin-left: 15px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border-radius: 3px;
-    width: 95%;
-    height: 20px;
-}
-
-#course-label {
-    margin-left: 15px;
-    margin-top: 50px;
-}
-
-
-
-=======
 .add-course-form, 
 .add-course-form:not(.btn-btn-submit), 
 .add-course-form:not(.btn-btn-cancel) {
@@ -233,6 +120,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     
 }
 
@@ -245,6 +133,7 @@ export default {
     justify-content: center;
     font-weight: bold;
     font-size: 27px;
+    
 } 
 .course_name_input, 
 .street_address_input,
@@ -256,6 +145,7 @@ export default {
     width: 35%;
     margin: 1%;
     padding: 6px;
+    border-radius: 5px;
 }
 /* #buttons {
     display: flex;
@@ -273,7 +163,7 @@ export default {
     font-size: 20px;
     background: url(/img/Home.3cf008bd.png) no-repeat;
     box-shadow: 0 1px 2px black;
+    border-radius: 5px;
     cursor: pointer;
 }
->>>>>>> main
 </style>
