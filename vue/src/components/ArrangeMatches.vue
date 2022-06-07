@@ -37,17 +37,17 @@ export default
     {
         submitForm() 
         {
-          let newRound = [
+          let newRound =
           {
             teeTime: this.round.teeTime,
             date: this.round.date,
+            leagueId: this.$store.state.currentLeague.ID
             // league: this.$store.state.currentLeague
-          },
-          this.$store.state.currentLeague
-          ]    
+          }
+             console.log(newRound)
           LeagueService
           .addRound(newRound)
-          // console.log(this.$store.league)
+       
           .then(response => 
           {
             if (response.status === 200) 

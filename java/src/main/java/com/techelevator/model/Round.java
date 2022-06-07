@@ -64,6 +64,13 @@ public class Round {
         this.teeTime = teeTime;
     }
 
+    public int getLeagueId() {
+        return leagueId;
+    }
+
+    public void setLeagueId(int leagueId) {
+        this.leagueId = leagueId;
+    }
 }
 
 

@@ -85,8 +85,8 @@ public class AppController {
 //        return UserDao.findAll();
 //    }
     @RequestMapping(path="/leagues/addround", method=RequestMethod.POST)
-    public long createNewRound(@RequestBody Round round, League league) {
+    public long createNewRound(@RequestBody Round round) {
 
-        return roundDao.createRound(round.getTeeTime(), round.getDate(), league);
+        return roundDao.createRound(round);
     }
 }
