@@ -1,4 +1,5 @@
 <template>
+<div>
     <form  v-on:submit.prevent="getAllCoursesForForm" >
           <h1>Register League</h1>
         <div>
@@ -18,9 +19,15 @@
                 <li class="autocomplete-result" v-for="location in filteredResults" 
             :key="location.courseID" @click="setResult(location)"> {{ location.courseName }} </li>
                 </ul>
+        </div>
+       
+       
+      </form>
+       <div>
             <button type="submit" class="register-button"><span>Register League</span></button>
         </div>
-      </form>
+</div>
+      
 </template>
 
 <script>
@@ -123,7 +130,7 @@ export default {
 
   .autocomplete-results {
     padding: 7px;
-    margin: .5px;
+    margin: 2px;
     border: 5px solid #005229;
     border-radius: 5px;
     background-color: #ffffff;
@@ -155,8 +162,8 @@ export default {
   font-size: 15px;
   padding: 10px;
   width: 160px;
+  margin-top: 5px;
   transition: all 0.5s;
-  margin: 2px;
 }
 
 .register-button span {
@@ -186,5 +193,6 @@ export default {
 
 input {
     margin: 5px;
+    border-radius: 3px;
 }
 </style>

@@ -29,14 +29,14 @@ public class JdbcLeagueDao implements LeagueDao {
 
     @Override
     public long createLeague(String name, GolfCourse course, Principal principal) {
-        String sql = "INSERT INTO leagues (league_name, course_id) "
-                + "VALUES (?,?) RETURNING league_id";
-        long leagueID = jdbcTemplate.queryForObject(sql, long.class, name, course.getId());
+        String sql = "INSERT INTO leagues (league_name, course_id, league_organizer) "
+                + "VALUES (?,?,?) RETURNING league_id";
+        long leagueOrganizerID = userDao.findIdByUsername(principal.getName());
+        long leagueID = jdbcTemplate.queryForObject(sql, long.class, name, course.getId(), leagueOrganizerID);
 
         String sql2 = "INSERT INTO users_leagues (user_id, league_id) "
                 + "VALUES (?,?) RETURNING league_id";
-        long userID = userDao.findIdByUsername(principal.getName());
-        jdbcTemplate.queryForObject(sql2, long.class, userID, leagueID);
+        jdbcTemplate.queryForObject(sql2, long.class, leagueOrganizerID, leagueID);
 
         return leagueID;
     }
@@ -49,7 +49,7 @@ public class JdbcLeagueDao implements LeagueDao {
         return jdbcTemplate.queryForObject(sql, long.class, userID, league.getLeagueID());
     }
 
-
+    @Override
     public List<League> getAllLeagues(Principal principal){
         List<League> output = new ArrayList();
         String sql = "SELECT * " +
@@ -70,6 +70,7 @@ public class JdbcLeagueDao implements LeagueDao {
         currentLeague.setLeagueID(set.getLong("league_id"));
         currentLeague.setName(set.getString("league_name"));
         currentLeague.setLeaderboardTable(getRankings(set.getLong("league_id")));
+        currentLeague.setLeagueOrganizerID(set.getLong(("league_organizer")));
         return currentLeague;
     }
     public List<LeaderboardRow> getRankings(long LeagueID){

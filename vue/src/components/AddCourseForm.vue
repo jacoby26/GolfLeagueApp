@@ -1,27 +1,27 @@
 <template>
     <div>
-        <div id="intro">
+        <!-- <div id="intro">
           <h1>Add a Course</h1>
-        </div>
+        </div> -->
         <form v-on:submit.prevent="submitForm()">
             <div>
-                <label for="course_name">Course Name: </label>
+                <label for="course_name">Course Name: </label><br>
                 <input id="course_name" type="text" v-model="course.courseName" autocomplete="off" />
             </div>
             <div>
-                <label for="course_name">Street Address: </label>
+                <label for="course_name">Street Address: </label><br>
                 <input id="course_name" type="text" v-model="course.address" autocomplete="off" />
             </div>
             <div>
-                <label for="course_name">City: </label>
+                <label for="course_name">City: </label><br>
                 <input id="course_name" type="text" v-model="course.city" autocomplete="off" />
             </div>
             <div>
-                <label for="course_name">State: </label>
+                <label for="course_name">State: </label><br>
                 <input id="course_name" type="text" v-model="course.state" autocomplete="off" />
             </div>
             <div>
-                <label for="course_name">Zip Code: </label>
+                <label for="course_name">Zip Code: </label><br>
                 <input id="course_name" type="text" v-model="course.zip" autocomplete="off" />
             </div>
             <!-- <div>
@@ -32,8 +32,8 @@
                 <label for="course_name">Longitude: </label>
                 <input id="course_name" type="text" v-model="course.longitude" autocomplete="off" />
             </div> -->
-            <button class="btn btn-submit">Submit</button>
-            <button class="btn btn-cancel" v-on:click.prevent="cancelForm" type="cancel">Cancel</button>
+            <button class="btn btn-submit"><span>Submit</span></button><br>
+            <button class="btn btn-cancel" v-on:click.prevent="cancelForm" type="cancel"><span>Cancel</span></button>
         </form>
 
     <!-- course_name, address, city, course_state, zip_code, latitude, longitude -->
@@ -112,5 +112,80 @@ export default {
     }
 }
 </script>
+
 <style>
+.btn-cancel {
+  display: inline-block;
+  border-radius: 5px;
+  border: none;
+  color: #005229;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  width: 50.5%;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  transition-duration: 0.4s;
+}
+
+.btn-cancel:hover {
+    background-color: #ffb81f;
+    cursor: pointer;
+    color: white;
+}
+
+.btn-submit {
+  display: inline-block;
+  border-radius: 5px;
+  background-color: #005229;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  width: 50.5%;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  transition: all 0.5s;
+}
+
+.btn-submit span {
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.btn-submit span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.btn-submit:hover span {
+  padding-right: 25px;
+  cursor: pointer;
+}
+
+.btn-submit:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+input {
+    margin: 5px;
+    border-radius: 3px;
+    width: 50%;
+    height: 20px;
+}
+
+label {
+    margin:5px;
+    position: relative;
+}
+
 </style>

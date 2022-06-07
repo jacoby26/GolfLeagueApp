@@ -178,6 +178,7 @@ export default {
   height: 400px;
   padding: 25px;
   margin: 25px; 
+  border-radius: 5px;
 } 
 
 </style>

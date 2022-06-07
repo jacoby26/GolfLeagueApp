@@ -25,6 +25,7 @@ export default {
     display:flex;
     justify-content: center;
     background: rgba(186,199,202,.9);
+    margin: 5px;
 }
 #add-course-form{
     margin: 5px;

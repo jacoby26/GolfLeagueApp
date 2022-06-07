@@ -12,6 +12,7 @@ public class League {
     private long courseID;
     @JsonProperty("course")
     private GolfCourse golfCourse;
+    private long leagueOrganizerID;
 
     public List<LeaderboardRow> getLeaderboardTable() {
         return leaderboardTable;
@@ -25,11 +26,12 @@ public class League {
 
     public League() { }
 
-    public League(long leagueID, String name, long courseID, GolfCourse golfCourse) {
+    public League(long leagueID, String name, long courseID, GolfCourse golfCourse, long leagueOrganizerID) {
         this.leagueID = leagueID;
         this.name = name;
         this.courseID = courseID;
         this.golfCourse = golfCourse;
+        this.leagueOrganizerID = leagueOrganizerID;
     }
 
     public long getLeagueID() {
@@ -62,5 +64,13 @@ public class League {
 
     public void setGolfCourse(GolfCourse golfCourse) {
         this.golfCourse = golfCourse;
+    }
+
+    public long getLeagueOrganizerID() {
+        return leagueOrganizerID;
+    }
+
+    public void setLeagueOrganizerID(long leagueOrganizerID) {
+        this.leagueOrganizerID = leagueOrganizerID;
     }
 }
