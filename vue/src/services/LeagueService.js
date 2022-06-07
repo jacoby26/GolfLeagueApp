@@ -46,7 +46,6 @@ export default {
     },
     viewManagedLeagues(user){
         return axios.get('/leagues/Managed', user);
-
     },
     viewAllUsers(){
         return axios.get(`/users`);
@@ -54,5 +53,7 @@ export default {
     viewAllRounds(user){
         return axios.get(`/rounds`, user);
     },
-
+    viewRoundDetails(roundID){
+        return axios.get(`/rounds/${roundID}`);
+    }
 }

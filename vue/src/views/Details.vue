@@ -1,7 +1,7 @@
 <template>
 <div>
 <Leaderboard v-if="isleague"/>
-<Round v-if="item.isround"/>
+<Round v-if="isround"/>
 </div>
 </template>
 
@@ -17,6 +17,9 @@ props:["item"],
 computed:{
   isleague(){
     return this.item === 'league';
+  },
+  isround(){
+    return this.item === 'game';
   }
 }
 }

@@ -2,10 +2,9 @@
   <div class="home">
     <Details id="details" v-bind:item="item" />
     <div id="selector">
-      <h3>When clicked, the items below will change this--></h3>
       <ul>
         <li v-for="league in $store.state.leagues" v-bind:key="league.leagueID" v-on:click="show(league.leagueID, 'league')">{{league.name}}</li>
-        <li v-for="round in $store.state.rounds" v-bind:key="round.roundID" v-on:click="show(round, 'game')"> {{round.date}} </li>
+        <li v-for="round in $store.state.rounds" v-bind:key="round.roundID" v-on:click="show(round.teeTimeID, 'game')"> {{round.date}} {{round.teeTime}} </li>
       </ul>
     </div>
   </div>
@@ -49,8 +48,8 @@ export default {
       if(this.item === 'league'){
         this.$store.commit('FETCH_LEADERBOARD', input);
         }
-      else if(type === 'game'){
-        this.item = 'round';
+      else if(this.item  === 'game'){
+        this.$store.commit('FETCH_ROUND', input);
 
       }
     }

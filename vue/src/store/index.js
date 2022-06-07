@@ -87,5 +87,10 @@ export default new Vuex.Store({
     state.rounds = [];
     state.currentRound = {};
     },
+    FETCH_ROUND(state, teeTimeID){
+      state.currentRound = state.rounds.find((entry)=>{
+        return entry.teeTimeID === teeTimeID;
+      });
+    }
   }
 })

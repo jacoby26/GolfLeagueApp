@@ -33,15 +33,14 @@ public class JdbcRoundDao implements RoundDao{
     public List<Round> getAllUserRounds(Principal principal) {
         List<Round> userRounds = new ArrayList<>();
         String sql = "SELECT * FROM rounds "
-    //            + "JOIN scores ON rounds.round_id = scores.round_id "
                 + "JOIN leagues ON leagues.league_id = rounds.league_id "
     //            + "JOIN users_leagues ON rounds.league_id = leagues.league_id "
                 + "JOIN courses ON leagues.course_id = courses.course_id "
                 + "WHERE rounds.league_id IN (SELECT league_id FROM users_leagues where user_id = ? ) ;";
-
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, jdbcUserDao.findIdByUsername(principal.getName()));
+        long userId = jdbcUserDao.findIdByUsername(principal.getName());
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
         while(results.next()) {
-            Round round = mapRowToRound(results);
+            Round round = mapRowToRound(results, userId);
             userRounds.add(round);
         }
         return userRounds;
@@ -54,7 +53,7 @@ public class JdbcRoundDao implements RoundDao{
         return jdbcTemplate.queryForObject(sql, long.class, round.getTeeTime(), round.getDate(), round.getLeagueID());
     }
 
-    private Round mapRowToRound(SqlRowSet rs) {
+    private Round mapRowToRound(SqlRowSet rs, long userId) {
 
         Round round = new Round();
 
@@ -63,6 +62,15 @@ public class JdbcRoundDao implements RoundDao{
         round.setDate(rs.getString("round_date"));
         round.setLeagueID(rs.getLong("league_id"));
         round.setLeagueName(rs.getString("league_name"));
+        round.setTeeTimeID(rs.getLong("round_id"));
+        String sql = "Select score " +
+                "from scores " +
+                "where round_id = ? and user_id = ? ;";
+        try {
+            round.setScore(jdbcTemplate.queryForObject(sql, Integer.class, round.getTeeTimeID(), userId));
+        } catch (Exception e){
+
+        }
         return round;
     }
 
