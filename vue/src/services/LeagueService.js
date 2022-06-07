@@ -29,10 +29,30 @@ export default {
     reportRound(user, round, score){
         return axios.put(`/rounds/${round}`,this.$store.league, score, user)
     },
+    viewInvites(user){
+        return axios.get('/invites/', user);
+    },
+    AddInvites(invite){
+        return axios.post('/invites/', invite);
+    },
+    ActionInvites(invite){
+        return axios.put('/invites/', invite);
+    },
+    getMembers(leagueID){
+        return axios.get(`/leagues/${leagueID}/members`);
+    },
+    getNonMembers(leagueID){
+        return axios.get(`/leagues/${leagueID}/Nonmembers`);
+    },
+    viewManagedLeagues(user){
+        return axios.get('/leagues/Managed', user);
+
+    },
     viewAllUsers(){
         return axios.get(`/users`);
-    }
-
-
+    },
+    viewAllRounds(user){
+        return axios.get(`/rounds`, user);
+    },
 
 }

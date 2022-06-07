@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS users_leagues CASCADE;
 DROP TABLE IF EXISTS tee_times CASCADE;
 DROP TABLE IF EXISTS tee_times_users CASCADE;
 DROP TABLE IF EXISTS rounds CASCADE;
+DROP TABLE IF EXISTS invites CASCADE;
 DROP SEQUENCE IF EXISTS seq_user_id CASCADE;
 DROP SEQUENCE IF EXISTS seq_course_id CASCADE;
 
@@ -64,8 +65,8 @@ CREATE TABLE users_leagues (
 
 CREATE TABLE rounds (
     round_id serial NOT NULL,
-    tee_time time NOT NULL,
-    round_date date NOT NULL,
+    tee_time varchar (50) NOT NULL,
+    round_date varchar (50) NOT NULL,
     league_id int NOT NULL,
     CONSTRAINT PK_round PRIMARY KEY (round_id),
     CONSTRAINT FK_league_id FOREIGN KEY (league_id) REFERENCES leagues (league_id)
@@ -81,6 +82,16 @@ CREATE TABLE scores (
     CONSTRAINT FK_round FOREIGN KEY (round_id) REFERENCES rounds (round_id),
     CONSTRAINT CHK_score CHECK (score > 0 AND score < 150)
 );
+CREATE Table invites (
+    invite_id serial NOT NULL,
+    league_id integer NOT NULL,
+    user_id integer NOT NULL,
+    is_accepted boolean,
+    CONSTRAINT primekey_invites PRIMARY KEY (invite_id),
+    CONSTRAINT fk_league FOREIGN KEY (league_id) REFERENCES public.leagues(league_id),
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES public.users(user_id)
+);
+
 
 COMMIT TRANSACTION;
 -- ROLLBACK;

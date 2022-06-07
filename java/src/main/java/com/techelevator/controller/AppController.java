@@ -35,6 +35,7 @@ public class AppController {
     @Autowired
     LeagueDao leagueDao;
     @Autowired
+    InviteDao inviteDao;
     UserDao userDao;
 
     @RequestMapping(path="/courses", method=RequestMethod.GET)
@@ -64,9 +65,11 @@ public class AppController {
         return leagueDao.getAllLeagues(principal);
     }
 
+
+// Round will probably be changed a lot over the next day or so.
     @RequestMapping (path="/leagues/join", method=RequestMethod.POST)
     public long joinLeague(@RequestBody User user, League league) {
-        return leagueDao.joinLeague(user,league);
+        return leagueDao.joinLeague(user.getId(),league.getLeagueID());
     }
 
     @RequestMapping(path="/rounds", method=RequestMethod.GET)
@@ -88,5 +91,33 @@ public class AppController {
     public long createNewRound(@RequestBody Round round) {
 
         return roundDao.createRound(round);
+    }
+    @RequestMapping(path = "/invites", method = RequestMethod.GET)
+    public List<Invite> listAllUserInvites(Principal principal) { return inviteDao.getInvites(principal);}
+
+    @RequestMapping(path = "/invites", method = RequestMethod.POST)
+    public void addInvite(@RequestBody Invite invite){
+        inviteDao.makeInvite(invite);
+    }
+    @RequestMapping(path = "/invites", method = RequestMethod.PUT)
+    public void actOnInvite(@RequestBody Invite invite){
+        inviteDao.actOnInvite(invite);
+        if (invite.isAccepted()){
+            leagueDao.joinLeague(invite.getUserId(), invite.getLeagueId());
+        }
+    }
+    @RequestMapping(path="/leagues/{id}/members", method = RequestMethod.GET)
+    public List<String> getmembers(@PathVariable long id){
+        return leagueDao.getmembers(id);
+    }
+
+    @RequestMapping(path="/leagues/{id}/Nonmembers", method = RequestMethod.GET)
+    public List<String> getNonmembers(@PathVariable long id){
+        return leagueDao.getNonmembers(id);
+    }
+
+    @RequestMapping(path="/leagues/Managed", method=RequestMethod.GET)
+    public List<League> getManagedLeagues(Principal principal){
+        return leagueDao.getManagedLeagues(principal);
     }
 }

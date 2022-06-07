@@ -145,7 +145,7 @@ export default {
     color: white;
   }
 
-  .register-button {
+  /* .register-button {
   display: inline-block;
   border-radius: 5px;
   background-color: #005229;
@@ -182,7 +182,7 @@ export default {
 .register-button:hover span:after {
   opacity: 1;
   right: 0;
-}
+} */
 
 input {
     margin: 5px;
