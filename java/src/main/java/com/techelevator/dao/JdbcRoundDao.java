@@ -32,8 +32,7 @@ public class JdbcRoundDao implements RoundDao{
     public List<Round> getAllUserRounds(Principal principal) {
         List<Round> userRounds = new ArrayList<>();
         String sql = "SELECT * FROM rounds "
-                + "JOIN tee_times ON rounds.tee_time_id = tee_times.tee_time_id "
-                + "JOIN users ON tee_times.user_id = users.users_id "
+                + "JOIN scores ON rounds.round_id = scores_round_id "
                 + "JOIN courses ON tee_times.course_id = courses.course.id "
                 + "WHERE username = ?";
 
