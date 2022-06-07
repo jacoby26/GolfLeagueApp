@@ -3,7 +3,6 @@ package com.techelevator.dao;
 import com.techelevator.model.GolfCourse;
 import com.techelevator.model.League;
 import com.techelevator.model.Round;
-import com.techelevator.model.TeeTime;
 
 
 import java.security.Principal;
@@ -14,6 +13,6 @@ import java.util.List;
 public interface RoundDao {
 
     List<Round> getAllUserRounds(Principal principal);
-    long createRound(int score, TeeTime teeTime);
     long newRound(LocalTime teeTime, LocalDate date, League league);
+    long createRound(Round round);
 }

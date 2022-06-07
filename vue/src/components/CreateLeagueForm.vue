@@ -18,7 +18,7 @@
                 <li class="autocomplete-result" v-for="location in filteredResults" 
             :key="location.courseID" @click="setResult(location)"> {{ location.courseName }} </li>
                 </ul>
-            <button type="submit">Register League</button>
+            <button type="submit" class="register-button"><span>Register League</span></button>
         </div>
       </form>
 </template>
@@ -122,9 +122,12 @@ export default {
   }
 
   .autocomplete-results {
-    padding: 0;
-    margin: 0;
-    border: 1px solid #eeeeee;
+    padding: 7px;
+    margin: .5px;
+    border: 5px solid #005229;
+    border-radius: 5px;
+    background-color: #ffffff;
+    opacity: 50%;
     height: 120px;
     min-height: 1em;
     max-height: 6em;    
@@ -135,11 +138,53 @@ export default {
     list-style: none;
     text-align: left;
     padding: 4px 2px;
-    cursor: pointer;
   }
 
   .autocomplete-result:hover {
     background-color: #4AAE9B;
     color: white;
   }
+
+  .register-button {
+  display: inline-block;
+  border-radius: 5px;
+  background-color: #005229;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  width: 160px;
+  transition: all 0.5s;
+  margin: 2px;
+}
+
+.register-button span {
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.register-button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.register-button:hover span {
+  padding-right: 25px;
+  cursor: pointer;
+}
+
+.register-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+input {
+    margin: 5px;
+}
 </style>
