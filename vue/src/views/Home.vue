@@ -35,7 +35,7 @@ export default {
               });
         }
       )
-      LeagueService.viewRounds(this.$store.state.user).then(
+      LeagueService.viewAllRounds(this.$store.state.user).then(
       (games) => {
         this.$store.commit('EMPTY_ROUNDS');
         games.data.forEach(round =>{

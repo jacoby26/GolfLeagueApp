@@ -6,11 +6,21 @@ import java.time.LocalTime;
 
 public class Round {
 
-    private long id;
-    private LocalTime teeTime;
-    private LocalDate date;
+    private long teeTimeID;
+    private String date;
+    private String teeTime;
     private long leagueID;
     private String leagueName;
+    private int score;
+    private long courseId;
+
+    public long getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(long courseId) {
+        this.courseId = courseId;
+    }
 
     public String getLeagueName() {
         return leagueName;
@@ -23,44 +33,54 @@ public class Round {
     public Round() {
     }
 
-    public Round(long id, LocalTime teeTime, LocalDate date, long leagueID) {
-        this.id = id;
-        this.teeTime = teeTime;
-        this.date = date;
+    public Round(long leagueID, long teeTimeID, int score, String date, String teeTime) {
         this.leagueID = leagueID;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public LocalTime getTeeTime() {
-        return teeTime;
-    }
-
-    public void setTeeTime(LocalTime teeTime) {
+        this.teeTimeID = teeTimeID;
+        this.score = score;
+        this.date = date;
         this.teeTime = teeTime;
     }
 
-    public LocalDate getDate() {
+    public long getleagueID() {
+        return this.leagueID;
+    }
+
+    public void setleagueID(long id) {
+        this.leagueID = id;
+    }
+
+    public long getTeeTimeID() {
+        return teeTimeID;
+    }
+
+    public void setTeeTimeID(long teeTimeID) {
+        this.teeTimeID = teeTimeID;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public long getLeagueID() {
-        return leagueID;
+    public String getTeeTime() {
+        return teeTime;
     }
 
-    public void setLeagueID(long leagueID) {
-        this.leagueID = leagueID;
+    public void setTeeTime(String teeTime) {
+        this.teeTime = teeTime;
     }
+
 }
 
 
