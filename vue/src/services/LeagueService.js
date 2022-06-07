@@ -28,8 +28,12 @@ export default {
         return axios.put(`/leagues/${leagueId}`, user, roster)
     },
     reportRound(user, round, score){
-        return axios.put(`/rounds/${round}`, score, user)
+        return axios.put(`/rounds/${round}`,this.$store.league, score, user)
     },
-    
+    viewAllUsers(){
+        return axios.get(`/users`);
+    }
+
+
 
 }
