@@ -1,9 +1,9 @@
 <template>
   <div id="add-course">
       <h1 id="add-course-title">Add New Course</h1>
-      <div id="add-course-form">
-      <AddCourseForm />
-      </div>
+      <!-- <div id="add-course-form"> -->
+      <AddCourseForm id="add-course-form"/>
+      <!-- </div> -->
   </div>
   
 </template>
@@ -29,8 +29,9 @@ export default {
     margin: 5px;
 }
 #add-course-form{
-    margin: 5px;
-    padding-left: 5px;
+    margin-left: 250px;
+    margin-right: 250px;
+    padding: 10px;
     background-color: rgba(186,199,202,.9);
     border-radius: 5px;
     display: flex;

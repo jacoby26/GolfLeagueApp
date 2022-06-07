@@ -5,23 +5,23 @@
         </div> -->
         <form id="add-course" v-on:submit.prevent="submitForm()">
             <div>
-                <label for="course_name">Course Name: </label><br>
+                <label id="course-label" for="course_name">Course Name: </label><br>
                 <input id="course_name" type="text" v-model="course.courseName" autocomplete="off" />
             </div>
             <div>
-                <label for="course_name">Street Address: </label><br>
+                <label id="course-label" for="course_name">Street Address: </label><br>
                 <input id="course_name" type="text" v-model="course.address" autocomplete="off" />
             </div>
             <div>
-                <label for="course_name">City: </label><br>
+                <label id="course-label" for="course_name">City: </label><br>
                 <input id="course_name" type="text" v-model="course.city" autocomplete="off" />
             </div>
             <div>
-                <label for="course_name">State: </label><br>
+                <label id="course-label" for="course_name">State: </label><br>
                 <input id="course_name" type="text" v-model="course.state" autocomplete="off" />
             </div>
             <div>
-                <label for="course_name">Zip Code: </label><br>
+                <label id="course-label" for="course_name">Zip Code: </label><br>
                 <input id="course_name" type="text" v-model="course.zip" autocomplete="off" />
             </div>
             <!-- <div>
@@ -122,9 +122,9 @@ export default {
   text-align: center;
   font-size: 15px;
   padding: 10px;
-  width: 50.5%;
+  width: 95.7%;
   margin-top: 5px;
-  margin-left: 5px;
+  margin-left: 15px;
   margin-bottom: 5px;
   transition-duration: 0.4s;
 }
@@ -144,9 +144,9 @@ export default {
   text-align: center;
   font-size: 15px;
   padding: 10px;
-  width: 50.5%;
-  margin-top: 5px;
-  margin-left: 5px;
+  width: 95.7%;
+
+  margin-left: 15px;
   margin-bottom: 5px;
   transition: all 0.5s;
 }
@@ -177,10 +177,17 @@ export default {
 }
 
 #course_name {
-    margin: 5px;
+    margin-left: 15px;
+    margin-top: 5px;
+    margin-bottom: 15px;
     border-radius: 3px;
-    width: 50%;
+    width: 95%;
     height: 20px;
+}
+
+#course-label {
+    margin-left: 15px;
+    margin-top: 50px;
 }
 
 
