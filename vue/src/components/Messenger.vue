@@ -18,5 +18,6 @@ export default {
   background-repeat: no-repeat;
   padding: 5px;
   color: #ffb81f;
+  border-radius: 5px;
 }
 </style>

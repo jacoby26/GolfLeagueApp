@@ -26,6 +26,7 @@ export default {
     margin: 5px;
     padding-left: 5px;
     background-color: rgba(186,199,202,.9);
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
 }

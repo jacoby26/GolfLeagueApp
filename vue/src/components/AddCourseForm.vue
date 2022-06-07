@@ -3,7 +3,7 @@
         <!-- <div id="intro">
           <h1>Add a Course</h1>
         </div> -->
-        <form v-on:submit.prevent="submitForm()">
+        <form id="add-course" v-on:submit.prevent="submitForm()">
             <div>
                 <label for="course_name">Course Name: </label><br>
                 <input id="course_name" type="text" v-model="course.courseName" autocomplete="off" />
@@ -32,8 +32,8 @@
                 <label for="course_name">Longitude: </label>
                 <input id="course_name" type="text" v-model="course.longitude" autocomplete="off" />
             </div> -->
-            <button class="btn btn-submit"><span>Submit</span></button><br>
-            <button class="btn btn-cancel" v-on:click.prevent="cancelForm" type="cancel"><span>Cancel</span></button>
+            <button class="btn course-submit"><span>Submit</span></button><br>
+            <button class="btn course-cancel" v-on:click.prevent="cancelForm" type="cancel"><span>Cancel</span></button>
         </form>
 
     <!-- course_name, address, city, course_state, zip_code, latitude, longitude -->
@@ -114,7 +114,7 @@ export default {
 </script>
 
 <style>
-.btn-cancel {
+.course-cancel {
   display: inline-block;
   border-radius: 5px;
   border: none;
@@ -129,13 +129,13 @@ export default {
   transition-duration: 0.4s;
 }
 
-.btn-cancel:hover {
+.course-cancel:hover {
     background-color: #ffb81f;
     cursor: pointer;
     color: white;
 }
 
-.btn-submit {
+.course-submit {
   display: inline-block;
   border-radius: 5px;
   background-color: #005229;
@@ -151,13 +151,13 @@ export default {
   transition: all 0.5s;
 }
 
-.btn-submit span {
+.course-submit span {
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
 
-.btn-submit span:after {
+.course-submit span:after {
   content: '\00bb';
   position: absolute;
   opacity: 0;
@@ -166,26 +166,23 @@ export default {
   transition: 0.5s;
 }
 
-.btn-submit:hover span {
+.course-submit:hover span {
   padding-right: 25px;
   cursor: pointer;
 }
 
-.btn-submit:hover span:after {
+.course-submit:hover span:after {
   opacity: 1;
   right: 0;
 }
 
-input {
+#course_name {
     margin: 5px;
     border-radius: 3px;
     width: 50%;
     height: 20px;
 }
 
-label {
-    margin:5px;
-    position: relative;
-}
+
 
 </style>
