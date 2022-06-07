@@ -85,6 +85,7 @@ public class AppController {
     public long addUserRound(@RequestParam Score score) {
         return scoreDao.enterScore(score);
     }
+
 //    @RequestMapping(path="/users", method=RequestMethod.GET)
 //    public List<User> findAll(){
 //        return UserDao.findAll();

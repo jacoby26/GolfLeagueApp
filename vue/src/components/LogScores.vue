@@ -5,18 +5,18 @@
         </div>
         <form v-on:submit.prevent="submitForm()">
             <label for="round">Round: </label>
-            <select id="round" class="RoundList" v-model="selected_round">
+            <select id="round" class="RoundList" v-model="round.selected_round">
                 <!-- Will make v-for loop once league service is updated -->
-                <option v-for="round in $store.state.rounds" v-bind:key="round.round_id">
-                    {{round}}
+                <option v-for="round in $store.state.rounds" :value="round.teeTimeID" v-bind:key="round.teeTimeID">
+                   Round: {{round.teeTimeID}} Tee Time: {{round.teeTime}}
                 </option>
             </select>
             <div>
                 <!-- choose player id -->
                 <label for="player">Player: </label>
-            <select id="player" class="GolferList" v-model="selected_users">
-                <option v-for="user in $store.state.member_golfers" v-bind:key="user.user_id">
-                  {{user}}
+            <select id="player" class="GolferList" v-model="round.selected_users">
+                <option v-for="user in $store.state.member_golfers" :value="user" v-bind:key="user.user_id">
+                  {{user}} {{user.user_id}}
                 </option>
             </select>
             </div>
@@ -42,8 +42,7 @@ export default {
         round: {
             selected_round: '',
             selected_user: '',
-            score: '',
-            league: this.$store.state.currentLeague
+            score: ''
             },
       }
     },
@@ -52,7 +51,7 @@ export default {
             const newScore = {
                 round: this.round.selected_round,
                 user: this.round.selected_user,
-                leagueID: this.$store.state.currentLeague.ID
+                score: this.round.score,
             };
 
             leagueService
