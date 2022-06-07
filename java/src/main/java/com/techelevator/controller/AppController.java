@@ -62,7 +62,12 @@ public class AppController {
         return leagueDao.getAllLeagues(principal);
     }
 
+
 // Round will probably be changed a lot over the next day or so.
+    @RequestMapping (path="/leagues/join", method=RequestMethod.POST)
+    public long joinLeague(@RequestBody User user, League league) {
+        return leagueDao.joinLeague(user.getId(),league.getLeagueID());
+    }
 
     @RequestMapping(path="/rounds", method=RequestMethod.GET)
     public List<Round> listAllUserRounds(Principal principal) {
@@ -70,9 +75,9 @@ public class AppController {
     }
 
     @RequestMapping(path="/rounds/addround", method=RequestMethod.POST)
-    public long addUserRound(@RequestParam int score, TeeTime teeTime) {
+    public long addUserRound(@RequestParam Round round) {
 
-        return roundDao.createRound(score, teeTime);
+        return roundDao.createRound(round);
     }
     @RequestMapping(path = "/invites", method = RequestMethod.GET)
     public List<Invite> listAllUserInvites(Principal principal) { return inviteDao.getInvites(principal);}

@@ -7,17 +7,19 @@ import java.time.LocalTime;
 public class Round {
 
     private long id;
-    private long teeTimeID;
-    private int score;
+    private LocalTime teeTime;
+    private LocalDate date;
+    private long leagueID;
 
 
     public Round() {
     }
 
-    public Round(long id, long teeTimeID, int score) {
+    public Round(long id, LocalTime teeTime, LocalDate date, long leagueID) {
         this.id = id;
-        this.teeTimeID = teeTimeID;
-        this.score = score;
+        this.teeTime = teeTime;
+        this.date = date;
+        this.leagueID = leagueID;
     }
 
     public long getId() {
@@ -28,20 +30,28 @@ public class Round {
         this.id = id;
     }
 
-    public long getTeeTimeID() {
-        return teeTimeID;
+    public LocalTime getTeeTime() {
+        return teeTime;
     }
 
-    public void setTeeTimeID(long teeTimeID) {
-        this.teeTimeID = teeTimeID;
+    public void setTeeTime(LocalTime teeTime) {
+        this.teeTime = teeTime;
     }
 
-    public int getScore() {
-        return score;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public long getLeagueID() {
+        return leagueID;
+    }
+
+    public void setLeagueID(long leagueID) {
+        this.leagueID = leagueID;
     }
 }
 
