@@ -26,8 +26,8 @@ export default {
     manageLeague(user, roster, leagueId){
         return axios.put(`/leagues/${leagueId}`, user, roster)
     },
-    reportRound(user, round, score){
-        return axios.put(`/rounds/${round}`,this.$store.league, score, user)
+    reportRound(score){
+        return axios.put(`/leagues/rounds/addscore/`, score)
     },
     viewInvites(user){
         return axios.get('/invites/', user);
