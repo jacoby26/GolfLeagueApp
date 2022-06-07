@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <div>
         <!-- <div id="intro">
           <h1>Add a Course</h1>
@@ -24,6 +25,30 @@
                 <label id="course-label" for="course_name">Zip Code: </label><br>
                 <input id="course_name" type="text" v-model="course.zip" autocomplete="off" />
             </div>
+=======
+    <div id="add-course-body">
+        <form v-on:submit.prevent="submitForm()" class="add-course-form">
+            <!-- <div class="add-course-div"> -->
+                <label class="course_name_label" for="course_name">Course Name</label>
+                <input class="course_name_input" id="course_name" type="text" v-model="course.courseName" placeholder="Course Name" autocomplete="off" />
+            <!-- </div>
+            <div class="add-course-div"> -->
+                <label class="street_address_label" for="course_name">Street Address</label>
+                <input class="street_address_input" id="course_name" type="text" v-model="course.address" placeholder="Street Address" autocomplete="off" />
+            <!-- </div>
+            <div class="add-course-div"> -->
+                <label class="city_label" for="course_name">City</label>
+                <input class="city_input" id="course_name" type="text" v-model="course.city" placeholder="City" autocomplete="off" />
+            <!-- </div>
+            <div class="add-course-div"> -->
+                <label class="state_label" for="course_name">State</label>
+                <input class="state_input" id="course_name" type="text" v-model="course.state" placeholder="State" autocomplete="off" />
+            <!-- </div>
+            <div class="add-course-div"> -->
+                <label class="zip_code_label" for="course_name" >Zip Code</label>
+                <input class="zip_code_input" id="course_name" type="text" v-model="course.zip" placeholder="Zip Code" autocomplete="off" />
+            <!-- </div> -->
+>>>>>>> main
             <!-- <div>
                 <label for="course_name">Latitude: </label>
                 <input id="course_name" type="text" v-model="course.latitude" autocomplete="off" />
@@ -32,10 +57,17 @@
                 <label for="course_name">Longitude: </label>
                 <input id="course_name" type="text" v-model="course.longitude" autocomplete="off" />
             </div> -->
+<<<<<<< HEAD
             <button class="btn course-submit"><span>Submit</span></button><br>
             <button class="btn course-cancel" v-on:click.prevent="cancelForm" type="cancel"><span>Cancel</span></button>
+=======
+            <!-- <div> -->
+                <button class="btn-btn-submit">Submit</button>
+                <button class="btn-btn-cancel" v-on:click.prevent="cancelForm" type="cancel">Cancel</button>
+            <!-- </div> -->
+>>>>>>> main
         </form>
-
+        
     <!-- course_name, address, city, course_state, zip_code, latitude, longitude -->
     </div>
 </template>
@@ -114,6 +146,7 @@ export default {
 </script>
 
 <style>
+<<<<<<< HEAD
 .course-cancel {
   display: inline-block;
   border-radius: 5px;
@@ -192,4 +225,55 @@ export default {
 
 
 
+=======
+.add-course-form, 
+.add-course-form:not(.btn-btn-submit), 
+.add-course-form:not(.btn-btn-cancel) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.course_name_label,
+.street_address_label, 
+.city_label,
+.state_label,
+.zip_code_label {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 27px;
+} 
+.course_name_input, 
+.street_address_input,
+.city_input,
+.state_input,
+.zip_code_input {
+    display: flex;
+    justify-content: center;
+    width: 35%;
+    margin: 1%;
+    padding: 6px;
+}
+/* #buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+} */
+.btn-btn-submit, 
+.btn-btn-cancel {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 1%;
+    padding: 1%;
+    width: 8%;
+    font-size: 20px;
+    background: url(/img/Home.3cf008bd.png) no-repeat;
+    box-shadow: 0 1px 2px black;
+    cursor: pointer;
+}
+>>>>>>> main
 </style>

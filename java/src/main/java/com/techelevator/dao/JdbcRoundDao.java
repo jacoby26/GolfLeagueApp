@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.GolfCourse;
+import com.techelevator.model.League;
 import com.techelevator.model.Round;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -32,11 +33,13 @@ public class JdbcRoundDao implements RoundDao{
     public List<Round> getAllUserRounds(Principal principal) {
         List<Round> userRounds = new ArrayList<>();
         String sql = "SELECT * FROM rounds "
-                + "JOIN scores ON rounds.round_id = scores_round_id "
-                + "JOIN courses ON tee_times.course_id = courses.course.id "
-                + "WHERE username = ?";
+    //            + "JOIN scores ON rounds.round_id = scores.round_id "
+                + "JOIN leagues ON leagues.league_id = rounds.league_id "
+    //            + "JOIN users_leagues ON rounds.league_id = leagues.league_id "
+                + "JOIN courses ON leagues.course_id = courses.course_id "
+                + "WHERE rounds.league_id IN (SELECT league_id FROM users_leagues where user_id = ? ) ;";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, principal.getName());
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, jdbcUserDao.findIdByUsername(principal.getName()));
         while(results.next()) {
             Round round = mapRowToRound(results);
             userRounds.add(round);
@@ -47,20 +50,19 @@ public class JdbcRoundDao implements RoundDao{
     @Override
     public long createRound(Round round) {
         String sql = "INSERT INTO rounds (tee_time, round_date, league_id) "
-                + "VALUES (?,?,?,?,?) RETURNING round_id";
-        return jdbcTemplate.queryForObject(sql, long.class, round.getTeeTime(), round.getDate(), round.getLeagueID());
-
+                + "VALUES (?,?,?) RETURNING round_id";
+        return jdbcTemplate.queryForObject(sql, long.class, round.getTeeTime(), round.getDate(), round.getleagueID());
     }
-
 
     private Round mapRowToRound(SqlRowSet rs) {
 
         Round round = new Round();
 
-        round.setId(rs.getLong("course_id"));
-        round.setTeeTime(rs.getTime("tee_time").toLocalTime());
-        round.setDate(rs.getDate("round_date").toLocalDate());
-        round.setLeagueID(rs.getLong("league_id"));
+        round.setCourseId(rs.getLong("course_id"));
+        round.setTeeTime(rs.getString("tee_time"));
+        round.setDate(rs.getString("round_date"));
+        round.setleagueID(rs.getLong("league_id"));
+        round.setLeagueName(rs.getString("league_name"));
         return round;
     }
 

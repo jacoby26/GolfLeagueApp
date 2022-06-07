@@ -7,6 +7,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 import com.techelevator.model.League;
 import javax.sql.DataSource;
+import javax.sql.RowSet;
 import javax.xml.crypto.Data;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -29,24 +30,23 @@ public class JdbcLeagueDao implements LeagueDao {
 
     @Override
     public long createLeague(String name, GolfCourse course, Principal principal) {
+        long userID = userDao.findIdByUsername(principal.getName());
         String sql = "INSERT INTO leagues (league_name, course_id, league_organizer) "
                 + "VALUES (?,?,?) RETURNING league_id";
-        long leagueOrganizerID = userDao.findIdByUsername(principal.getName());
-        long leagueID = jdbcTemplate.queryForObject(sql, long.class, name, course.getId(), leagueOrganizerID);
+        long leagueID = jdbcTemplate.queryForObject(sql, long.class, name, course.getId(), userID);
 
         String sql2 = "INSERT INTO users_leagues (user_id, league_id) "
                 + "VALUES (?,?) RETURNING league_id";
-        jdbcTemplate.queryForObject(sql2, long.class, leagueOrganizerID, leagueID);
+        jdbcTemplate.queryForObject(sql2, long.class, userID, leagueID);
 
         return leagueID;
     }
 
     @Override
-    public long joinLeague(User user, League league) {
+    public long joinLeague(Long userID, Long leagueId) {
         String sql = "INSERT INTO users_leagues (user_id, league_id) "
                 + "VALUES (?,?) RETURNING league_id";
-        long userID = userDao.findIdByUsername(user.getUsername());
-        return jdbcTemplate.queryForObject(sql, long.class, userID, league.getLeagueID());
+        return jdbcTemplate.queryForObject(sql, long.class, userID, leagueId);
     }
 
     @Override
@@ -58,6 +58,7 @@ public class JdbcLeagueDao implements LeagueDao {
                 "where users_leagues.user_id = ? " +
                 ";";
 //        SqlRowSet query = jdbcTemplate.queryForRowSet(sql);
+        System.out.println(principal.getName());
         SqlRowSet query = jdbcTemplate.queryForRowSet(sql, userDao.findIdByUsername(principal.getName()));
         while (query.next()){
             output.add(mapRowToLeague(query));
@@ -92,6 +93,47 @@ public class JdbcLeagueDao implements LeagueDao {
             currentRow.setRank(i);
             i++;
             output.add(currentRow);
+        }
+        return output;
+    }
+    public List<String> getmembers(long LeagueID){
+        List<String> output = new ArrayList<>();
+        String sql = "select username " +
+                "from users " +
+                "join users_leagues " +
+                "on users.user_id = users_leagues.user_id " +
+                "where league_id = ? ;";
+        SqlRowSet query = jdbcTemplate.queryForRowSet(sql, LeagueID);
+        while (query.next()){
+            output.add(query.getString("username"));
+        }
+        return output;
+    }
+    public List<String> getNonmembers(long LeagueID){
+        List<String> output = new ArrayList<>();
+        String sql = "select username " +
+                "from users " +
+                "WHERE user_id NOT IN " +
+                "(SELECT user_id " +
+                "FROM users_leagues " +
+                "where league_id = ? );";
+        SqlRowSet query = jdbcTemplate.queryForRowSet(sql, LeagueID);
+        while (query.next()){
+            output.add(query.getString("username"));
+        }
+        return output;
+    }
+
+
+    public List<League> getManagedLeagues(Principal principal){
+        List<League> output = new ArrayList();
+        String sql = "SELECT * " +
+                "from leagues " +
+                "where league_organizer = ? " +
+                ";";
+        SqlRowSet query = jdbcTemplate.queryForRowSet(sql, userDao.findIdByUsername(principal.getName()));
+        while (query.next()){
+            output.add(mapRowToLeague(query));
         }
         return output;
     }

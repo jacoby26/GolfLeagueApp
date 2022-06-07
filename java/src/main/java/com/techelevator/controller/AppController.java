@@ -3,12 +3,14 @@ package com.techelevator.controller;
 import com.techelevator.dao.GolfCourseDao;
 import com.techelevator.dao.LeagueDao;
 import com.techelevator.dao.RoundDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.model.*;
 
 import com.techelevator.dao.*;
 import com.techelevator.model.GolfCourse;
 import com.techelevator.model.League;
 import com.techelevator.model.Round;
+import com.techelevator.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -31,6 +33,9 @@ public class AppController {
     RoundDao roundDao;
     @Autowired
     LeagueDao leagueDao;
+    @Autowired
+    InviteDao inviteDao;
+    UserDao userDao;
 
     @RequestMapping(path="/courses", method=RequestMethod.GET)
     public List<GolfCourse> listAllCourses() {
@@ -59,9 +64,11 @@ public class AppController {
         return leagueDao.getAllLeagues(principal);
     }
 
+
+// Round will probably be changed a lot over the next day or so.
     @RequestMapping (path="/leagues/join", method=RequestMethod.POST)
     public long joinLeague(@RequestBody User user, League league) {
-        return leagueDao.joinLeague(user,league);
+        return leagueDao.joinLeague(user.getId(),league.getLeagueID());
     }
 
     @RequestMapping(path="/rounds", method=RequestMethod.GET)
@@ -69,9 +76,47 @@ public class AppController {
         return roundDao.getAllUserRounds(principal);
     }
 
-    @RequestMapping(path="/rounds/addround", method=RequestMethod.POST)
-    public long addUserRound(@RequestParam Round round) {
+//    @RequestMapping(path="/rounds/addround/user", method=RequestMethod.POST)
+//    public long addUserRound(@RequestParam int score, TeeTime teeTime) {
+//
+//        return roundDao.createRound(round);
 
+//    }
+//    @RequestMapping(path="/users", method=RequestMethod.GET)
+//    public List<User> findAll(){
+//        return UserDao.findAll();
+//    }
+    @RequestMapping(path="/leagues/addround", method=RequestMethod.POST)
+    public long createNewRound(@RequestBody Round round, League league) {
         return roundDao.createRound(round);
+//        return roundDao.createRound(round.getTeeTime(), round.getDate(), league);
+    }
+    @RequestMapping(path = "/invites", method = RequestMethod.GET)
+    public List<Invite> listAllUserInvites(Principal principal) { return inviteDao.getInvites(principal);}
+
+    @RequestMapping(path = "/invites", method = RequestMethod.POST)
+    public void addInvite(@RequestBody Invite invite){
+        inviteDao.makeInvite(invite);
+    }
+    @RequestMapping(path = "/invites", method = RequestMethod.PUT)
+    public void actOnInvite(@RequestBody Invite invite){
+        inviteDao.actOnInvite(invite);
+        if (invite.isAccepted()){
+            leagueDao.joinLeague(invite.getUserId(), invite.getLeagueId());
+        }
+    }
+    @RequestMapping(path="/leagues/{id}/members", method = RequestMethod.GET)
+    public List<String> getmembers(@PathVariable long id){
+        return leagueDao.getmembers(id);
+    }
+
+    @RequestMapping(path="/leagues/{id}/Nonmembers", method = RequestMethod.GET)
+    public List<String> getNonmembers(@PathVariable long id){
+        return leagueDao.getNonmembers(id);
+    }
+
+    @RequestMapping(path="/leagues/Managed", method=RequestMethod.GET)
+    public List<League> getManagedLeagues(Principal principal){
+        return leagueDao.getManagedLeagues(principal);
     }
 }

@@ -49,7 +49,7 @@ export default {
             this.isOpen = true;
         },
         getAllLeaguesForMenu() {
-            leagueService.viewLeagues(this.$store.state.user).then((response) => {
+            leagueService.viewManagedLeagues(this.$store.state.user).then((response) => {
                 this.leagues = response.data
             })
         },
@@ -62,6 +62,14 @@ export default {
             };
             
             this.$store.state.currentLeague = newLeague
+            leagueService.getMembers(this.league.leagueID).then(results =>
+            {
+                this.$store.state.member_golfers = results.data;
+            });
+            leagueService.getNonMembers(this.$store.state.currentLeague.ID).then(results =>
+            {
+                this.$store.state.non_member_golfers = results.data;
+            });
         },
     },
     mounted() {

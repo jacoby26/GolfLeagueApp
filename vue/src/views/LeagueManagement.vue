@@ -5,7 +5,7 @@
       <h3>{{ this.$store.state.currentLeague.name }}</h3>
       <ul>
         <li v-on:click="show('Scores')">Report Scores</li>
-        <li v-on:click="show('Arrange')">Arrange Games</li>
+        <li v-on:click="show('Arrange')">Create Match</li>
         <li v-on:click="show('Members')">Manage Members</li>
       </ul>
     </div>

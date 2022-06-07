@@ -1,9 +1,15 @@
 <template>
+<<<<<<< HEAD
   <div id="add-course">
       <h1 id="add-course-title">Add New Course</h1>
       <!-- <div id="add-course-form"> -->
       <AddCourseForm id="add-course-form"/>
       <!-- </div> -->
+=======
+  <div class="add-course">
+        <h1 id="add-course-title">Add New Course</h1>
+        <AddCourseForm />
+>>>>>>> main
   </div>
   
 </template>
@@ -21,6 +27,7 @@ export default {
 </script>
 
 <style>
+<<<<<<< HEAD
 #add-course-title {
     display:flex;
     justify-content: center;
@@ -34,7 +41,20 @@ export default {
     padding: 10px;
     background-color: rgba(186,199,202,.9);
     border-radius: 5px;
+=======
+.add-course {
+    margin: 5px 5px 5px 5px;
+    padding-left: 5px;
+    background-color: rgba(186,199,202,.9);
+    text-shadow: 1px 1px 1px #e7e7e7;
+}
+#add-course-title {
+>>>>>>> main
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    margin: 4% auto 6%;
+    font-size: 50px;
+    text-decoration: underline 3px;
 }
 </style>
+
