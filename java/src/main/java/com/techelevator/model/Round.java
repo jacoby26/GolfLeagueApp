@@ -11,17 +11,17 @@ public class Round {
     private int score;
     private String date;
     private String teeTime;
-
+    private int leagueId;
 
     public Round() {
     }
 
-    public Round(long id, long teeTimeID, int score, String teeTime, String date) {
+    public Round(long id, long teeTimeID, int score, String date, String teeTime) {
         this.id = id;
         this.teeTimeID = teeTimeID;
         this.score = score;
-        this.teeTime = teeTime;
         this.date = date;
+        this.teeTime = teeTime;
     }
 
     public long getId() {
@@ -32,36 +32,20 @@ public class Round {
         this.id = id;
     }
 
-    public LocalTime getTeeTime() {
-        return teeTime;
+    public long getTeeTimeID() {
+        return teeTimeID;
     }
 
-    public void setTeeTime(LocalTime teeTime) {
-        this.teeTime = teeTime;
+    public void setTeeTimeID(long teeTimeID) {
+        this.teeTimeID = teeTimeID;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public int getScore() {
+        return score;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public long getLeagueID() {
-        return leagueID;
-    }
-
-    public void setLeagueID(long leagueID) {
-        this.leagueID = leagueID;
-    }
-
-    public String getTeeTime() {
-        return teeTime;
-    }
-
-    public void setTeeTime(String teeTime) {
-        this.teeTime = teeTime;
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public String getDate() {
@@ -70,6 +54,14 @@ public class Round {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getTeeTime() {
+        return teeTime;
+    }
+
+    public void setTeeTime(String teeTime) {
+        this.teeTime = teeTime;
     }
 
 }

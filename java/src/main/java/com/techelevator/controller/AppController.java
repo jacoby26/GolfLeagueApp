@@ -74,19 +74,19 @@ public class AppController {
         return roundDao.getAllUserRounds(principal);
     }
 
-    @RequestMapping(path="/rounds/addround/user", method=RequestMethod.POST)
-    public long addUserRound(@RequestParam int score, TeeTime teeTime) {
+//    @RequestMapping(path="/rounds/addround/user", method=RequestMethod.POST)
+//    public long addUserRound(@RequestParam int score, TeeTime teeTime) {
+//
+//        return roundDao.createRound(round);
 
-        return roundDao.createRound(score, teeTime);
-
-    }
-    @RequestMapping(path="/users", method=RequestMethod.GET)
-    public List<User> findAll(){
-        return UserDao.findAll();
-    }
+//    }
+//    @RequestMapping(path="/users", method=RequestMethod.GET)
+//    public List<User> findAll(){
+//        return UserDao.findAll();
+//    }
     @RequestMapping(path="/leagues/addround", method=RequestMethod.POST)
     public long createNewRound(@RequestBody Round round, League league) {
 
-        return roundDao.newRound(round.getTeeTime(), round.getDate(), league);
+        return roundDao.createRound(round.getTeeTime(), round.getDate(), league);
     }
 }
