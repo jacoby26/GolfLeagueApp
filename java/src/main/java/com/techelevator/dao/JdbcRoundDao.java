@@ -50,17 +50,7 @@ public class JdbcRoundDao implements RoundDao{
         String sql = "INSERT INTO rounds (tee_time, round_date, league_id) "
                 + "VALUES (?,?,?) RETURNING round_id";
         return jdbcTemplate.queryForObject(sql, long.class, round.getTeeTime(), round.getDate(), round.getLeagueID());
-
     }
-    @Override
-    public long newRound(LocalTime teeTime, LocalDate date, League league)
-    {
-        String sql = "INSERT INTO rounds (tee_time, date, league_id) "
-                + "VALUES (?,?,?) RETURNING round_id";
-        return jdbcTemplate.queryForObject(sql, long.class, teeTime, date, league.getLeagueID());
-    }
-
-
 
     private Round mapRowToRound(SqlRowSet rs) {
 

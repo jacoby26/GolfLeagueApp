@@ -13,6 +13,5 @@ import java.util.List;
 public interface RoundDao {
 
     List<Round> getAllUserRounds(Principal principal);
-    long newRound(LocalTime teeTime, LocalDate date, League league);
     long createRound(Round round);
 }

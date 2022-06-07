@@ -29,23 +29,25 @@ export default
         round: {
             teeTime: "",
             date: "",
-            league: this.$store.state.currentLeague
-            }
+            // league: this.$store.state.currentLeague
+            },
       }
     },
     methods: 
     {
         submitForm() 
         {
-          let newRound = 
+          let newRound = [
           {
             teeTime: this.round.teeTime,
             date: this.round.date,
-            league: this.$store.state.currentLeague
-          }
-               
+            // league: this.$store.state.currentLeague
+          },
+          this.$store.state.currentLeague
+          ]    
           LeagueService
           .addRound(newRound)
+          // console.log(this.$store.league)
           .then(response => 
           {
             if (response.status === 200) 
