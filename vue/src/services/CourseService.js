@@ -13,6 +13,9 @@ class GolfCourseService
     addCourse(course){
         return http.post('/add-course', course)
     }
+    checkcourse(courseID){
+        return http.get(`/courses/${courseID}`)
+    }
 }
 
 export default new GolfCourseService()

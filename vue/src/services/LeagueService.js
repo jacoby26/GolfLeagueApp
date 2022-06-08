@@ -55,5 +55,5 @@ export default {
     },
     viewRoundDetails(roundID){
         return axios.get(`/rounds/${roundID}`);
-    }
+    },
 }
