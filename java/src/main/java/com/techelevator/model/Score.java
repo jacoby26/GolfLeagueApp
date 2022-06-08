@@ -1,10 +1,15 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Score {
 
+    @JsonProperty("round")
     private long roundID;
     private long user_id;
     private long score;
+    @JsonProperty("user")
+    private String username;
 
     public Score() {
     }
@@ -37,5 +42,23 @@ public class Score {
 
     public void setScore(long score) {
         this.score = score;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public String toString() {
+        return "Score{" +
+                "roundID=" + roundID +
+                ", user_id=" + user_id +
+                ", score=" + score +
+                ", username='" + username + '\'' +
+                '}';
     }
 }

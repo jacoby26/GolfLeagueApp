@@ -27,7 +27,7 @@ export default {
         return axios.put(`/leagues/${leagueId}`, user, roster)
     },
     reportRound(score){
-        return axios.put('/rounds/addround/user', score)
+        return axios.post('/rounds/addround/user', score)
     },
     viewInvites(user){
         return axios.get('/invites/', user);
