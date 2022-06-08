@@ -24,7 +24,7 @@
 export default {
 computed:{
   EightDayForecast(){
-    return this.TimeUntilRound() >= 2;
+    return 8>= this.TimeUntilRound() >= 2;
   },
   isScored(){
     return this.$store.state.currentRound.score > 0;
