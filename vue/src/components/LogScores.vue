@@ -6,17 +6,22 @@
         <form v-on:submit.prevent="submitForm()">
             <label for="round">Round: </label>
             <select id="round" class="RoundList" v-model="round.selected_round">
-                <!-- Will make v-for loop once league service is updated -->
-                <option v-for="round in $store.state.rounds" :value="round.teeTimeID" v-bind:key="round.teeTimeID">
-                   Round: {{round.teeTimeID}} Tee Time: {{round.teeTime}}
+                <option v-for="round in $store.state.rounds" 
+                :value="round.teeTimeID" 
+                v-bind:key="round.teeTimeID">
+
+                Round: {{round.teeTimeID}} 
+                Tee Time: {{round.teeTime}}
                 </option>
             </select>
             <div>
                 <!-- choose player id -->
-                <label for="player">Player: </label>
-            <select id="player" class="GolferList" v-model="round.selected_users">
-                <option v-for="user in $store.state.member_golfers" :value="user" v-bind:key="user.user_id">
-                  {{user}} {{user.user_id}}
+            <label for="player">Player: </label>
+            <select id="player" class="GolferList" v-model="round.selected_user">
+                <option v-for="user in $store.state.member_golfers" 
+                :value="user" 
+                v-bind:key="user.user_id">
+                  {{user}}
                 </option>
             </select>
             </div>

@@ -82,7 +82,8 @@ public class AppController {
     }
 
     @RequestMapping(path="/rounds/addround/user", method=RequestMethod.POST)
-    public long addUserRound(@RequestParam Score score) {
+    public long addUserRound(@RequestBody Score score) {
+        System.out.println(score);
         return scoreDao.enterScore(score);
     }
 

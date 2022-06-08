@@ -22,6 +22,8 @@ public class JdbcScoreDao implements ScoreDao{
 
     @Autowired
     JdbcScoreDao jdbcScoreDao;
+    @Autowired
+    JdbcUserDao jdbcUserDao;
 
     private JdbcTemplate jdbcTemplate;
 
@@ -31,9 +33,10 @@ public class JdbcScoreDao implements ScoreDao{
 
     @Override
     public long enterScore(Score score) {
+        long userId = jdbcUserDao.findIdByUsername(score.getUsername());
         String sql = "INSERT INTO scores (score, user_id, round_id) "
                 + "VALUES (?,?,?) RETURNING score_id";
-        return jdbcTemplate.queryForObject(sql, long.class, score.getScore(), score.getUser_id(), score.getRoundID());
+        return jdbcTemplate.queryForObject(sql, long.class, score.getScore(), userId, score.getRoundID());
     }
 }
 
