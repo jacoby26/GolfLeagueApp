@@ -15,6 +15,7 @@
 <script>
 import Details from "./Details.vue";
 import LeagueService from "../services/LeagueService.js";
+import CourseService from "../services/CourseService.js";
 export default {
   name: "home",
   data(){
@@ -50,9 +51,30 @@ export default {
         }
       else if(this.item  === 'game'){
         this.$store.commit('FETCH_ROUND', input);
-
+        let year = this.$store.state.currentRound.date.substring(0,4);
+        let month = this.$store.state.currentRound.date.substring(5,7);
+        month--;
+        let day = this.$store.state.currentRound.date.substring(8);
+        let then = new Date(year, month, day);
+        let elapsed = new Date;
+        elapsed.setTime(then.getTime()-Date.now());
+        if(1 <= elapsed.getDate <= 9){
+          CourseService.checkcourse(this.$store.state.currentRound.courseId).then(
+            (course) => {
+              fetch(`http://api.openweathermap.org/data/3.0/onecall?lat=${course.data.latitude}&lon=${course.data.longitude}&units=imperial&appid=f10f0d0374017f990077648ef4d578bc`).then(
+                (response) => response.json()
+                .then(data => ({
+                  data: data
+                })
+                ).then (body => { 
+                this.$store.commit('SET_WEATHER', body.data);
+                })
+              )
+            }
+          )
+        }
       }
-    }
+    },
   }
 };
 </script>

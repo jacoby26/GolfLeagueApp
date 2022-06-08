@@ -71,8 +71,10 @@ public class JdbcGolfCourseDao implements GolfCourseDao {
         String sql = "SELECT * from courses WHERE course_id = ?";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, courseId);
-        GolfCourse golfCourse = mapRowToGolfCourse(results);
-
+        GolfCourse golfCourse = new GolfCourse();
+        if(results.next()) {
+            golfCourse = mapRowToGolfCourse(results);
+        }
         return golfCourse;
 
     }

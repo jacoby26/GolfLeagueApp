@@ -28,7 +28,8 @@ export default new Vuex.Store({
     non_member_golfers: [],
     member_golfers: [],
     rounds: [],
-    currentRound: {}
+    currentRound: {},
+    forecast:{}
   },
   mutations: {
     LOAD_COURSES(state, locations){
@@ -91,6 +92,9 @@ export default new Vuex.Store({
       state.currentRound = state.rounds.find((entry)=>{
         return entry.teeTimeID === teeTimeID;
       });
+    },
+    SET_WEATHER(state, weather){
+      state.forecast = weather;
     }
   }
 })
