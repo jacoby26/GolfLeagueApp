@@ -26,7 +26,7 @@ export default {
       map: null,
       mapCenter: { lat: 43.0389, lng: -87.9065 }, 
       isLoading: true,
-      zip: "53201"
+      zip: 30043
     };
   },
   created(){},
