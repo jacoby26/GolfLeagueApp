@@ -71,7 +71,7 @@ public class JdbcLeagueDao implements LeagueDao {
         currentLeague.setLeagueID(set.getLong("league_id"));
         currentLeague.setName(set.getString("league_name"));
         currentLeague.setLeaderboardTable(getRankings(set.getLong("league_id")));
-        currentLeague.setLeagueOrganizerID(set.getLong(("league_organizer")));
+        currentLeague.setLeagueOrganizerID(set.getLong("league_organizer"));
         return currentLeague;
     }
     public List<LeaderboardRow> getRankings(long LeagueID){
