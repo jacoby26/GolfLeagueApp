@@ -7,7 +7,7 @@
                 <li class="autocomplete-result" v-for="league in filteredResults" 
             :key="league.leagueID" @click="setResult(league)"> {{ league.name }} </li>
                 </ul>
-            <button type="submit" class="register-button"><span>Select League</span></button>
+            <button type="submit" class="register-button"><span>Enter</span></button>
         </form>
     </div>
 </template>
