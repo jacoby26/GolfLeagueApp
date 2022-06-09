@@ -67,7 +67,7 @@ const router = new Router({
       }
     },
     {
-      path: "/about-us",
+      path: "/play",
       name: "bios",
       component: AboutUs,
       meta: {

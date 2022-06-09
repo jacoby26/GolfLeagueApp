@@ -1,13 +1,47 @@
 <template>
-<div class="normalBox" id="main-grid">
- <h1 id="about-us-title">Meet the Development Team</h1>
- 
+<div class="normalBox">
+  <main id="main-grid">
+    <div id="about-us-title">
+    <h1>Meet the Development Team</h1>
+    </div>
+    <div id="Jacob">
+      <img class="headshot" src="..\img\Jacob.jpg"/>
+      <h2>Jacob Garside</h2>
+      <p>Visit Jacob's LinkedIn <a href="https://www.linkedin.com/in/jacobgarside/" class="link"> here</a>!</p>
+      <p>Visit Jacob's GitHub <a href="github.com/jacoby26" class="link">here</a>!</p>
+    </div> 
+    <div id="Nate">
+      <h2>Nathaniel Lachs</h2>
+      <p>Visit Nate's LinkedIn <a href="https://www.linkedin.com/in/nathaniel-lachs/" class="link"> here</a>!</p>
+    </div> 
+    <div id="Dillon">
+      <img class="headshot" src="..\img\Dillon.jpg"/>
+      <h2>Dillon Donoho</h2>
+      <p>Visit Dillon's LinkedIn <a href="https://www.linkedin.com/in/jacobgarside/" class="link"> here</a>!</p>
+      <p>Visit Dillon's GitHub <a href="github.com/jacoby26" class="link">here</a>!</p>
+    </div> 
+    <div id="Alex">
+      <img class="headshot" src="..\img\Alex.jpg"/>
+      <h2>Alex Spors</h2>
+      <p>Visit Alex's LinkedIn <a href="https://www.linkedin.com/in/jacobgarside/" class="link"> here</a>!</p>
+      <p>Visit Alex's GitHub <a href="github.com/jacoby26" class="link">here</a>!</p>
+    </div> 
+    <div id="Niko">
+      <img class="headshot" src="..\img\Niko.jpg"/>
+      <h2>Nikolas Medina</h2>
+      <p>Visit Niko's LinkedIn <a href="https://www.linkedin.com/in/jacobgarside/" class="link"> here</a>!</p>
+      <p>Visit Niko's GitHub <a href="github.com/jacoby26" class="link">here</a>!</p>
+    </div> 
+  </main>
 </div>
 </template>
 
 <script>
 
 export default {
+  components: {
+  
+  }
 
 }
 </script>
@@ -24,17 +58,58 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas: 
-  "title"
-  "Jacob Nate Dillon"
-  "Alex  Niko";
-  row-gap: 20px;
-  column-gap: 50px;
+  "title title title"
+  "Jacob Niko Dillon"
+  "Alex Nate .";
+  row-gap: 1px;
+  column-gap: 1px;
   align-items: center;
 }
 
 #about-us-title {
   grid-area: title;
-  justify-self: center;
+  font-style: strong;
+}
+
+#Jacob {
+  grid-area: Jacob;
+  text-align: center;
+}
+
+#Nate {
+  grid-area: Nate;
+  text-align: center;
+}
+
+
+#Dillon {
+  grid-area: Dillon;
+  text-align: center;
+}
+
+#Alex {
+  grid-area: Alex;
+  text-align: center;
+}
+
+#Niko {
+  grid-area: Niko;
+  text-align: center;
+}
+
+.headshot {
+  border-radius: 50px;
+  width: 200px;
+  border-style: solid;
+  border-color: #005229
+}
+
+.link {
+  color:#005229 ;
+}
+
+.link:hover {
+  color: #ffb81f;
 }
 
 
