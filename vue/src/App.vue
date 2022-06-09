@@ -10,7 +10,7 @@
     </div>
     <div class="mainBody">
     <router-view id="router-view"/>
-    <Messenger v-if="areInvites()"/>
+    <Messenger v-if="areInvites()" v-bind:invites="invites"/>
     </div>
   </div>
 </template>

@@ -39,6 +39,7 @@ export default {
       this.invites.forEach(invite => {
         LeagueService.AddInvites(invite);
       });
+      alert("Invitations sent!");
     }
   },
   // created:{
