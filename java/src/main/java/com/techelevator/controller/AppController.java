@@ -123,4 +123,7 @@ public class AppController {
     public List<League> getManagedLeagues(Principal principal){
         return leagueDao.getManagedLeagues(principal);
     }
+
+    @RequestMapping(path = "/courses/{courseID}", method = RequestMethod.GET)
+    public GolfCourse getLatLon(@PathVariable long courseID) {return golfCourseDao.getCourseByCourseId(courseID);}
 }
