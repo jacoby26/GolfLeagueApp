@@ -70,15 +70,6 @@ CREATE TABLE leagues (
     CONSTRAINT UQ_league_name UNIQUE (league_name)
 );
 
-INSERT INTO leagues (league_name,course_id,league_orgainizer) VALUES ('Nothing But Cup','50', '3');
-INSERT INTO leagues (league_name,course_id,league_orgainizer) VALUES ('Living for the Turn','50', '3');
-INSERT INTO leagues (league_name,course_id,league_orgainizer) VALUES ('First Tee Confidence','60', '4');
-INSERT INTO leagues (league_name,course_id,league_orgainizer) VALUES ('Fore!','60', '4');
-INSERT INTO leagues (league_name,course_id,league_orgainizer) VALUES ('Lowest of the Low','80', '5');
-INSERT INTO leagues (league_name,course_id,league_orgainizer) VALUES ('Divot Divas','80', '5');
-INSERT INTO leagues (league_name,course_id,league_orgainizer) VALUES ('Shankopotamus','100', '6');
-INSERT INTO leagues (league_name,course_id,league_orgainizer) VALUES ('Beach Day','100', '6');
-
 CREATE TABLE users_leagues (
     user_id int,
     league_id int,
@@ -87,32 +78,7 @@ CREATE TABLE users_leagues (
     CONSTRAINT FK_users_leagues_league FOREIGN KEY (league_id) REFERENCES leagues (league_id)
 );
 
-INSERT INTO users_leagues (user_id, league_id) VALUES ('3', '1');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('3', '2');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('4', '3');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('4', '4');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('5', '5');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('5', '6');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('8', '7');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('8', '8');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('9', '7');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('9', '8');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('10', '7');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('11', '6');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('11', '7');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('12', '5');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('12', '7');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('13', '3');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('13', '4');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('14', '3');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('14', '4');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('15', '4');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('15', '5');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('11', '5');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('11', '4');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('11', '3');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('12', '4');
-INSERT INTO users_leagues (user_id, league_id) VALUES ('12', '3');
+
 
 CREATE TABLE rounds (
     round_id serial NOT NULL,
@@ -123,54 +89,6 @@ CREATE TABLE rounds (
     CONSTRAINT FK_league_id FOREIGN KEY (league_id) REFERENCES leagues (league_id)
 );
 
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:30', '2022-06-15', 1);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:45', '2022-06-15', 1);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('07:00', '2022-06-15', 1);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:30', '2022-06-09', 1);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:45', '2022-06-09', 1);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('07:00', '2022-06-09', 1);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:30', '2022-06-15', 2);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:45', '2022-06-15', 2);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('07:00', '2022-06-15', 2);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:30', '2022-06-09', 2);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:45', '2022-06-09', 2);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('07:00', '2022-06-09', 2);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:30', '2022-06-15', 3);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:45', '2022-06-15', 3);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('07:00', '2022-06-15', 3);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:30', '2022-06-09', 3);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:45', '2022-06-09', 3);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('07:00', '2022-06-09', 3);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:30', '2022-06-15', 4);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:45', '2022-06-15', 4);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('07:00', '2022-06-15', 4);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:30', '2022-06-09', 4);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:45', '2022-06-09', 4);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('07:00', '2022-06-09', 4);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:30', '2022-06-15', 5);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:45', '2022-06-15', 5);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('07:00', '2022-06-15', 5);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:30', '2022-06-09', 5);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:45', '2022-06-09', 5);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('07:00', '2022-06-09', 5);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:30', '2022-06-15', 6);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:45', '2022-06-15', 6);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('07:00', '2022-06-15', 6);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:30', '2022-06-09', 6);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:45', '2022-06-09', 6);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('07:00', '2022-06-09', 6);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:30', '2022-06-15', 7);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:45', '2022-06-15', 7);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('07:00', '2022-06-15', 7);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:30', '2022-06-09', 7);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:45', '2022-06-09', 7);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('07:00', '2022-06-09', 7);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:30', '2022-06-15', 8);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:45', '2022-06-15', 8);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('07:00', '2022-06-15', 8);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:30', '2022-06-09', 8);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('06:45', '2022-06-09', 8);
-INSERT INTO rounds (tee_time, round_date, league_id) VALUES ('07:00', '2022-06-09', 8);
 
 CREATE TABLE scores (
     score_id serial NOT NULL,
@@ -183,30 +101,6 @@ CREATE TABLE scores (
     CONSTRAINT CHK_score CHECK (score > 0 AND score < 150)
 );
 
-INSERT INTO scores (score,user_id,round_id) VALUES ('95', '3', 4);
-INSERT INTO scores (score,user_id,round_id) VALUES ('100', '3', 5);
-INSERT INTO scores (score,user_id,round_id) VALUES ('110', '3', 6);
-INSERT INTO scores (score,user_id,round_id) VALUES ('98', '3', 10);
-INSERT INTO scores (score,user_id,round_id) VALUES ('99', '3', 11);
-INSERT INTO scores (score,user_id,round_id) VALUES ('115', '3', 12);
-INSERT INTO scores (score,user_id,round_id) VALUES ('78', '11', 16);
-INSERT INTO scores (score,user_id,round_id) VALUES ('77', '13', 17);
-INSERT INTO scores (score,user_id,round_id) VALUES ('80', '14', 18);
-INSERT INTO scores (score,user_id,round_id) VALUES('74', '14', 22);
-INSERT INTO scores (score,user_id,round_id) VALUES ('72', '11', 23);
-INSERT INTO scores (score,user_id,round_id) VALUES('77', '15', 24);
-INSERT INTO scores (score,user_id,round_id) VALUES('79', '12', 28);
-INSERT INTO scores (score,user_id,round_id) VALUES ('85', '5', 29);
-INSERT INTO scores (score,user_id,round_id) VALUES ('74', '11', 30);
-INSERT INTO scores (score,user_id,round_id) VALUES ('90', '5', 34);
-INSERT INTO scores (score,user_id,round_id) VALUES('88', '5', 35);
-INSERT INTO scores (score,user_id,round_id) VALUES ('68', '11', 36);
-INSERT INTO scores (score,user_id,round_id) VALUES ('71', '10', 40);
-INSERT INTO scores (score,user_id,round_id) VALUES ('77', '9', 41);
-INSERT INTO scores (score,user_id,round_id) VALUES ('68', '12', 42);
-INSERT INTO scores (score,user_id,round_id) VALUES ('80', '8', 46);
-INSERT INTO scores (score,user_id,round_id) VALUES ('90', '8', 47);
-INSERT INTO scores (score,user_id,round_id) VALUES ('79', '9', 48);
 
 CREATE Table invites (
     invite_id serial NOT NULL,
