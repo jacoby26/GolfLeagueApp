@@ -3,7 +3,7 @@
   <h1>{{league.name}} Leaderboard</h1>
     <table>
       <tr>
-        <td>Ranking</td>
+        <td>Rank</td>
         <td>Name</td>
         <td>Score</td>
       </tr>
