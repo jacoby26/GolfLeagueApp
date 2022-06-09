@@ -2,15 +2,15 @@
 <div id="Leaderboard">
   <h1>{{league.name}} Leaderboard</h1>
     <table>
-      <tr>
-        <td>Ranking</td>
-        <td>Name</td>
-        <td>Score</td>
+      <tr id="LeaderboardHeaders">
+        <td class="rankColumn">Rank</td>
+        <td class="nameColumn">Name</td>
+        <td class="scoreColumn">Score</td>
       </tr>
       <tr v-for="golfer in league.leaderboardTable" v-bind:key="golfer.id">
-        <td>{{golfer.rank}}</td>
-        <td>{{golfer.name}}</td>
-        <td>{{golfer.score}}</td>
+        <td class="rankColumn">{{golfer.rank}}</td>
+        <td class="nameColumn">{{golfer.name}}</td>
+        <td class="scoreColumn">{{golfer.score}}</td>
       </tr>
     </table>
     </div>
@@ -37,5 +37,23 @@ computed:{
 }
 #Leaderboard tr{
   font-size: 18pt;
+}
+#Leaderboard table, tr, td{
+  border: 1px solid black;
+  padding: 1%;
+}
+#Leaderboard table{
+  width: 50%;
+}
+.rankColumn{
+  width: 1fr;
+}
+#LeaderboardHeaders{
+}
+.nameColumn{
+  width: 3fr;
+}
+.scoreColumn{
+  width: 1fr;
 }
 </style>
