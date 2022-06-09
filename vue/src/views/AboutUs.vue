@@ -4,33 +4,33 @@
     <div id="about-us-title">
     <h1>Meet the Development Team</h1>
     </div>
-    <div id="Jacob">
+    <div id="Jacob" class="bio">
       <img class="headshot" src="..\img\Jacob.jpg"/>
       <h2>Jacob Garside</h2>
       <p>Visit Jacob's LinkedIn <a href="https://www.linkedin.com/in/jacobgarside/" class="link"> here</a>!</p>
-      <p>Visit Jacob's GitHub <a href="github.com/jacoby26" class="link">here</a>!</p>
+    
     </div> 
-    <div id="Nate">
+    <div id="Nate" class="bio">
       <h2>Nathaniel Lachs</h2>
       <p>Visit Nate's LinkedIn <a href="https://www.linkedin.com/in/nathaniel-lachs/" class="link"> here</a>!</p>
     </div> 
-    <div id="Dillon">
+    <div id="Dillon" class="bio">
       <img class="headshot" src="..\img\Dillon.jpg"/>
       <h2>Dillon Donoho</h2>
       <p>Visit Dillon's LinkedIn <a href="https://www.linkedin.com/in/jacobgarside/" class="link"> here</a>!</p>
-      <p>Visit Dillon's GitHub <a href="github.com/jacoby26" class="link">here</a>!</p>
+      
     </div> 
-    <div id="Alex">
+    <div id="Alex" class="bio">
       <img class="headshot" src="..\img\Alex.jpg"/>
       <h2>Alex Spors</h2>
       <p>Visit Alex's LinkedIn <a href="https://www.linkedin.com/in/jacobgarside/" class="link"> here</a>!</p>
-      <p>Visit Alex's GitHub <a href="github.com/jacoby26" class="link">here</a>!</p>
+    
     </div> 
-    <div id="Niko">
+    <div id="Niko" class="bio">
       <img class="headshot" src="..\img\Niko.jpg"/>
       <h2>Nikolas Medina</h2>
       <p>Visit Niko's LinkedIn <a href="https://www.linkedin.com/in/jacobgarside/" class="link"> here</a>!</p>
-      <p>Visit Niko's GitHub <a href="github.com/jacoby26" class="link">here</a>!</p>
+   
     </div> 
   </main>
 </div>
@@ -61,14 +61,14 @@ export default {
   "title title title"
   "Jacob Niko Dillon"
   "Alex Nate .";
-  row-gap: 1px;
+  row-gap: 15px;
   column-gap: 1px;
   align-items: center;
 }
 
 #about-us-title {
   grid-area: title;
-  font-style: strong;
+  margin: 20px;
 }
 
 #Jacob {
