@@ -132,14 +132,14 @@ export default {
   color: white;
   border-radius: 5px 5px 0 0;
   text-transform: uppercase;
-  background: #5D5038; 
+  background: #2D007A; 
   width: 100%;
   text-align: center;
 }
 #create-header h1.h3-mb-3-font-weight-normal {
   margin: 0px;
   padding: 20px 100px;
-  text-shadow: 0 0 1px #5D5038;
+  text-shadow: 0 0 1px #2D007A;
 }
 .sr-only {
   text-align: center;
@@ -151,13 +151,13 @@ export default {
 
 #create-acc {
   border-radius: 5px 5px;
-  border: #5D5038;
+  border: #005229;
   cursor: pointer;
   margin: 35px auto 20px;
   padding: 10px;
   max-width: 100px;
   text-transform: uppercase;
-  background: #5D5038;
+  background: #005229;
   color: white;
 }
 #register input {
@@ -176,7 +176,7 @@ export default {
   margin: 15px auto;
   text-align: center;
   max-width: auto;
-  color: #5D5038;
+  color: #2D007A;
 }
 .alert-alert-danger {
   margin: 10px 0 0 0;

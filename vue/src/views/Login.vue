@@ -84,9 +84,8 @@ export default {
 </script>
 <style>
 /* potential color palette
-old gold #eeea03 
-brown #5D5038
-white
+old gold #ffb81f 
+blue #2D007A
 */
 .app-title #title {
   padding-left: 1%;
@@ -134,7 +133,7 @@ white
   color: white;
   border-radius: 5px 5px 0 0;
   text-transform: uppercase;
-  background: #5D5038; 
+  background: #2D007A; 
   width: 100%;
   text-align: center;
 }
@@ -142,7 +141,7 @@ white
   margin: 0px;
   /* padding: 20px auto; */
   padding: 20px 50px 20px 50px;
-  text-shadow: 0 0 1px #5D5038;
+  text-shadow: 0 0 1px white;
 }
 .sr-only {
   text-align: center;
@@ -155,17 +154,17 @@ white
   margin: 15px auto;
   text-align: center;
   max-width: auto;
-  color: #5D5038;
+  color: #2D007A;
 }
 #sign-in {
   border-radius: 5px 5px;
-  border: #5D5038;
+  border: #005229;
   cursor: pointer;
   margin: 35px auto 20px;
   padding: 10px;
   max-width: 100px;
   text-transform: uppercase;
-  background: #5D5038;
+  background: #005229;
   color: white;
 }
 #login input {

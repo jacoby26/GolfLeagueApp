@@ -1,5 +1,5 @@
 <template>
-  <div id="League-Create">
+  <div id="League-Create-main">
       <div id="League-Create">
           <CreateLeagueForm />
           <Map/>
@@ -22,7 +22,8 @@ export default {
 </script>
 
 <style>
-#League-Create{
+#League-Create, 
+#League-Create-main {
     margin: 5px;
     padding-left: 5px;
     background-color: rgba(186,199,202,.9);

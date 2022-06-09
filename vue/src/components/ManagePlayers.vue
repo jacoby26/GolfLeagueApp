@@ -1,6 +1,5 @@
 <template>
   <div>
-      <h1>Message Invite or Remove players</h1>
       <h2>Select players to invite:</h2>
       <form @submit.prevent="SendInvites">
         <select class="GolferList" multiple v-model="selected_users">

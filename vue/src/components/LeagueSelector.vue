@@ -7,7 +7,7 @@
                 <li class="autocomplete-result" v-for="league in filteredResults" 
             :key="league.leagueID" @click="setResult(league)"> {{ league.name }} </li>
                 </ul>
-            <button type="submit">Select League</button>
+            <button type="submit" class="register-button"><span>Select League</span></button>
         </form>
     </div>
 </template>
@@ -112,5 +112,43 @@ export default {
 #select-league-form {
     display: flex;
     flex-direction: column;
+}
+.register-button {
+  display: inline-block;
+  border-radius: 5px;
+  background-color: #005229;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  width: 160px;
+  margin-top: 5px;
+  transition: all 0.5s;
+}
+
+.register-button span {
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.register-button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.register-button:hover span {
+  padding-right: 25px;
+  cursor: pointer;
+}
+
+.register-button:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 </style>
