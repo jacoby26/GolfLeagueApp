@@ -1,6 +1,5 @@
 <template>
   <div>
-      <h1>Message Invite or Remove players</h1>
       <h2>Select players to invite:</h2>
       <form @submit.prevent="SendInvites">
         <select class="GolferList" multiple v-model="selected_users">
@@ -8,7 +7,7 @@
             {{user}}
           </option>
         </select><br>
-      <button id="invite-btn">Invite to {{$store.state.currentLeague.name}}</button>
+      <button id="invite-button" class="register-button"><span>Invite to {{$store.state.currentLeague.name}}</span></button>
       </form>
   </div>
 </template>
@@ -51,9 +50,48 @@ export default {
 .GolferList{
   min-width: 350px;
 }
-
-#invite-btn{
+.register-button#invite-button {
+  display: inline-block;
+  border-radius: 5px;
+  background-color: #005229;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  width: 160px;
   margin-top: 5px;
+  transition: all 0.5s;
+  text-shadow: 1px 1px black;
+  width: auto;
+}
+
+.register-button#cancel-register {
+  background-color: #ffb81f;
+}
+
+.register-button span {
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.register-button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.register-button:hover span {
+  padding-right: 25px;
   cursor: pointer;
+}
+
+.register-button:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 </style>

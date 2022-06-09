@@ -137,7 +137,7 @@ created(){
 </script>
 <style>
 body{
-  background-image: URL("./img/login.jpg");
+  background: URL("./img/login.jpg") no-repeat center fixed;
   background-size: cover;
   font-family: sans-serif;
   color: #005229;

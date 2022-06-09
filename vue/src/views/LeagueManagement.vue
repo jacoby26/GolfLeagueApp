@@ -2,12 +2,15 @@
   <div class="LeagueToolbox">
       <div id="leaguetoolselector">
         <LeagueSelector />
-      <h3>{{ this.$store.state.currentLeague.name }}</h3>
       <ul>
         <li v-on:click="show('Scores')">Report Scores</li>
         <li v-on:click="show('Arrange')">Create Match</li>
         <li v-on:click="show('Members')">Manage Members</li>
       </ul>
+    </div>
+    <div id="league-name-location">
+      <h1 id="league-title" v-if="this.$store.state.currentLeague.name != ''">{{ this.$store.state.currentLeague.name }}</h1>
+      <h1 id="league-title" v-if="this.$store.state.currentLeague.name == ''" >Please Select League</h1>
     </div>
     <div id="selected-league-tool">
         <ManagePlayers v-if="currentDisplay === 'Members' "/>
@@ -53,17 +56,39 @@ components:{
   padding: 5px;
   display: grid;
   grid-template-columns: 1fr 3fr;
-  grid-template-areas: "selector details";
+  grid-template-rows: auto 1fr;
+  grid-template-areas: 
+  "selector league"
+  "selector details";
 }
 #leaguetoolselector{
   grid-area: selector;
   background-color: rgba(255, 255, 255, 0);
+  margin: 10px auto auto auto;
+  
 }
 #leaguetoolselector ul{
   list-style-type: none;
 }
 #selected-league-tool{
-  padding: 5px;
   grid-area: details;
+  display: flex;
+  justify-content: center;
+  border-left: 5px #005229 solid;
+}
+#selected-league-tool h2{
+  text-align: center;
+  
+}
+#league-name-location{
+  grid-area: league;
+  display: flex;
+  justify-content: center;
+  font-size: 28px;
+  border-left: 5px #005229 solid;
+}
+#league-title {
+  margin: 15px auto auto auto;
+text-decoration: underline;
 }
 </style>

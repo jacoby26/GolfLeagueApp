@@ -6,19 +6,19 @@
       <h2>Personal Score for this Round: {{$store.state.currentRound.score}}</h2>
     </div>
     <div v-if="EightDayForecast">
-      {{$store.state.forecast.daily[this.TimeUntilRound()].weather[0].description}}
+      {{CapFirstLetter($store.state.forecast.daily[this.TimeUntilRound()].weather[0].description)}}
       <p>Temperature: {{$store.state.forecast.daily[this.TimeUntilRound()].temp.day}}</p>
       <p>Feels Like: {{$store.state.forecast.daily[this.TimeUntilRound()].feels_like.day}}</p>
       <p>Wind Speed: {{$store.state.forecast.daily[this.TimeUntilRound()].wind_speed}}</p>
     </div>
     <div v-if="HourlyForecast">
-      {{$store.state.forecast.hourly[this.gethour()].weather[0].description}}
+      {{CapFirstLetter($store.state.forecast.hourly[this.gethour()].weather[0].description)}})
       <p>Temperature: {{$store.state.forecast.hourly[this.gethour()].temp}}</p>
       <p>Feels Like: {{$store.state.forecast.hourly[this.gethour()].feels_like}}</p>
       <p>Wind Speed: {{$store.state.forecast.hourly[this.gethour()].wind_speed}}</p>
     </div>
     <div v-if="TimeUntilRound()===31">
-      {{$store.state.forecast.current.weather[0].description}}
+      {{CapFirstLetter($store.state.forecast.current.weather[0].description)}}
       <p>Temperature: {{$store.state.forecast.current.temp}}</p>
       <p>Feels Like: {{$store.state.forecast.current.feels_like}}</p>
       <p>Wind Speed: {{$store.state.forecast.current.wind_speed}}</p>
@@ -41,6 +41,11 @@ computed:{
   }
 },
 methods:{
+  CapFirstLetter(description){
+    let output = description;
+    output = output.toUpperCase(output).substring(0,1)+ output.substring(1);
+    return output;
+  },
   TimeUntilRound(){
         let year = this.$store.state.currentRound.date.substring(0,4);
         let month = this.$store.state.currentRound.date.substring(5,7);
