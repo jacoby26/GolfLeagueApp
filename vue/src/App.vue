@@ -10,7 +10,7 @@
     </div>
     <div class="mainBody">
     <router-view id="router-view"/>
-    <Messenger v-if="areInvites()"/>
+    <Messenger v-show="areInvites && logged" v-bind:invites="invites"/>
     </div>
   </div>
 </template>
@@ -34,7 +34,6 @@ import LogoutClick from "./img/LOC.png";
 import AddRestore from "./img/ACR.png";
 import AddHover from "./img/ACH.png";
 import AddClick from "./img/ACC.png";
-import LeagueService from "./services/LeagueService.js";
 export default {
   data() {
     return{
@@ -51,6 +50,9 @@ export default {
     logged(){
       return this.$store.state.token != '';
     },
+  areInvites(){
+    return (this.$store.state.invites.length != 0);
+  },
   },
   components:{
     Messenger,
@@ -117,27 +119,21 @@ methods:{
   addout(){
     this.addcoursebtn.image = AddRestore
   },
-  areInvites(){
-    if(this.$store.state.token != ''){
-    return (this.invites.length != 0);
-    }
-    return false;
-  },
 },
 created(){
-  LeagueService.viewInvites(this.$store.state.user).then(
-      (fetch_invites) => {
-        fetch_invites.data.forEach(invite => {
-          this.invites.push(invite);
-        })
-      }
-    )
+},
+events:{
+
 }
 }
 </script>
 <style>
 body{
-  background: URL("./img/login.jpg") no-repeat center fixed;
+  /* background: URL("./img/login.jpg") no-repeat center fixed; */
+  /* background: URL("./img/unsplash.jpg") no-repeat center fixed; */
+  /* background: URL("./img/option2.jpg") no-repeat center fixed; */
+   background: URL("./img/option10.jpg") no-repeat center fixed;
+
   background-size: cover;
   font-family: sans-serif;
   color: #005229;

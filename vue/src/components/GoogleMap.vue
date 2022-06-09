@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       map: null,
-      mapCenter: { lat: 43.0389, lng: -87.9065 }, 
+      mapCenter: { lat: 34.0029, lng: -84.1446 }, 
       isLoading: true,
       zip: 30043
     };
@@ -34,7 +34,7 @@ export default {
     initMap() {
       this.map = new window.google.maps.Map(document.getElementById("map"), {
         center: this.mapCenter,
-        zoom: 14,
+        zoom: 10,
         maxZoom: 20,
         minZoom: 3,
         streetViewControl: true,
@@ -171,14 +171,17 @@ export default {
 </script>
 
 <style>
-
 #map {
   grid-area: map;
   width: 500px;
   height: 400px;
   padding: 25px;
-  margin: 25px; 
+  margin: 0px; 
+  margin-top: 20px;
+  margin-bottom: 27px;
   border-radius: 5px;
+  
 } 
+
 
 </style>
