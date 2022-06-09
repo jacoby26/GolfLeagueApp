@@ -2,7 +2,7 @@
     <div>
         <form id="select-league-form" v-on:submit.prevent="submitForm">
             <label id="select" for="course">Select League</label>
-            <input v-model="search"  @input="onChange" type="text"/>
+            <input id="selector" v-model="search"  @input="onChange" type="text"/>
                 <ul  v-show="isOpen" class="autocomplete-results">
                 <li class="autocomplete-result" v-for="league in filteredResults" 
             :key="league.leagueID" @click="setResult(league)"> {{ league.name }} </li>
@@ -85,13 +85,16 @@ export default {
   }
 
   .autocomplete-results {
-    padding: 0;
     margin: 0;
-    border: 1px solid #eeeeee;
+    border: 1px solid black;
     height: 120px;
     min-height: 1em;
     max-height: 6em;    
     overflow: auto;
+    width: 75%;
+    background: white;
+    border-radius: 3px;
+    padding: 4px;
   }
 
   .autocomplete-result {
@@ -112,6 +115,7 @@ export default {
 #select-league-form {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .register-button {
   display: inline-block;
@@ -150,5 +154,12 @@ export default {
 .register-button:hover span:after {
   opacity: 1;
   right: 0;
+}
+input#selector {
+    margin: 5px;
+    border-radius: 3px;
+    padding: 4px;
+    background: white;
+    width: 75%;
 }
 </style>
