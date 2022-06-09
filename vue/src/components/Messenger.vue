@@ -1,6 +1,6 @@
 <template>
 <div id="messenger">
-  <div v-for="invite in invitesLocal" :key="invite.inviteId">
+  <div v-for="invite in $store.state.invites" :key="invite.inviteId">
   <p>You have been invited to {{invite.leagueName}} run by {{invite.leagueAdmin}}, the league plays on {{invite.courseName}} at {{invite.courseAddress}}.</p>
   <button v-on:click="Accept(invite)">Accept</button><button v-on:click="Reject(invite)">Decline</button>
   </div>
@@ -41,10 +41,7 @@ methods:{
     this.$store.state.currentInvite = invite;
     this.$store.state.currentInvite.accepted = true;
     LeagueService.ActionInvites(this.$store.state.currentInvite);
-    let newList = this.invitesLocal.filter(invitation => {
-      return invitation != invite
-    })
-    this.invitesLocal.set(newList);
+    this.$store.commit('REMOVE_INVITE');
     this.$forceUpdate();
     this.App.$forceUpdate();
 
@@ -52,10 +49,7 @@ methods:{
   Reject(invite){
     this.$store.state.currentInvite = invite;
     LeagueService.ActionInvites(this.$store.state.currentInvite);
-    let newList = this.invitesLocal.filter(invitation => {
-      return invitation != invite
-    })
-    this.invitesLocal.set(newList);
+    this.$store.commit('REMOVE_INVITE');
     this.$forceUpdate();
 //    this.invites = this.invites.filter(invitation => {
 //      return invitation != invite

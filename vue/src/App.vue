@@ -3,14 +3,14 @@
     <div id="nav" v-if="logged">
       <img id="homebtn" v-bind:src='homebtn.image' @mouseover="homehover()" @mouseout="homeout()" v-on:click="homeclick()"/>
       <img id="addleaguebtn" v-bind:src='addleaguebtn.image' @mouseover="createhover()" @mouseout="createout()" v-on:click="createclick()"/>
+      <img id="addmatchbtn" v-bind:src='addmatchbtn.image' @mouseover="matchhover()" @mouseout="matchout()" v-on:click="matchclick()"/>
       <img id="manageleaguebtn"  v-bind:src='manageleaguebtn.image' @mouseover="managehover()" @mouseout="manageout()" v-on:click="manageclick()"/>
       <img id="addcoursebtn" v-if="$store.state.user.username === 'admin'" v-bind:src='addcoursebtn.image' @mouseover="addhover()" @mouseout="addout()" v-on:click="addclick()"/>
-      <img id="aboutusbtn" v-bind:src='addmatchbtn.image' @mouseover="matchhover()" @mouseout="matchout()" v-on:click="matchclick()"/>
       <img id="logoutbtn" v-bind:src='logoutbtn.image' @mouseover="logouthover()" @mouseout="logoutout()" v-on:click="logoutclick()" v-if="$store.state.token != ''"/>
     </div>
     <div class="mainBody">
     <router-view id="router-view"/>
-    <Messenger v-if="areInvites()" v-bind:invites="invites"/>
+    <Messenger v-show="areInvites && logged" v-bind:invites="invites"/>
     </div>
   </div>
 </template>
@@ -34,7 +34,6 @@ import LogoutClick from "./img/LOC.png";
 import AddRestore from "./img/ACR.png";
 import AddHover from "./img/ACH.png";
 import AddClick from "./img/ACC.png";
-import LeagueService from "./services/LeagueService.js";
 export default {
   data() {
     return{
@@ -51,6 +50,9 @@ export default {
     logged(){
       return this.$store.state.token != '';
     },
+  areInvites(){
+    return (this.$store.state.invites.length != 0);
+  },
   },
   components:{
     Messenger,
@@ -117,21 +119,11 @@ methods:{
   addout(){
     this.addcoursebtn.image = AddRestore
   },
-  areInvites(){
-    if(this.$store.state.token != ''){
-    return (this.invites.length != 0);
-    }
-    return false;
-  },
 },
 created(){
-  LeagueService.viewInvites(this.$store.state.user).then(
-      (fetch_invites) => {
-        fetch_invites.data.forEach(invite => {
-          this.invites.push(invite);
-        })
-      }
-    )
+},
+events:{
+
 }
 }
 </script>

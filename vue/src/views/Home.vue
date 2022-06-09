@@ -27,21 +27,30 @@ export default {
     Details
   },
   created(){
-      LeagueService.viewLeagues(this.$store.state.user).then(
-        (leagues) => {
-            this.$store.commit('EMPTY_LEAGUES');
-            leagues.data.forEach(league => {
-              this.$store.commit('LOAD_LEAGUE', league);
-              });
-        }
-      )
-      LeagueService.viewAllRounds(this.$store.state.user).then(
+    LeagueService.viewLeagues(this.$store.state.user).then(
+      (leagues) => {
+        this.$store.commit('EMPTY_LEAGUES');
+        leagues.data.forEach(league => {
+          this.$store.commit('LOAD_LEAGUE', league);
+        });
+      }
+    )
+    LeagueService.viewAllRounds(this.$store.state.user).then(
       (games) => {
         this.$store.commit('EMPTY_ROUNDS');
         games.data.forEach(round =>{
           this.$store.commit('LOAD_ROUNDS', round);
         })
-    })
+      }
+    )
+    LeagueService.viewInvites(this.$store.state.user).then(
+      (fetch_invites) => {
+        fetch_invites.data.forEach(invite => {
+          this.$store.commit('LOAD_INVITES', invite);
+        })
+        this.$App.$forceUpdate();
+      }
+    )
   },
   methods:{
     show(input, type){
