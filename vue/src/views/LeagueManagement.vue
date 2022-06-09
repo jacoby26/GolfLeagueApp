@@ -65,5 +65,10 @@ components:{
 #selected-league-tool{
   padding: 5px;
   grid-area: details;
+  display: flex;
+  justify-content: center;
+}
+#selected-league-tool h2{
+  text-align: center;
 }
 </style>

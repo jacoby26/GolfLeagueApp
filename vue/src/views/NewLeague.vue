@@ -1,6 +1,6 @@
 <template>
-  <div>
-      <div id="League-Create">
+  <div id="League-Create">
+      <div id="League-Create-body">
           <CreateLeagueForm />
           <Map/>
       </div>    

@@ -9,7 +9,7 @@
           <h1 class="h3-mb-3-font-weight-normal">Create Account</h1>
        </div>
       <form class="form-register" @submit.prevent="register">
-        <div class="alert alert-danger" role="alert" v-if="registrationErrors">
+        <div class="alert-alert-danger" role="alert" v-if="registrationErrors">
           {{ registrationErrorMsg }}
        </div>
        <label for="username" class="sr-only">Username</label>
@@ -177,5 +177,10 @@ export default {
   text-align: center;
   max-width: auto;
   color: #5D5038;
+}
+.alert-alert-danger {
+  margin: 10px 0 0 0;
+  font-weight: 700;
+  
 }
 </style>

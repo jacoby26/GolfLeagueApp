@@ -1,7 +1,7 @@
 <template>
     <div>
-        <form v-on:submit.prevent="submitForm">
-            <label for="course">League: </label>
+        <form id="select-league-form" v-on:submit.prevent="submitForm">
+            <label id="select" for="course">Select League</label>
             <input v-model="search"  @input="onChange" type="text"/>
                 <ul  v-show="isOpen" class="autocomplete-results">
                 <li class="autocomplete-result" v-for="league in filteredResults" 
@@ -105,4 +105,12 @@ export default {
     background-color: #4AAE9B;
     color: white;
   }
+#select {
+    font-size: 24px;
+    text-align: center;
+}
+#select-league-form {
+    display: flex;
+    flex-direction: column;
+}
 </style>

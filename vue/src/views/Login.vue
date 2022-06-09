@@ -10,12 +10,12 @@
     </div>
     <form class="form-signin" @submit.prevent="login">
       <div
-        class="alert alert-danger"
+        class="alert-alert-danger"
         role="alert"
         v-if="invalidCredentials"
       >Invalid username and password!</div>
       <div
-        class="alert alert-success"
+        class="alert-alert-success"
         role="alert"
         v-if="this.$route.query.registration"
       >Thank you for registering, please sign in.</div>
@@ -177,7 +177,12 @@ white
   justify-content: center;
   align-items: center;
 }
-
+#login>.form-signin>.alert-alert-success, 
+#login>.form-signin>.alert-alert-danger {
+  margin: 10px 0 0 0;
+  font-weight: 700;
+  
+}
 @media only screen and (max-width: 1450px) 
 {
 #login h1.h3-mb-3-font-weight-normal {
@@ -213,6 +218,8 @@ white
   text-shadow: 0 0 1px #5D5038;
   align-items: center;
 }
+
+
 }
 
 </style>

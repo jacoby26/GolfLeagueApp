@@ -9,7 +9,6 @@
                 <option v-for="round in $store.state.rounds" 
                 :value="round.teeTimeID" 
                 v-bind:key="round.teeTimeID">
-
                 Round: {{round.teeTimeID}} 
                 Tee Time: {{round.teeTime}}
                 </option>
