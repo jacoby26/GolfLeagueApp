@@ -7,7 +7,7 @@
             <input
                 type="text"
                 id="league-name"
-                placeholder="The Extraordinary"
+                placeholder=""
                 v-model="league.name"
                 required
             />
@@ -162,7 +162,7 @@ export default {
   font-size: 15px;
   padding: 10px;
   width: 160px;
-  margin-top: 5px;
+  margin-top: 20px;
   transition: all 0.5s;
 }
 

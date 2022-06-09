@@ -137,7 +137,11 @@ created(){
 </script>
 <style>
 body{
-  background: URL("./img/login.jpg") no-repeat center fixed;
+  /* background: URL("./img/login.jpg") no-repeat center fixed; */
+  /* background: URL("./img/unsplash.jpg") no-repeat center fixed; */
+  /* background: URL("./img/option2.jpg") no-repeat center fixed; */
+   background: URL("./img/option10.jpg") no-repeat center fixed;
+
   background-size: cover;
   font-family: sans-serif;
   color: #005229;
