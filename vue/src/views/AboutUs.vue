@@ -17,19 +17,19 @@
     <div id="Dillon" class="bio">
       <img class="headshot" src="..\img\Dillon.jpg"/>
       <h2>Dillon Donoho</h2>
-      <p>Visit Dillon's LinkedIn <a href="https://www.linkedin.com/in/jacobgarside/" class="link"> here</a>!</p>
+      <p>Visit Dillon's LinkedIn <a href="https://www.linkedin.com/in/dillondonoho/" class="link"> here</a>!</p>
       
     </div> 
     <div id="Alex" class="bio">
       <img class="headshot" src="..\img\Alex.jpg"/>
       <h2>Alex Spors</h2>
-      <p>Visit Alex's LinkedIn <a href="https://www.linkedin.com/in/jacobgarside/" class="link"> here</a>!</p>
+      <p>Visit Alex's LinkedIn <a href="https://www.linkedin.com/in/alexspors/" class="link"> here</a>!</p>
     
     </div> 
     <div id="Niko" class="bio">
       <img class="headshot" src="..\img\Niko.jpg"/>
       <h2>Nikolas Medina</h2>
-      <p>Visit Niko's LinkedIn <a href="https://www.linkedin.com/in/jacobgarside/" class="link"> here</a>!</p>
+      <p>Visit Niko's LinkedIn <a href="https://www.linkedin.com/in/njmedina00/" class="link"> here</a>!</p>
    
     </div> 
   </main>
