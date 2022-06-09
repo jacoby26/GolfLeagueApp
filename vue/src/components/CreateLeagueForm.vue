@@ -194,5 +194,6 @@ export default {
 input {
     margin: 5px;
     border-radius: 3px;
+    padding: 4px;
 }
 </style>
