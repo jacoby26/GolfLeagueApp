@@ -26,6 +26,20 @@ CREATE TABLE users (
 );
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+INSERT INTO users (username,password_hash,role) VALUES ('alex','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_ADMIN');
+INSERT INTO users (username,password_hash,role) VALUES ('nate','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_ADMIN');
+INSERT INTO users (username,password_hash,role) VALUES ('jacob','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_ADMIN');
+INSERT INTO users (username,password_hash,role) VALUES ('dillon','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_ADMIN');
+INSERT INTO users (username,password_hash,role) VALUES ('niko','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_ADMIN');
+INSERT INTO users (username,password_hash,role) VALUES ('jordan','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('jack','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('arnold','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('tiger','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('phil','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('rickie','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('rory','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('dustin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
+
 
 CREATE SEQUENCE seq_course_id
   INCREMENT BY 1
@@ -55,6 +69,7 @@ CREATE TABLE leagues (
     CONSTRAINT FK_league_organizer FOREIGN KEY (league_organizer) REFERENCES users (user_id),
     CONSTRAINT UQ_league_name UNIQUE (league_name)
 );
+
 CREATE TABLE users_leagues (
     user_id int,
     league_id int,
@@ -62,6 +77,8 @@ CREATE TABLE users_leagues (
     CONSTRAINT FK_users_leagues_user FOREIGN KEY (user_id) REFERENCES users (user_id),
     CONSTRAINT FK_users_leagues_league FOREIGN KEY (league_id) REFERENCES leagues (league_id)
 );
+
+
 
 CREATE TABLE rounds (
     round_id serial NOT NULL,
@@ -71,6 +88,7 @@ CREATE TABLE rounds (
     CONSTRAINT PK_round PRIMARY KEY (round_id),
     CONSTRAINT FK_league_id FOREIGN KEY (league_id) REFERENCES leagues (league_id)
 );
+
 
 CREATE TABLE scores (
     score_id serial NOT NULL,
@@ -82,6 +100,8 @@ CREATE TABLE scores (
     CONSTRAINT FK_round FOREIGN KEY (round_id) REFERENCES rounds (round_id),
     CONSTRAINT CHK_score CHECK (score > 0 AND score < 150)
 );
+
+
 CREATE Table invites (
     invite_id serial NOT NULL,
     league_id integer NOT NULL,

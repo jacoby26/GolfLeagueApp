@@ -15,7 +15,7 @@ import java.util.List;
 public class JdbcInviteDao implements InviteDao{
     private JdbcTemplate jdbcTemplate;
     @Autowired
-    UserDao userDao;
+    JdbcUserDao userDao;
     public JdbcInviteDao(DataSource ds){
         this.jdbcTemplate = new JdbcTemplate(ds);
             }

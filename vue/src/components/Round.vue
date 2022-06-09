@@ -17,6 +17,12 @@
       <p>Feels Like: {{$store.state.forecast.hourly[this.gethour()].feels_like}}</p>
       <p>Wind Speed: {{$store.state.forecast.hourly[this.gethour()].wind_speed}}</p>
     </div>
+    <div v-if="TimeUntilRound()===31">
+      {{$store.state.forecast.current.weather[0].description}}
+      <p>Temperature: {{$store.state.forecast.current.temp}}</p>
+      <p>Feels Like: {{$store.state.forecast.current.feels_like}}</p>
+      <p>Wind Speed: {{$store.state.forecast.current.wind_speed}}</p>
+    </div>
   </div>
 </template>
 
@@ -24,7 +30,7 @@
 export default {
 computed:{
   EightDayForecast(){
-    return (8 >= this.TimeUntilRound() && this.TimeUntilRound() > 3) || (this.TimeUntilRound() ==2 && !this.HourlyForecast());
+    return (8 >= this.TimeUntilRound() && this.TimeUntilRound() >= 3) || (this.TimeUntilRound() ==2 && !this.HourlyForecast());
   },
   isScored(){
     return this.$store.state.currentRound.score > 0;
@@ -40,10 +46,11 @@ methods:{
         let month = this.$store.state.currentRound.date.substring(5,7);
         month--;
         let day = this.$store.state.currentRound.date.substring(8);
-        let then = new Date(year, month, day);
+        let then = new Date(year, month, day, this.$store.state.currentRound.teeTime.substring(0,2));
         let elapsed = new Date;
         elapsed.setTime(then.getTime()-Date.now());
-        return elapsed.getDate() -1;
+        console.log(elapsed.getDate())
+        return elapsed.getDate();
   },
   hoursUntilMatch(){
     if(this.TimeUntilRound()<2){
