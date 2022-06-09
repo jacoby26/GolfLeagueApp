@@ -1,5 +1,5 @@
 <template>
-<div id="messenger" v-if="invites.size>0">
+<div id="messenger">
   <div v-for="invite in invites" :key="invite.invite_Id">
   <p>You have been invited to {{invite.leagueName}} run by {{invite.leagueAdmin}}, the league plays on {{invite.courseName}} at {{invite.courseAddress}}.</p>
   <button v-on:click="Accept(invite)">Accept</button><button v-on:click="Reject(invite)">Decline</button>
@@ -43,6 +43,7 @@ methods:{
       return invitation != invite
     })
     this.$forceUpdate();
+    this.App.$forceUpdate();
   }
 }
 }

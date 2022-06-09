@@ -8,8 +8,10 @@
       <img id="addcoursebtn" v-if="$store.state.user.username === 'admin'" v-bind:src='addcoursebtn.image' @mouseover="addhover()" @mouseout="addout()" v-on:click="addclick()"/>
       <img id="logoutbtn" v-bind:src='logoutbtn.image' @mouseover="logouthover()" @mouseout="logoutout()" v-on:click="logoutclick()" v-if="$store.state.token != ''"/>
     </div>
-    <router-view id="router-view" />
-    <Messenger id="messenger" v-if="$store.state.token != ''"/>
+    <div class="mainBody">
+    <router-view id="router-view"/>
+    <Messenger v-if="areInvites()"/>
+    </div>
   </div>
 </template>
 <script>
@@ -32,7 +34,7 @@ import LogoutClick from "./img/LOC.png";
 import AddRestore from "./img/ACR.png";
 import AddHover from "./img/ACH.png";
 import AddClick from "./img/ACC.png";
-
+import LeagueService from "./services/LeagueService.js";
 export default {
   data() {
     return{
@@ -41,7 +43,8 @@ export default {
       addmatchbtn:{image:MatchRestore},
       manageleaguebtn:{image:ManageRestore},
       logoutbtn:{image:LogoutRestore},
-      addcoursebtn:{image:AddRestore}
+      addcoursebtn:{image:AddRestore},
+      invites : []
     }
   },
   computed:{
@@ -99,6 +102,7 @@ methods:{
   logoutclick(){
     this.logoutbtn.image = LogoutClick
     this.$router.push('/logout')
+    this.logoutout()
   },
   logoutout(){
     this.logoutbtn.image = LogoutRestore
@@ -112,8 +116,23 @@ methods:{
   },
   addout(){
     this.addcoursebtn.image = AddRestore
-  }
-}  
+  },
+  areInvites(){
+    if(this.$store.state.token != ''){
+    return (this.invites.length != 0);
+    }
+    return false;
+  },
+},
+created(){
+  LeagueService.viewInvites(this.$store.state.user).then(
+      (fetch_invites) => {
+        fetch_invites.data.forEach(invite => {
+          this.invites.push(invite);
+        })
+      }
+    )
+}
 }
 </script>
 <style>
@@ -128,16 +147,23 @@ body{
   top: 0px;
   left: 0px;
   display: grid;
-  grid-template-columns: 75vw 25vw;
+  grid-template-columns: 100vw;
   grid-template-rows: 10vh 90vh;
-  grid-template-areas: "nav nav"
-  "router messaging";
+  grid-template-areas: "nav"
+  "page";
 }
-#messenger{
-  grid-area: messaging;
+.mainBody{
+  grid-area: page;
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+}
+.messenger{
+
 }
 #router-view{
-  grid-area: router;
+  min-width: 75vw;
+  width: 100vw;
 }
 
 #nav{
