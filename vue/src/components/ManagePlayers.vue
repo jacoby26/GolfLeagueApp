@@ -7,8 +7,8 @@
           <option v-for="user in $store.state.non_member_golfers" v-bind:key="user.user_id">
             {{user}}
           </option>
-        </select>
-      <button>Invite to {{$store.state.currentLeague.name}}</button>
+        </select><br>
+      <button id="invite-btn">Invite to {{$store.state.currentLeague.name}}</button>
       </form>
   </div>
 </template>
@@ -50,5 +50,10 @@ export default {
 <style>
 .GolferList{
   min-width: 350px;
+}
+
+#invite-btn{
+  margin-top: 5px;
+  cursor: pointer;
 }
 </style>
