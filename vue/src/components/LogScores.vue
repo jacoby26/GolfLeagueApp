@@ -28,10 +28,10 @@
             <div class="score">
                 <!-- post to round id where  -->
                 <label for="score">Score: </label>
-                <input id="score" type="text" v-model="round.score" autocomplete="off" />
+                <input class="score-input" id="score" type="text" v-model="round.score" autocomplete="off" />
             </div>
-            <button class="register-button"><span>Submit</span></button>
-            <button id="cancel-score" class="register-button" v-on:click.prevent="cancelForm" type="cancel"><span>Cancel</span></button>
+            <button class="btn-btn-submit"><span>Submit</span></button>
+            <button id="cancel-score" class="btn-btn-cancel" v-on:click.prevent="cancelForm" type="cancel"><span>Cancel</span></button>
         </form>
     </div>
 </template>
@@ -100,7 +100,7 @@ export default {
 .round, 
 .player,
 .score{
-    padding: 2px;
+    padding: 10px;
 }
 
 .round>label, 
@@ -117,8 +117,10 @@ export default {
     min-width: 70%;
 }
 
-.register-button {
-  display: inline-block;
+.btn-btn-submit {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   border-radius: 5px;
   background-color: #005229;
   border: none;
@@ -126,24 +128,19 @@ export default {
   text-align: center;
   font-size: 15px;
   padding: 10px;
-  width: 160px;
-  margin-top: 5px;
+  width: 230px;
+  margin-top: 20px;
   transition: all 0.5s;
   text-shadow: 1px 1px black;
-  width: auto;
 }
 
-.register-button#cancel-score {
-  background-color: #ffb81f;
-}
-
-.register-button span {
+.btn-btn-submit  span {
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
 
-.register-button span:after {
+.btn-btn-submit span:after {
   content: '\00bb';
   position: absolute;
   opacity: 0;
@@ -152,14 +149,39 @@ export default {
   transition: 0.5s;
 }
 
-.register-button:hover span {
+.btn-btn-submit:hover span {
   padding-right: 25px;
   cursor: pointer;
 }
 
-.register-button:hover span:after {
+.btn-btn-submit:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+.btn-btn-cancel {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  border-style: solid;
+  border-width: thin;
+  border-color: #ffb81f;
+  color: #ffb81f;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px;
+  width: 230px;
+  margin-top: 20px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.btn-btn-cancel:hover {
+background-color: #ffb81f;
+color: white;
 }
 
 form {

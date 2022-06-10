@@ -197,7 +197,6 @@ export default {
   right: 0;
 }
 
-
 .btn-btn-cancel {
   display: flex;
   flex-direction: row;
@@ -217,8 +216,6 @@ export default {
   transition: all 0.5s;
   cursor: pointer;
 }
-
-
 
 .btn-btn-cancel:hover {
 background-color: #ffb81f;

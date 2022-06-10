@@ -55,19 +55,6 @@ public class JdbcRoundDao implements RoundDao{
         return jdbcTemplate.queryForObject(sql, long.class, round.getTeeTime(), round.getDate(), round.getLeagueID());
     }
 
-//    @Override
-//    public List<Round> getRoundsByLeagueId(Round round) {
-//        List<Round> roundsByLeagueId = new ArrayList<>();
-//        String sql = "SELECT * FROM rounds "
-//                + "WHERE league_id = ?;";
-//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, round.getLeagueID());
-//        while(results.next()) {
-//            Round round = mapRowToRound(results, league);
-//            roundsByLeagueId.add(round);
-//        }
-//        return roundsByLeagueId;
-//    }
-
     private Round mapRowToRound(SqlRowSet rs, long userId) {
 
         Round round = new Round();
