@@ -14,4 +14,5 @@ public interface RoundDao {
 
     List<Round> getAllUserRounds(Principal principal);
     long createRound(Round round);
+//    List<Round> getRoundsByLeagueId(Round leagueID);
 }

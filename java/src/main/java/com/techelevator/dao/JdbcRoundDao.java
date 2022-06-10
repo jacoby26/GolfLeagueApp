@@ -22,6 +22,8 @@ public class JdbcRoundDao implements RoundDao{
 
     @Autowired
     JdbcUserDao jdbcUserDao;
+    @Autowired
+    JdbcRoundDao jdbcRoundDao;
 
     private JdbcTemplate jdbcTemplate;
 
@@ -52,6 +54,19 @@ public class JdbcRoundDao implements RoundDao{
                 + "VALUES (?,?,?) RETURNING round_id";
         return jdbcTemplate.queryForObject(sql, long.class, round.getTeeTime(), round.getDate(), round.getLeagueID());
     }
+
+//    @Override
+//    public List<Round> getRoundsByLeagueId(Round round) {
+//        List<Round> roundsByLeagueId = new ArrayList<>();
+//        String sql = "SELECT * FROM rounds "
+//                + "WHERE league_id = ?;";
+//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, round.getLeagueID());
+//        while(results.next()) {
+//            Round round = mapRowToRound(results, league);
+//            roundsByLeagueId.add(round);
+//        }
+//        return roundsByLeagueId;
+//    }
 
     private Round mapRowToRound(SqlRowSet rs, long userId) {
 

@@ -29,7 +29,7 @@ export default
         round: {
             teeTime: "",
             date: "",
-             league: this.$store.state.currentLeague
+            league: this.$store.state.currentLeague
             },
       }
     },
@@ -115,7 +115,7 @@ export default
   font-size: 15px;
   padding: 10px;
   width: 160px;
-  margin-top: 5px;
+  margin-top: 15px;
   transition: all 0.5s;
   text-shadow: 1px 1px black;
 }

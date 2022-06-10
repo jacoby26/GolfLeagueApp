@@ -3,14 +3,13 @@
       <div id="leaguetoolselector">
         <LeagueSelector />
       <ul id="league-options-menu">
-        <li id="league-options" v-on:click="show('Scores')">Report Scores</li>
-        <li id="league-options-middle" v-on:click="show('Arrange')">Create Match</li>
-        <li id="league-options" v-on:click="show('Members')">Manage Members</li>
+        <li id="league-options" v-on:click="show('Scores')"><span>Report Scores</span></li>
+        <li id="league-options-middle" v-on:click="show('Arrange')"><span>Create Match</span></li>
+        <li id="league-options" v-on:click="show('Members')"><span>Manage Members</span></li>
       </ul>
     </div>
     <div id="league-name-location">
-      <h1 id="league-title" v-if="this.$store.state.currentLeague.name != ''">{{ this.$store.state.currentLeague.name }}</h1>
-      <h1 id="league-title" v-if="this.$store.state.currentLeague.name == ''" >Please Select League</h1>
+      <h1 id="league-title">{{ this.$store.state.currentLeague.name }}</h1>
     </div>
     <div id="selected-league-tool">
         <ManagePlayers v-if="currentDisplay === 'Members' "/>
@@ -76,7 +75,7 @@ components:{
   grid-area: details;
   display: flex;
   justify-content: center;
-  border-left: 5px #005229 solid;
+  border-left: 5px #005229 double;
 }
 #selected-league-tool h2{
   text-align: center;
@@ -87,7 +86,7 @@ components:{
   display: flex;
   justify-content: center;
   font-size: 28px;
-  border-left: 5px #005229 solid;
+  border-left: 5px #005229 double;
 }
 #league-title {
   margin: 15px auto auto auto;
@@ -96,14 +95,22 @@ text-decoration: underline;
 #league-options-menu{
 display: flex;
 flex-direction: column;
-padding: 0;
-cursor: pointer;
+padding: 15px 0;
 align-items: center;
+font-size: 28px;
+list-style-type: none;
 
 }
 #league-options{
-  border-top: black solid 1px;
-  border-bottom: black solid 1px;
+  padding: 15px 0;
 }
-
+#league-options-middle{
+  padding: 15px 0;
+}
+#league-options-middle:hover span, 
+#league-options:hover span{
+  border: outset;
+  padding: 10px 25px;
+  cursor: pointer;
+}
 </style>

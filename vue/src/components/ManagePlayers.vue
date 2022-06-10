@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div id="invite-tool">
       <h2>Select players to invite:</h2>
-      <form @submit.prevent="SendInvites">
+      <form @submit.prevent="SendInvites" id="invite-tool">
         <select class="GolferList" multiple v-model="selected_users">
           <option v-for="user in $store.state.non_member_golfers" v-bind:key="user.user_id">
             {{user}}
@@ -48,8 +48,28 @@ export default {
 </script>
 
 <style>
+#invite-tool{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .GolferList{
   min-width: 350px;
+  margin: 0;
+  border: 1px solid black;
+  height: 250px;
+  min-height: 1em;
+  max-height: auto;    
+  overflow: auto;
+  width: 75%;
+  background: white;
+  border-radius: 3px;
+  padding: 4px;
+}
+.GolferList>option:checked,
+.GolferList>option:hover{
+  background-color: #4AAE9B;
+  color: white;
 }
 .register-button#invite-button {
   display: inline-block;

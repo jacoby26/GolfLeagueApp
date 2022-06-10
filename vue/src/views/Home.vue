@@ -100,9 +100,20 @@ export default {
 #selector{
   grid-area: selector;
   background-color: rgba(255, 255, 255, 0);
+  border-right: 5px #005229 double;
 }
 #selector ul{
   list-style-type: none;
+  width: 60%;
+}
+#selector li{
+  padding-bottom: 3px;
+  font-size: 17px;
+}
+#selector li:hover{
+  border: outset;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 #details{
   padding: 5px;

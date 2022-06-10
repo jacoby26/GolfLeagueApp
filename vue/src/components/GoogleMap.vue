@@ -182,6 +182,24 @@ export default {
   border-radius: 5px;
   
 } 
-
+#search {
+  display: inline-block;
+  border-radius: 5px;
+  background-color: #005229;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 15px;
+  padding: 5px;
+  width: 160px;
+}
+#text {
+    margin: 5px;
+    border-radius: 3px;
+    padding: 4px;
+}
+#intro>h1 {
+  text-align: center;
+}
 
 </style>

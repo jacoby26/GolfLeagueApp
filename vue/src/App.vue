@@ -3,9 +3,9 @@
     <div id="nav" v-if="logged">
       <img id="homebtn" v-bind:src='homebtn.image' @mouseover="homehover()" @mouseout="homeout()" v-on:click="homeclick()"/>
       <img id="addleaguebtn" v-bind:src='addleaguebtn.image' @mouseover="createhover()" @mouseout="createout()" v-on:click="createclick()"/>
-      <img id="addmatchbtn" v-bind:src='addmatchbtn.image' @mouseover="matchhover()" @mouseout="matchout()" v-on:click="matchclick()"/>
       <img id="manageleaguebtn"  v-bind:src='manageleaguebtn.image' @mouseover="managehover()" @mouseout="manageout()" v-on:click="manageclick()"/>
       <img id="addcoursebtn" v-if="$store.state.user.username === 'admin'" v-bind:src='addcoursebtn.image' @mouseover="addhover()" @mouseout="addout()" v-on:click="addclick()"/>
+      <img id="addmatchbtn" v-bind:src='addmatchbtn.image' @mouseover="matchhover()" @mouseout="matchout()" v-on:click="matchclick()"/>
       <img id="logoutbtn" v-bind:src='logoutbtn.image' @mouseover="logouthover()" @mouseout="logoutout()" v-on:click="logoutclick()" v-if="$store.state.token != ''"/>
     </div>
     <div class="mainBody">

@@ -1,22 +1,23 @@
 <template>
-    <div>
+    <div id="log-score">
         <div id="intro">
           <h1>Log Match Scores</h1>
         </div>
-        <form v-on:submit.prevent="submitForm()">
+        <form v-on:submit.prevent="submitForm()" id="score-form">
+            <div class="round">
             <label for="round">Round: </label>
             <select id="round" class="RoundList" v-model="round.selected_round">
                 <option v-for="round in $store.state.rounds" 
                 :value="round.teeTimeID" 
                 v-bind:key="round.teeTimeID">
-                Round: {{round.teeTimeID}} 
-                Tee Time: {{round.teeTime}}
+                {{round.date}} {{round.teeTime}}
                 </option>
             </select>
-            <div>
+            </div>
+            <div class="player">
                 <!-- choose player id -->
             <label for="player">Player: </label>
-            <select id="player" class="GolferList" v-model="round.selected_user">
+            <select id="player" class="playerList" v-model="round.selected_user">
                 <option v-for="user in $store.state.member_golfers" 
                 :value="user" 
                 v-bind:key="user.user_id">
@@ -24,12 +25,11 @@
                 </option>
             </select>
             </div>
-            <div>
+            <div class="score">
                 <!-- post to round id where  -->
                 <label for="score">Score: </label>
                 <input id="score" type="text" v-model="round.score" autocomplete="off" />
             </div>
-            
             <button class="register-button"><span>Submit</span></button>
             <button id="cancel-score" class="register-button" v-on:click.prevent="cancelForm" type="cancel"><span>Cancel</span></button>
         </form>
@@ -72,6 +72,51 @@ export default {
 }
 </script>
 <style>
+#score-form{
+  display: flex;
+  flex-direction: column;
+}
+#score-form:not(#round), 
+#score-form:not(#player), 
+#score-form:not(#score), 
+#score-form>button{
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+#score-form>button{
+    width: 50%;
+    margin-top: 15px;
+}
+#log-score{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#intro{
+    padding: 0;
+}
+
+.round, 
+.player,
+.score{
+    padding: 2px;
+}
+
+.round>label, 
+.player>label,
+.score>label{
+    font-size: 24px;
+}
+.round>select, 
+.player>select,
+.score>input{
+    font-size: 18px;
+    border-radius: 3px;
+    background: white;
+    min-width: 70%;
+}
+
 .register-button {
   display: inline-block;
   border-radius: 5px;
