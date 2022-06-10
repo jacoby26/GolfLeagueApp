@@ -7,7 +7,7 @@
                 <li class="autocomplete-result" v-for="league in filteredResults" 
             :key="league.leagueID" @click="setResult(league)"> {{ league.name }} </li>
                 </ul>
-            <button type="submit" class="register-button"><span>Enter</span></button>
+            <button type="submit" class="register-button"><span>Select</span></button>
         </form>
     </div>
 </template>
@@ -80,21 +80,28 @@ export default {
 </script>
 
 <style scoped>
+    #league-select {
+    border-radius: 3px;
+    padding: 4px;
+}
     .autocomplete {
     position: relative;
   }
 
   .autocomplete-results {
-    margin: 0;
     border: 1px solid black;
     height: 120px;
     min-height: 1em;
     max-height: 6em;    
     overflow: auto;
     width: 75%;
-    background: white;
     border-radius: 3px;
     padding: 4px;
+    margin-top: 2px;
+    border: 3px solid #005229;
+    border-radius: 5px;
+    background-color: #ffffff;
+    opacity: 50%;
   }
 
   .autocomplete-result {
@@ -126,7 +133,7 @@ export default {
   text-align: center;
   font-size: 15px;
   padding: 10px;
-  width: 160px;
+  width: 180px;
   margin-top: 5px;
   transition: all 0.5s;
 }

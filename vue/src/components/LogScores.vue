@@ -161,4 +161,8 @@ export default {
   opacity: 1;
   right: 0;
 }
+
+form {
+  border-radius: 3px;
+}
 </style>

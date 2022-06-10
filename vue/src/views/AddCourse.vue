@@ -29,7 +29,7 @@ export default {
 #add-course-title {
     display: flex;
     justify-content: center;
-    margin: 4% auto 6%;
+    margin: 3%;
     font-size: 50px;
     text-decoration: underline 3px;
 }
