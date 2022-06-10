@@ -90,6 +90,7 @@ export default {
 
 .register-button#cancel-score {
   background-color: #ffb81f;
+  margin-left: 15px;
 }
 
 .register-button span {
@@ -115,5 +116,9 @@ export default {
 .register-button:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+form {
+  border-radius: 3px;
 }
 </style>

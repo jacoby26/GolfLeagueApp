@@ -29,10 +29,13 @@
                 <label for="course_name">Longitude: </label>
                 <input id="course_name" type="text" v-model="course.longitude" autocomplete="off" />
             </div> -->
-            <!-- <div> -->
-                <button class="btn-btn-submit">Submit</button>
-                <button class="btn-btn-cancel" v-on:click.prevent="cancelForm" type="cancel">Cancel</button>
-            <!-- </div> -->
+            <span>
+                <button class="btn-btn-submit"><span>Add Course</span></button>
+                <button class="btn-btn-cancel" v-on:click.prevent="cancelForm" type="cancel"><span>Cancel</span></button>
+            </span>
+            
+                
+          
         </form>
         
     <!-- course_name, address, city, course_state, zip_code, latitude, longitude -->
@@ -152,18 +155,73 @@ export default {
     flex-direction: row;
     justify-content: center;
 } */
-.btn-btn-submit, 
+.btn-btn-submit {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: #005229;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  width: 230px;
+  margin-top: 20px;
+  transition: all 0.5s;
+  text-shadow: 1px 1px black;
+}
+
+.btn-btn-submit  span {
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.btn-btn-submit span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.btn-btn-submit:hover span {
+  padding-right: 25px;
+  cursor: pointer;
+}
+
+.btn-btn-submit:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
 .btn-btn-cancel {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 1%;
-    padding: 1%;
-    width: 8%;
-    font-size: 20px;
-    background: url(/img/Home.3cf008bd.png) no-repeat;
-    box-shadow: 0 1px 2px black;
-    border-radius: 5px;
-    cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  border-style: solid;
+  border-width: thin;
+  border-color: #ffb81f;
+  color: #ffb81f;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px;
+  width: 230px;
+  margin-top: 20px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+
+
+.btn-btn-cancel:hover {
+background-color: #ffb81f;
+color: white;
 }
 </style>
